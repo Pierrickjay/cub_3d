@@ -36,7 +36,7 @@ SRCS_LIBFT		:= char/ft_isalnum.c char/ft_isalpha.c char/ft_isascii.c char/ft_isd
 				print/ft_putchar_fd.c print/ft_putendl_fd.c print/ft_putnbr_fd.c print/ft_putstr_fd.c \
 				string/ft_strchr.c string/ft_striteri.c string/ft_strlcat.c string/ft_strlcpy.c \
 				string/ft_strlen.c string/ft_strcmp.c string/ft_strncmp.c string/ft_strnstr.c string/ft_strrchr.c \
-				liste_chaine/ft_lstnew.c \
+				liste_chaine/ft_lstnew.c gnl/get_next_line.c gnl/get_next_line_utils.c\
 				liste_chaine/ft_lstadd_front.c liste_chaine/ft_lstsize.c liste_chaine/ft_lstlast.c \
 				liste_chaine/ft_lstadd_back.c liste_chaine/ft_lstdelone.c liste_chaine/ft_lstclear.c \
 				liste_chaine/ft_lstiter.c liste_chaine/ft_lstmap.c liste_chaine/ft_lstprint_type.c \
@@ -48,10 +48,12 @@ SRCS_LIBFT		:= ${addprefix ${SRCS_LIBFT_DIR},${SRCS_LIBFT}}
 
 INC_DIR := includes/
 
-SRCS_DIR	:= srcs/
+SRCS_DIR	:= srcs/cub_3d/
 
-SRCS		+= $(SRCS_DIR)main.c
+SRCS		+= main.c parsing/check_position.c
 
+
+SRCS		:= ${addprefix ${SRCS_DIR},${SRCS}}
 
 # OBJS & DEPS & LIB
 
@@ -68,6 +70,11 @@ OBJS			:= $(SRCS:.c=.o)
 OBJS			:= $(addprefix $(OBJS_DIR),$(OBJS))
 
 DEPS			:= ${OBJS:.o=.d} ${OBJS_LIBFT:.o=.d}
+
+MLX_PATH		:= minilibx-linux/
+
+MLX				:= $(MLX_PATH)/libmlx.a
+
 
 # PROGRESS BAR
 
@@ -111,11 +118,15 @@ MKDIR			:= mkdir -p
 
 all		: ${NAME}
 
-${NAME}	: ${OBJS_LIBFT} ${OBJS}
+${NAME}	: ${OBJS_LIBFT} ${OBJS} $(MLX)
 		@${MKDIR} ${LIB_DIR}
 		@${AR} ${LIB_DIR}libft.a ${OBJS_LIBFT}
-		@${CC} ${CFLAGS} ${OBJS} -L ${LIB_DIR} -I $(INC_DIR) -o ${NAME}
+		@${CC} ${CFLAGS} ${OBJS} -L ${LIB_DIR} $(MLX) -I $(INC_DIR) -o ${NAME} -L/usr/include -lXext -lX11 -lm
 		@printf "\r${CLEAR}${SCYAN}${NAME}${SOFF} ${SGREEN}✔${SOFF}\n"
+
+
+$(MLX) :
+		make -C $(MLX_PATH)
 
 clean	:
 		@${RM} ${OBJS_DIR} ${LIB_DIR}
@@ -133,7 +144,7 @@ re		: fclean all
 
 $(OBJS_DIR)%.o	: %.c
 				@${MKDIR} $(@D)
-				@${CC} ${CFLAGS} -c $< -I $(INC_DIR) -o $@
+				${CC} ${CFLAGS} -c $< -I $(INC_DIR) -o $@
 #				@$(call PROGRESS_BAR, $(basename $(notdir $<)))
 
 -include $(DEPS)
