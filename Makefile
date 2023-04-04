@@ -50,7 +50,7 @@ INC_DIR := includes/
 
 SRCS_DIR	:= srcs/cub_3d/
 
-SRCS		+= main.c parsing/check_position.c
+SRCS		+= main.c parsing/check_position.c parsing/init_map.c parsing/init_data.c
 
 
 SRCS		:= ${addprefix ${SRCS_DIR},${SRCS}}
@@ -121,7 +121,7 @@ all		: ${NAME}
 ${NAME}	: ${OBJS_LIBFT} ${OBJS} $(MLX)
 		@${MKDIR} ${LIB_DIR}
 		@${AR} ${LIB_DIR}libft.a ${OBJS_LIBFT}
-		@${CC} ${CFLAGS} ${OBJS} -L ${LIB_DIR} $(MLX) -I $(INC_DIR) -o ${NAME} -L/usr/include -lXext -lX11 -lm
+		@${CC} ${CFLAGS} ${OBJS} $(MLX) -I $(INC_DIR) -o ${NAME} -L/usr/include -lXext -lX11 -lm ${LIB_DIR}libft.a
 		@printf "\r${CLEAR}${SCYAN}${NAME}${SOFF} ${SGREEN}✔${SOFF}\n"
 
 
