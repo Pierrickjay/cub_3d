@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/04 16:06:15 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 09:54:38 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ void	parse_file(t_cbdata *data, char *av)
 	{
 		ret = parse_line(data, line);
 		if (ret == -1)
-			ft_free_and_close(data, fd, );
+			ft_free_and_close(data, fd, line);
 		free(line);
 		line = get_next_line(fd);
 	}
