@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/04 16:06:15 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 10:21:34 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,29 +39,14 @@ int	create_rgb(char *line_color)
 }
 
 
-char	**ft_mapped(int fd)
+int	ft_mapped(t_cbdata *data, char *line)
 {
-	char	*mappedmap;
-	char	*bufferstr;
-	char	**splitted;
-	int		i;
+	static int i = 0;
 
-	i = 0;
-	mappedmap = malloc(sizeof(char));
-	mappedmap[0] = '\0';
-	while (i == 0 || mappedmap != NULL)
-	{
-		bufferstr = get_next_line(fd);
-		if (bufferstr == NULL)
-			break ;
-		mappedmap = ft_strjoin(mappedmap, bufferstr);
-		i++;
-	}
-	splitted = ft_split(mappedmap, '\n');
-	i = 0;
-	free(mappedmap);
-	free(bufferstr);
-	return (splitted);
+	data->map[i] = ft_strdup(line);
+	
+	i++;
+
 }
 
 bool	parse_line(t_cbdata *data, char *line)
@@ -97,21 +82,74 @@ bool	parse_line(t_cbdata *data, char *line)
 	return (0);
 }
 
+int	find_one(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] == ' ')
+		i++;
+	if (str[i] == '1')
+		return (1);
+	else 
+		return (0);
+}
+
+int	count_map(char *av)
+{
+	int 	countmalloc;
+	int		fd;
+	char	*str;
+
+	countmalloc = 0;
+	fd = open(av, O_RDONLY);
+	if (fd < 0)
+		return (-1);
+	str = get_next_line(fd);
+	while (str)
+	{
+		countmalloc += find_one(str);
+		free(str);
+		str = get_next_line(fd);
+	}
+	close(fd);
+	return (count_malloc);
+}
+
+int	map_init(t_cbdata *data, int countmalloc)
+{
+	data->map = malloc(sizeof(data->map) * countmalloc + 1);
+	if (data->map == NULL)
+		cb_exit(data);
+}
+
 void	parse_file(t_cbdata *data, char *av)
 {
 	int		fd;
 	char	*line;
 	int		ret;
+	int		countmalloc;
 
+	countmalloc = count_map(av);
+	if (map_init)
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
 		cb_exit(data);
 	line = get_next_line(fd);
+	ret = 0;
 	while (line)
 	{
-		ret = parse_line(data, line);
+		if (ret)
+			ret = parse_map(line);
+		else
+		{
+			ret = parse_line(data, line);
+			if (ret == 1)
+				parse_map(line);
+		}
 		if (ret == -1)
-			ft_free_and_close(data, fd, );
+			ft_free_and_close(data, fd, line);
+
 		free(line);
 		line = get_next_line(fd);
 	}

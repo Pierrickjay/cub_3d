@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 09:28:00 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/05 10:07:28 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 # include "get_next_line.h"
 # include <stdbool.h>
 
-defin	CELL_SOFT	"0NSEO"
+# define	CELL_SOFT	"0NSEO"
+# define	CELL_MAP	"01NSEO"
 
 typedef struct s_cbdata
 {
@@ -42,4 +43,6 @@ void	ft_free_strs(char **strs);
 void	ft_free_and_close(t_cbdata *data, int fd, char *str);
 void	ft_free(void **ptr);
 void	cb_exit(t_cbdata *data);
+bool	cell_isa(char c, char *set);
+bool	map_check_ok(char **map);
 #endif
