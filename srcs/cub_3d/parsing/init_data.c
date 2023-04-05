@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 16:58:50 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 17:34:40 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,12 @@ void	init_data(t_cbdata *data)
 
 void	cb_exit(t_cbdata *data, char *err_msg)
 {
+	mlx_destroy_image(data->mlx, data->mini.img);
 	ft_free_strs(data->map);
 	ft_free((void **)&data->e_file);
 	ft_free((void **)&data->w_file);
 	ft_free((void **)&data->n_file);
 	ft_free((void **)&data->s_file);
-	ft_free((void **)&data->mini.img);
-	ft_free((void **)&data->mini.addr);
 	if (data->mlx)
 	{
 		mlx_destroy_window(data->mlx, data->mlx_win);
@@ -55,8 +54,5 @@ void	cb_exit(t_cbdata *data, char *err_msg)
 		ft_putendl_fd(err_msg, 2);
 		exit(1);
 	}
-	//mlx_destroy_window(data->mlx, data->mlx_win);
-	//mlx_destroy_display(data->mlx);
-	//free(data->mlx);
 	exit(0);
 }

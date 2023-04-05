@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:10:05 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/05 17:00:43 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 17:37:42 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static bool	map_cell_isin(char **map, int i, int j);
 
 void	map_set_start(t_cbdata *data, int i, int j)
 {
-	data->pos_x = j * 64;
-	data->pos_y = i * 64;
+	data->pos_x = j * 64 + 32;
+	data->pos_y = i * 64 + 32;
 	if (data->map[i][j] == 'N')
 		data->angle = M_PI_2;
 	else if (data->map[i][j] == 'E')

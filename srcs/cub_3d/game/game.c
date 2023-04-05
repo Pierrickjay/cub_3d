@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:02 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 16:58:30 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 17:20:26 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,22 @@ void	mini_pos_file(t_cbdata *data)
 	int	j;
 	int	tile;
 	int	color;
+	int	posx;
+	int	posy;
+
 
 	color = 0x00FF0000;
-	tile = data->mini.mini_tile_size / 3;
+	tile = data->mini.mini_tile_size;
 	if (tile == 0)
 		tile = 1;
+	posx = data->pos_x / 64 * tile;
+	posy = data->pos_y / 64 * tile;
 	i = -1;
-	while (++i < tile)
+	while (++i < tile / 3)
 	{
 		j = -1;
-		while (++j < tile)
-			my_mlx_pixel_put(data, (data->pos_x - tile / 2) * tile + i,
-				(data->pos_y - tile / 2) * tile + j, color);
+		while (++j < tile / 3)
+			my_mlx_pixel_put(data, posx - tile / 6 + j, posy - tile / 6 + i, color);
 	}
 }
 
