@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 14:48:21 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 16:58:50 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ void	init_data(t_cbdata *data)
 	data->mini.line_length = 0;
 	data->mini.endian = 0;
 	data->mini.size_tile = 0;
+	data->pos_x = 0;
+	data->pos_y = 0;
+	data->angle = 0;
 }
 
 void	cb_exit(t_cbdata *data, char *err_msg)

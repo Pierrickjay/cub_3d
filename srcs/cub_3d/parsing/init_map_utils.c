@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 14:58:33 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 16:32:58 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,10 @@ void	map_init(t_cbdata *data, int countmalloc)
 void	parse_map(t_cbdata *data, char *line)
 {
 	static int	i = 0;
-	
+
 
 	data->map[i] = ft_strdup(line);
+
 	if (!data->map[i])
 	{
 		free(line);

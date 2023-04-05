@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:10:05 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/05 13:00:46 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 17:00:43 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,42 @@
 static bool	map_cell_ok(char **map, int i, int j);
 static bool	map_cell_isin(char **map, int i, int j);
 
-bool	map_check_ok(char **map)
+void	map_set_start(t_cbdata *data, int i, int j)
+{
+	data->pos_x = j * 64;
+	data->pos_y = i * 64;
+	if (data->map[i][j] == 'N')
+		data->angle = M_PI_2;
+	else if (data->map[i][j] == 'E')
+		data->angle = 0;
+	else if (data->map[i][j] == 'W')
+		data->angle = M_PI;
+	else
+		data->angle = 3 * M_PI_2;
+}
+
+bool	map_check_ok(t_cbdata *data)
 {
 	int	i;
 	int	j;
+	int	start;
 
+	start = 0;
 	i = -1;
-	while (map[++i])
+	while (data->map[++i])
 	{
 		j = -1;
-		while (map[i][++j])
+		while (data->map[i][++j])
 		{
-			if (!map_cell_ok(map, i, j))
+			if (!map_cell_ok(data->map, i, j))
 				return (0);
+			if (cell_isa(data->map[i][j], CELL_START))
+			{
+				if (start)
+					cb_exit(data, "Invalid map");
+				start = 1;
+				map_set_start(data, i, j);
+			}
 		}
 	}
 	return (1);

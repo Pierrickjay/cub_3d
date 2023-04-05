@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 15:30:23 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 17:01:23 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <math.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include <stdbool.h>
@@ -23,8 +24,9 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
-# define CELL_SOFT	"0NSEO"
-# define CELL_MAP	"01NSEO"
+# define CELL_SOFT	"0NSEW"
+# define CELL_MAP	"01NSEW"
+# define CELL_START "NSEW"
 # define MINI_X	1280 //320
 # define MINI_Y	800//200
 
@@ -37,6 +39,7 @@ typedef struct s_minimap
 	int		endian;
 	int		size_tile;
 	int		mini_tile_size;
+
 }	t_minimap;
 
 typedef struct s_cbdata
@@ -50,6 +53,9 @@ typedef struct s_cbdata
 	char		**map;
 	void		*mlx;
 	void		*mlx_win;
+	int			pos_x;
+	int			pos_y;
+	double		angle;
 	t_minimap	mini;
 
 }t_cbdata;
@@ -63,7 +69,7 @@ void	ft_free_and_close(t_cbdata *data, int fd, char *str);
 void	ft_free(void **ptr);
 void	cb_exit(t_cbdata *data, char *err_msg);
 bool	cell_isa(char c, char *set);
-bool	map_check_ok(char **map);
+bool	map_check_ok(t_cbdata *data);
 int		create_rgb(char *line_color);
 void	map_init(t_cbdata *data, int countmalloc);
 void	parse_map(t_cbdata *data, char *line);

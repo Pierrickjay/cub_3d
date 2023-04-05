@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 15:31:09 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 17:00:34 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	parse_file(t_cbdata *data, char *av)
 		free(line);
 		line = get_next_line(fd);
 	}
+	if (!map_check_ok(data))
+		cb_exit(data, "Invalid map");
 	data->mini.mini_tile_size = ft_min(MINI_X / strlen_max, MINI_Y / countmalloc);
 	print_strs(data->map);
 	printf("n _ file = %s", data->n_file);

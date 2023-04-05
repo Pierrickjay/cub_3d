@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:02 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 15:40:43 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 16:58:30 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,26 @@ void	mini_tile_file(t_cbdata *data, int x, int y, int color)
 		j = -1;
 		while (++j < tile)
 			my_mlx_pixel_put(data, x * tile + i, y * tile + j, color);
+	}
+}
+void	mini_pos_file(t_cbdata *data)
+{
+	int	i;
+	int	j;
+	int	tile;
+	int	color;
+
+	color = 0x00FF0000;
+	tile = data->mini.mini_tile_size / 3;
+	if (tile == 0)
+		tile = 1;
+	i = -1;
+	while (++i < tile)
+	{
+		j = -1;
+		while (++j < tile)
+			my_mlx_pixel_put(data, (data->pos_x - tile / 2) * tile + i,
+				(data->pos_y - tile / 2) * tile + j, color);
 	}
 }
 
@@ -63,6 +83,7 @@ void	init_mini_map(t_cbdata *data)
 		}
 		y++;
 	}
+	mini_pos_file(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, data->mini.img, 0, 0);
 }
 
