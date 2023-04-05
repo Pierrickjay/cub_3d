@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:23:45 by obouhlel          #+#    #+#             */
-/*   Updated: 2023/04/04 14:43:38 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 15:13:23 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,9 @@ int		ft_putendl_fd(char *s, int fd);
 //get next line
 
 char	*get_next_line(int fd);
+//math
 
+int		ft_min(int a, int b);
 //liste_chaine
 
 typedef enum e_type

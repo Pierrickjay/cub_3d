@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 11:07:57 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 15:31:09 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,12 @@ void	parse_file(t_cbdata *data, char *av)
 	int		fd;
 	char	*line;
 	int		ret;
+	int		strlen_max;
+	int		tmp_len;
 	int		countmalloc;
 
+	strlen_max = 0;
+	tmp_len = 0;
 	countmalloc = count_map(av);
 	map_init(data, countmalloc);
 	fd = open(av, O_RDONLY);
@@ -76,7 +80,12 @@ void	parse_file(t_cbdata *data, char *av)
 	while (line)
 	{
 		if (ret)
+		{
 			parse_map(data, line);
+			tmp_len = ft_strlen(line);
+			if (tmp_len > strlen_max)
+				strlen_max = tmp_len;
+		}
 		else
 		{
 			ret = parse_line(data, line);
@@ -88,6 +97,7 @@ void	parse_file(t_cbdata *data, char *av)
 		free(line);
 		line = get_next_line(fd);
 	}
+	data->mini.mini_tile_size = ft_min(MINI_X / strlen_max, MINI_Y / countmalloc);
 	print_strs(data->map);
 	printf("n _ file = %s", data->n_file);
 	printf("s _ file = %s", data->s_file);

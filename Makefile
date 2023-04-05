@@ -40,7 +40,7 @@ SRCS_LIBFT		:= char/ft_isalnum.c char/ft_isalpha.c char/ft_isascii.c char/ft_isd
 				liste_chaine/ft_lstadd_front.c liste_chaine/ft_lstsize.c liste_chaine/ft_lstlast.c \
 				liste_chaine/ft_lstadd_back.c liste_chaine/ft_lstdelone.c liste_chaine/ft_lstclear.c \
 				liste_chaine/ft_lstiter.c liste_chaine/ft_lstmap.c liste_chaine/ft_lstprint_type.c \
-				liste_chaine/ft_lstjoin.c
+				liste_chaine/ft_lstjoin.c math/ft_min.c
 
 SRCS_LIBFT		:= ${addprefix ${SRCS_LIBFT_DIR},${SRCS_LIBFT}}
 
@@ -51,7 +51,7 @@ INC_DIR := includes/
 SRCS_DIR	:= srcs/cub_3d/
 
 SRCS		+= main.c parsing/check_position.c parsing/init_map.c parsing/init_data.c parsing/init_map_utils.c \
-			free.c
+			free.c parsing/cell.c parsing/map_check.c game/game.c game/hook.c
 
 
 SRCS		:= ${addprefix ${SRCS_DIR},${SRCS}}

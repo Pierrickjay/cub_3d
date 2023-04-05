@@ -6,12 +6,12 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 11:11:07 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 14:58:33 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
-
+//si il y a des tabs a la place des espaces dans la map ca segault
 int	find_one(char *str)
 {
 	int	i;
@@ -39,10 +39,12 @@ int	count_map(char *av)
 	while (str)
 	{
 		countmalloc += find_one(str);
+		//printf("count malloc= %d of str %s", countmalloc, str);
 		free(str);
 		str = get_next_line(fd);
 	}
 	close(fd);
+	printf("count malloc= %d\n", countmalloc);
 	return (countmalloc);
 }
 
@@ -56,6 +58,7 @@ void	map_init(t_cbdata *data, int countmalloc)
 void	parse_map(t_cbdata *data, char *line)
 {
 	static int	i = 0;
+	
 
 	data->map[i] = ft_strdup(line);
 	if (!data->map[i])
@@ -78,5 +81,6 @@ int	create_rgb(char *line_color)
 	printf("color 1 = %d, color 2 = %d, colr 3 = %d\n", ft_atoi(split_color[0]), ft_atoi(split_color[1]), ft_atoi(split_color[2]));
 	color += ft_atoi(split_color[0]) << 16 | ft_atoi(split_color[1]) << 8
 		| ft_atoi(split_color[2]);
+	ft_free_strs(split_color);
 	return (color);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:10:05 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/05 10:07:36 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/05 13:00:46 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ bool	map_check_ok(char **map)
 {
 	int	i;
 	int	j;
-	int	size_y;
 
 	i = -1;
 	while (map[++i])
@@ -38,7 +37,7 @@ static bool	map_cell_ok(char **map, int i, int j)
 {
 	int	ok;
 
-	if (!cell_isa(map[i][j]), CELL_SOFT)
+	if (!cell_isa(map[i][j], CELL_SOFT))
 		return (1);
 	ok = map_cell_isin(map, i - 1, j);
 	ok += map_cell_isin(map, i + 1, j);
