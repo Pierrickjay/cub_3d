@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 09:54:38 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 11:07:57 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,57 +19,19 @@ void	print_strs(char **strs)
 	i = 0;
 	while (strs[i])
 	{
-		printf("%s\n", strs[i]);
+		printf("%s", strs[i]);
 		i++;
 	}
 }
 
-int	create_rgb(char *line_color)
-{
-	int		color;
-	char	**split_color;
 
-	split_color = ft_split(line_color, ',');
-	if (!split_color)
-		return (-1);
-	color = 0;
-	color += ft_atoi(split_color[0]) << 16 | ft_atoi(split_color[1]) << 8
-		| ft_atoi(split_color[2]);
-	return (color);
-}
-
-
-char	**ft_mapped(int fd)
-{
-	char	*mappedmap;
-	char	*bufferstr;
-	char	**splitted;
-	int		i;
-
-	i = 0;
-	mappedmap = malloc(sizeof(char));
-	mappedmap[0] = '\0';
-	while (i == 0 || mappedmap != NULL)
-	{
-		bufferstr = get_next_line(fd);
-		if (bufferstr == NULL)
-			break ;
-		mappedmap = ft_strjoin(mappedmap, bufferstr);
-		i++;
-	}
-	splitted = ft_split(mappedmap, '\n');
-	i = 0;
-	free(mappedmap);
-	free(bufferstr);
-	return (splitted);
-}
 
 bool	parse_line(t_cbdata *data, char *line)
 {
 	int		len;
 	char	**token;
 
-	if (line[0] == '1')
+	if (find_one(line) == 1)
 		return (1);
 	else if (line[0] == '\n')
 		return (0);
@@ -77,13 +39,13 @@ bool	parse_line(t_cbdata *data, char *line)
 	len = ft_strlen(line);
 	token = ft_split(line, ' ');
 	if (ft_strcmp(token[0], "NO") == 0)
-		data->N_file = ft_strdup(token[1]);
+		data->n_file = ft_strdup(token[1]);
 	else if (ft_strcmp(token[0], "SO") == 0)
-		data->S_file = ft_strdup(token[1]);
+		data->s_file = ft_strdup(token[1]);
 	else if (ft_strcmp(token[0], "WE") == 0)
-		data->W_file = ft_strdup(token[1]);
+		data->w_file = ft_strdup(token[1]);
 	else if (ft_strcmp(token[0], "EA") == 0)
-		data->E_file = ft_strdup(token[1]);
+		data->e_file = ft_strdup(token[1]);
 	else if (ft_strcmp(token[0], "F") == 0)
 		data->floor_color = create_rgb(token[1]);
 	else if (ft_strcmp(token[0], "C") == 0)
@@ -102,20 +64,37 @@ void	parse_file(t_cbdata *data, char *av)
 	int		fd;
 	char	*line;
 	int		ret;
+	int		countmalloc;
 
+	countmalloc = count_map(av);
+	map_init(data, countmalloc);
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
-		cb_exit(data);
+		cb_exit(data, "open file failed");
 	line = get_next_line(fd);
+	ret = 0;
 	while (line)
 	{
-		ret = parse_line(data, line);
+		if (ret)
+			parse_map(data, line);
+		else
+		{
+			ret = parse_line(data, line);
+			if (ret == 1)
+				continue ;
+		}
 		if (ret == -1)
 			ft_free_and_close(data, fd, line);
 		free(line);
 		line = get_next_line(fd);
 	}
-	//print_strs(data.map);
+	print_strs(data->map);
+	printf("n _ file = %s", data->n_file);
+	printf("s _ file = %s", data->s_file);
+	printf("w _ file = %s", data->w_file);
+	printf("e _ file = %s", data->e_file);
+	printf("color ceiling = %d\n", data->ceiling_color);
+	printf("floor color = %d\n", data->floor_color);
 }
 
 
