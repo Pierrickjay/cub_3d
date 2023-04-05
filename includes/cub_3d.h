@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/04 16:05:39 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/05 09:28:00 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include <stdbool.h>
+
+defin	CELL_SOFT	"0NSEO"
 
 typedef struct s_cbdata
 {
