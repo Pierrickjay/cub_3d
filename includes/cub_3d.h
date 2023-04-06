@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 17:01:23 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/06 10:56:43 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@
 # define CELL_START "NSEW"
 # define MINI_X	1280 //320
 # define MINI_Y	800//200
+# define DP printf("%s %d\n", __FILE__, __LINE__);
 
+enum e_keycode {up, down, left, right};
 typedef struct s_minimap
 {
 	void	*img;
@@ -37,7 +39,6 @@ typedef struct s_minimap
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		size_tile;
 	int		mini_tile_size;
 
 }	t_minimap;
@@ -56,7 +57,9 @@ typedef struct s_cbdata
 	int			pos_x;
 	int			pos_y;
 	double		angle;
-	t_minimap	mini;
+	int			redraw;
+	t_minimap	mini[2];
+	int			mini_img;
 
 }t_cbdata;
 
@@ -77,5 +80,8 @@ int		count_map(char *av);
 int		find_one(char *str);
 void	init_game(t_cbdata *data);
 void	set_hooks(t_cbdata *data);
+void	change_pos_player(t_cbdata *data, enum e_keycode move);
+bool	bump_wall(t_cbdata *data, int new_x, int new_y);
+
 
 #endif

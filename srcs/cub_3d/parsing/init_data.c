@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 17:34:40 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/06 10:27:46 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 void	init_data(t_cbdata *data)
 {
+	int i;
+
+	i = 0;
 	data->map = NULL;
 	data->n_file = NULL;
 	data->s_file = NULL;
@@ -23,20 +26,28 @@ void	init_data(t_cbdata *data)
 	data->mlx_win = NULL;
 	data->ceiling_color = 0;
 	data->ceiling_color = 0;
-	data->mini.img = NULL;
-	data->mini.addr = NULL;
-	data->mini.bits_per_pixel = 0;
-	data->mini.line_length = 0;
-	data->mini.endian = 0;
-	data->mini.size_tile = 0;
+	data->mini_img = 0;
+	while (i < 2)
+	{
+		data->mini[i].img = NULL;
+		data->mini[i].addr = NULL;
+		data->mini[i].bits_per_pixel = 0;
+		data->mini[i].line_length = 0;
+		data->mini[i].endian = 0;
+		i++;
+	}
 	data->pos_x = 0;
 	data->pos_y = 0;
 	data->angle = 0;
+	data->redraw = 1;
 }
 
 void	cb_exit(t_cbdata *data, char *err_msg)
 {
-	mlx_destroy_image(data->mlx, data->mini.img);
+	if (data->mini[0].img)
+		mlx_destroy_image(data->mlx, data->mini[0].img);
+	if (data->mini[1].img)
+		mlx_destroy_image(data->mlx, data->mini[1].img);
 	ft_free_strs(data->map);
 	ft_free((void **)&data->e_file);
 	ft_free((void **)&data->w_file);
