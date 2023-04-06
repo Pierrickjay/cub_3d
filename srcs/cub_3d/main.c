@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:12 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 13:24:07 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/06 11:26:42 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,4 @@ int	main(int ac, char **av, char **env)
 	init_data(&data);
 	parse_file(&data, av[1]);
 	init_game(&data);
-	// init_map(&data, argv[1]);
-	// check_map(&data);
-	// init_game(&data);
 }

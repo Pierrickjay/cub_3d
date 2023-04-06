@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:23:45 by obouhlel          #+#    #+#             */
-/*   Updated: 2023/04/05 15:13:23 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/06 11:17:39 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
+void	print_strs(char **strs);
 
 //conversion
 int		ft_atoi(const char *nptr);
