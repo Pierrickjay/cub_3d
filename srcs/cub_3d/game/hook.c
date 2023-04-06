@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:18:23 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 10:56:52 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/06 11:46:54 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	exit_hook(t_cbdata *data)
 
 void	set_hooks(t_cbdata *data)
 {
-	mlx_key_hook(data->mlx_win, &key_press_hook, data);
+	mlx_hook(data->mlx_win, KeyPress, KeyPressMask, &key_press_hook, data);
+	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &key_press_hook, data);
 	mlx_hook(data->mlx_win, 17, 0, &exit_hook, data);
 }
