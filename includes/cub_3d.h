@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 16:27:47 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/06 16:54:24 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,5 +95,5 @@ void	change_pos_player(t_cbdata *data, enum e_keycode move);
 bool	bump_wall(t_cbdata *data, int new_x, int new_y);
 void	draw_lines(t_cbdata *data);
 void	redraw_mini_map(t_cbdata *data);
-
+void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color);
 #endif

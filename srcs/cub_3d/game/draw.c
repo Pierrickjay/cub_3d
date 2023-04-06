@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 11:04:42 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/06 16:57:43 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color)
 {
 	char	*dst;
-
 
 	dst = data->mini[data->mini_img].addr \
 		+ (y * data->mini[data->mini_img].line_length + x \
@@ -88,6 +87,7 @@ void	redraw_mini_map(t_cbdata *data)
 		y++;
 	}
 	mini_pos_file(data);
+	draw_lines(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, \
 		data->mini[data->mini_img].img, 0, 0);
 }
