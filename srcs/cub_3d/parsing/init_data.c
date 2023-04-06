@@ -6,17 +6,30 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 10:27:46 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/06 11:06:32 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
-void	init_data(t_cbdata *data)
+void	init_data2(t_cbdata *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
+	while (i < 2)
+	{
+		data->mini[i].img = NULL;
+		data->mini[i].addr = NULL;
+		data->mini[i].bits_per_pixel = 0;
+		data->mini[i].line_length = 0;
+		data->mini[i].endian = 0;
+		i++;
+	}
+}
+
+void	init_data(t_cbdata *data)
+{
 	data->map = NULL;
 	data->n_file = NULL;
 	data->s_file = NULL;
@@ -27,19 +40,11 @@ void	init_data(t_cbdata *data)
 	data->ceiling_color = 0;
 	data->ceiling_color = 0;
 	data->mini_img = 0;
-	while (i < 2)
-	{
-		data->mini[i].img = NULL;
-		data->mini[i].addr = NULL;
-		data->mini[i].bits_per_pixel = 0;
-		data->mini[i].line_length = 0;
-		data->mini[i].endian = 0;
-		i++;
-	}
 	data->pos_x = 0;
 	data->pos_y = 0;
 	data->angle = 0;
 	data->redraw = 1;
+	init_data2(data);
 }
 
 void	cb_exit(t_cbdata *data, char *err_msg)

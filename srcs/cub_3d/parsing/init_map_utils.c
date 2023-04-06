@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 16:32:58 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/06 11:07:38 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,10 @@ int	count_map(char *av)
 	while (str)
 	{
 		countmalloc += find_one(str);
-		//printf("count malloc= %d of str %s", countmalloc, str);
 		free(str);
 		str = get_next_line(fd);
 	}
 	close(fd);
-	printf("count malloc= %d\n", countmalloc);
 	return (countmalloc);
 }
 
