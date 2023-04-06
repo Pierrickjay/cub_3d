@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:02 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 10:58:37 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/06 16:23:11 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ int	run_loop(void *voiddata)
 	data = (t_cbdata *)voiddata;
 	if (data->redraw == 1)
 	{
-		DP
 		redraw_mini_map(data);
 		data->redraw = 0;
 	}

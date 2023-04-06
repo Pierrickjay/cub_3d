@@ -51,7 +51,7 @@ INC_DIR := includes/
 SRCS_DIR	:= srcs/cub_3d/
 
 SRCS		+= main.c parsing/check_position.c parsing/init_map.c parsing/init_data.c parsing/init_map_utils.c \
-			free.c parsing/cell.c parsing/map_check.c game/game.c game/hook.c game/change_pos.c 
+			free.c parsing/cell.c parsing/map_check.c game/game.c game/hook.c game/change_pos.c game/draw_lines.c
 
 
 SRCS		:= ${addprefix ${SRCS_DIR},${SRCS}}

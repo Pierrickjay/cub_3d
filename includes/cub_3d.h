@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 10:56:43 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/06 15:33:59 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@
 # define CELL_START "NSEW"
 # define MINI_X	1280 //320
 # define MINI_Y	800//200
+# define BLOCK_SIZE 64  
+# define PLANE_X 1280
+# define PLANE_Y 800
+# define ANGLE_PACE M_PI / (3 * PLANE_X) 
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
 enum e_keycode {up, down, left, right};
@@ -42,6 +46,13 @@ typedef struct s_minimap
 	int		mini_tile_size;
 
 }	t_minimap;
+
+typedef	struct	s_point
+{
+	double	x;
+	double	y;
+}	t_point;
+
 
 typedef struct s_cbdata
 {
@@ -82,6 +93,6 @@ void	init_game(t_cbdata *data);
 void	set_hooks(t_cbdata *data);
 void	change_pos_player(t_cbdata *data, enum e_keycode move);
 bool	bump_wall(t_cbdata *data, int new_x, int new_y);
-
+void	draw_lines(t_cbdata *data);
 
 #endif
