@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 16:54:24 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/07 11:14:18 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@
 # define CELL_START "NSEW"
 # define MINI_X	1280 //320
 # define MINI_Y	800//200
-# define BLOCK_SIZE 64  
+# define BLOCK_SIZE 64
 # define PLANE_X 1280
 # define PLANE_Y 800
-# define ANGLE_PACE M_PI / (3 * PLANE_X) 
+# define ANGLE_PACE 0.000818123 //M_PI / (3 * PLANE_X)
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
 enum e_keycode {up, down, left, right};

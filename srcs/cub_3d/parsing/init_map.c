@@ -6,14 +6,39 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 11:24:23 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/07 12:54:00 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
+int	parse_line_2(t_cbdata *data, char	**token)
+{
+	if (ft_strcmp(token[0], "EA") == 0)
+	{
+		data->e_file = ft_strdup(token[1]);
+		if (!data->e_file)
+			return (ft_free_strs(token), -1);
+	}
+	else if (ft_strcmp(token[0], "F") == 0)
+	{
+		data->floor_color = create_rgb(token[1]);
+		if (data->floor_color == -1)
+			return (ft_free_strs(token), -1);
+	}
+	else if (ft_strcmp(token[0], "C") == 0)
+	{
+		data->ceiling_color = create_rgb(token[1]);
+		if (data->ceiling_color == -1)
+			return (ft_free_strs(token), -1);
+	}
+	else
+		return (ft_free_strs(token), -1);
+	return (0);
+}
 
-bool	parse_line(t_cbdata *data, char *line)
+
+int	parse_line(t_cbdata *data, char *line)
 {
 	int		len;
 	char	**token;
@@ -22,23 +47,28 @@ bool	parse_line(t_cbdata *data, char *line)
 		return (1);
 	else if (line[0] == '\n')
 		return (0);
-
 	len = ft_strlen(line);
 	token = ft_split(line, ' ');
 	if (ft_strcmp(token[0], "NO") == 0)
+	{
 		data->n_file = ft_strdup(token[1]);
+		if (!data->n_file)
+			return (ft_free_strs(token), -1);
+	}
 	else if (ft_strcmp(token[0], "SO") == 0)
+	{
 		data->s_file = ft_strdup(token[1]);
+		if (!data->s_file)
+			return (ft_free_strs(token), -1);
+	}
 	else if (ft_strcmp(token[0], "WE") == 0)
+	{
 		data->w_file = ft_strdup(token[1]);
-	else if (ft_strcmp(token[0], "EA") == 0)
-		data->e_file = ft_strdup(token[1]);
-	else if (ft_strcmp(token[0], "F") == 0)
-		data->floor_color = create_rgb(token[1]);
-	else if (ft_strcmp(token[0], "C") == 0)
-		data->ceiling_color = create_rgb(token[1]);
+		if (!data->w_file)
+			return (ft_free_strs(token), -1);
+	}
 	else
-		return (ft_free_strs(token), -1);
+		return (parse_line_2(data, token));
 	return (ft_free_strs(token), 0);
 }
 
