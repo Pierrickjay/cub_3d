@@ -6,43 +6,12 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/06 18:43:02 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/10 12:05:24 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
-t_point	get_h_intersect(t_cbdata *data, double angle)
-{
-	int		int_val;		
-	t_point	offset;
-	t_point	pointA;
-	int 	x;
-	int		y;
-	//t_point	intersect;
-
-	int_val =  data->pos_y - data->pos_y % BLOCK_SIZE;
-	pointA.y = (double)int_val;
-	offset.y = BLOCK_SIZE;
-	if (angle < M_PI)
-		offset.y *= -1;
-	else
-		pointA.y += BLOCK_SIZE;
-	offset.x = offset.y / tan(angle);
-	pointA.x = (double)data->pos_x - ((double)data->pos_y - pointA.y) / tan(angle);
-	while (1)
-	{
-		x = ((int)pointA.x) / BLOCK_SIZE;
-		y = ((int)pointA.y - 9)/ BLOCK_SIZE;
-		if (data->map[y][x] == '1')
-		{
-			printf("intersected block is x: %d y: %d\n", x, y); 
-			return ( pointA);
-		}
-		pointA.x += offset.x;
-		pointA.y += offset.y;
-	}
-}
 
 t_point	get_endpoint(t_cbdata *data, double angle)
 {
@@ -78,6 +47,8 @@ void	draw_ray(t_cbdata *data, double	angle)
 	if (tile == 0)
 		tile = 1;
 	intersect = get_endpoint(data, angle);
+	if (isinf(intersect.x) || isinf(intersect.y))
+		return ;
 	slope = (intersect.y - (double)data->pos_y) / (intersect.x - (double)data->pos_x);
 	x = data->pos_x;
 	y = data->pos_y;
@@ -112,5 +83,5 @@ void	draw_ray(t_cbdata *data, double	angle)
 
 void	draw_lines(t_cbdata *data)
 {
-	draw_ray(data, M_PI / 3);
+	draw_ray(data, M_PI/ 3);
 }

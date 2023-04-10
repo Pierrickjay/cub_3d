@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:23:45 by obouhlel          #+#    #+#             */
-/*   Updated: 2023/04/06 11:17:39 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/10 11:50:33 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdbool.h>
-# define INT_MIN -2147483648
-
+# include <limits.h>
 //type of char
 int		ft_all_isdigit(char *str);
 int		ft_isascii(int c);

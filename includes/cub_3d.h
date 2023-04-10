@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 16:54:24 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/10 11:48:57 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <math.h>
+# include <limits.h>
 # include "libft.h"
 # include "get_next_line.h"
 # include <stdbool.h>
@@ -51,6 +52,8 @@ typedef	struct	s_point
 {
 	double	x;
 	double	y;
+	double	dist;
+	char	wall;
 }	t_point;
 
 
@@ -74,6 +77,8 @@ typedef struct s_cbdata
 
 }t_cbdata;
 
+bool	point_outofrange(t_point *p);
+t_point	get_h_intersect(t_cbdata *data, double angle);
 void	init_data(t_cbdata *data);
 char	**ft_mapped(int fd);
 void	print_strs(char **strs);
