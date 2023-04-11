@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/11 16:01:07 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 16:58:56 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ void	draw_ray(t_cbdata *data, t_point intersect)
 	tile = data->mini[data->mini_img].mini_tile_size;
 	if (tile == 0)
 		tile = 1;
-
-	printf("Intersect: x: %f, y: %f, dist: %f, wall: %c\n", intersect.x, intersect.y, intersect.dist, intersect.wall);
+	//intersect = get_endpoint(data, angle);
+	//printf("Intersect: x: %f, y: %f, dist: %f, wall: %c\n", intersect.x, intersect.y, intersect.dist, intersect.wall);
 	if (isinf(intersect.x) || isinf(intersect.y))
 		return ;
 	slope = (intersect.y - (double)data->pos_y) / (intersect.x - (double)data->pos_x);

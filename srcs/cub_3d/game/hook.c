@@ -21,7 +21,10 @@ void	set_move_player(t_cbdata *data, int keycode)
 		change_pos_player(data, left);
 	else if (keycode == KEY_D)
 		change_pos_player(data, right);
-	printf("pos_x = %d pos_y =%d tile_size = %d \n", data->pos_x, data->pos_y, data->mini[0].mini_tile_size);
+	else if (keycode == KEY_LEFT)
+		change_pos_player(data, left_view);
+	else if (keycode == KEY_RIGHT)
+		change_pos_player(data, right_view);
 }
 
 int	key_press_hook(int keycode, t_cbdata *data)
