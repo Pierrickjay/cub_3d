@@ -6,11 +6,26 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 11:06:32 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 11:18:40 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
+
+void	load_img(t_cbdata *data/*, t_img *wall*/)
+{
+	if (data->mlx == NULL)
+	{
+		DP
+		exit(0);
+	}
+	data->wall.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
+		&data->wall.width, &data->wall.heigth);
+	if (data->wall.mlx_img == NULL)
+		exit(0);
+	data->wall.addr = mlx_get_data_addr(data->wall.mlx_img, &data->wall.bpp,
+			&data->wall.line_len, &data->wall.endian);
+}
 
 void	init_data2(t_cbdata *data)
 {
@@ -26,6 +41,7 @@ void	init_data2(t_cbdata *data)
 		data->mini[i].endian = 0;
 		i++;
 	}
+
 }
 
 void	init_data(t_cbdata *data)

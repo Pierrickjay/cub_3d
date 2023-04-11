@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:18:23 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 11:46:54 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/10 14:59:57 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	set_move_player(t_cbdata *data, int keycode)
 		change_pos_player(data, left);
 	if (keycode == 100 || keycode == 65363)
 		change_pos_player(data, right);
-	printf("pos_x = %d pos_y =%d tile_size = %d \n", data->pos_x, data->pos_y, data->mini[0].mini_tile_size);
+	//printf("pos_x = %d pos_y =%d tile_size = %d \n", data->pos_x, data->pos_y, data->mini[0].mini_tile_size);
 }
 
 int	key_press_hook(int keycode, t_cbdata *data)

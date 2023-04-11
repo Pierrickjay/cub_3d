@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/07 11:14:18 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 14:04:52 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,18 @@
 # include "../minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <errno.h>
 
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
-# define MINI_X	1280 //320
-# define MINI_Y	800//200
+# define MINI_X	320
+# define MINI_Y	200
 # define BLOCK_SIZE 64
 # define PLANE_X 1280
 # define PLANE_Y 800
 # define ANGLE_PACE 0.000818123 //M_PI / (3 * PLANE_X)
+# define PROJ_PLAN 1108.51251684 // MINI_X / 2 - tan(M_PI / 6)
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
 enum e_keycode {up, down, left, right};
@@ -47,6 +49,30 @@ typedef struct s_minimap
 
 }	t_minimap;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		heigth;
+}	t_img;
+typedef struct s_angle
+{
+	int	ANGLE60;
+	int	ANGLE30;
+	int	ANGLE15;
+	int	ANGLE90;
+	int	ANGLE180;
+	int	ANGLE270;
+	int	ANGLE360;
+	int	ANGLE0;
+	int	ANGLE5;
+	int	ANGLE10;
+	int	ANGLE45;
+}	t_angle;
 typedef	struct	s_point
 {
 	double	x;
@@ -69,7 +95,11 @@ typedef struct s_cbdata
 	int			pos_y;
 	double		angle;
 	int			redraw;
+	double		all_dist[1280];
+	double		proj_slic_height[1280];
+	t_angle		angle_all;
 	t_minimap	mini[2];
+	t_img		wall;
 	int			mini_img;
 
 }t_cbdata;
@@ -96,4 +126,6 @@ bool	bump_wall(t_cbdata *data, int new_x, int new_y);
 void	draw_lines(t_cbdata *data);
 void	redraw_mini_map(t_cbdata *data);
 void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color);
+void	render_3d(t_cbdata *data);
+void	load_img(t_cbdata *data/*, t_img *wall*/);
 #endif

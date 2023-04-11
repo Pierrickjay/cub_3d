@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 16:57:43 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/11 14:15:14 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color)
 {
 	char	*dst;
 
+	//printf("x = %d || y = %d\n", x, y);
 	dst = data->mini[data->mini_img].addr \
 		+ (y * data->mini[data->mini_img].line_length + x \
 		* (data->mini[data->mini_img].bits_per_pixel / 8));
@@ -58,8 +59,8 @@ void	mini_pos_file(t_cbdata *data)
 	{
 		j = -1;
 		while (++j < tile / 3)
-			my_mlx_pixel_put(data, posx - tile / 6 + j \
-				, posy - tile / 6 + i, 0x00FF0000);
+			my_mlx_pixel_put(data, posx - tile / 6 / 4 + j \
+				, posy - tile / 6 / 4 + i, 0x00FF0000);
 	}
 }
 
@@ -70,6 +71,8 @@ void	redraw_mini_map(t_cbdata *data)
 	int	color;
 
 	y = 0;
+	draw_lines(data);
+	render_3d(data);
 	while (data->map[y])
 	{
 		x = 0;
@@ -87,7 +90,6 @@ void	redraw_mini_map(t_cbdata *data)
 		y++;
 	}
 	mini_pos_file(data);
-	draw_lines(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, \
 		data->mini[data->mini_img].img, 0, 0);
 }
