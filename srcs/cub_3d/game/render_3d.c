@@ -6,29 +6,11 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 14:09:08 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 15:21:39 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
-
-t_angle	init_angle(void )
-{
-	t_angle angle;
-
-	angle.ANGLE60 = MINI_Y;
-	angle.ANGLE30 = angle.ANGLE60 / 2;
-	angle.ANGLE15 = angle.ANGLE30 / 2;
-	angle.ANGLE90 = angle.ANGLE30 * 3;
-	angle.ANGLE180 = angle.ANGLE90 * 2;
-	angle.ANGLE270 = angle.ANGLE90 * 3;
-	angle.ANGLE360 = angle.ANGLE60 * 6;
-	angle.ANGLE0 = 0;
-	angle.ANGLE5 = angle.ANGLE30 / 6;
-	angle.ANGLE10 = angle.ANGLE5 * 2;
-	angle.ANGLE45 = angle.ANGLE15 * 3;
-	return (angle);
-}
 
 int	get_color(t_img *img, int x, int y)
 {
@@ -62,27 +44,31 @@ void	render_3d(t_cbdata *data)
 	i = 0;
 	while (i < 1280)
 	{
-		data->proj_slic_height[i] = BLOCK_SIZE * 4 / data->all_dist[i] * PROJ_PLAN;
+		data->proj_slic_height[i] = BLOCK_SIZE * 4 / (data->all_dist[i] * cos(M_PI / 6)) * PROJ_PLAN;
 		//printf("data->proj_slic_height[%d] = %f || alldist  = %f\n", i, data->proj_slic_height[i],  data->all_dist[i]);
 		i++;
 	}
 	i = 0;
 	while (i < PLANE_X)
 	{
-		size_wall = (tan(M_PI / 6.0) * data->all_dist[i]) * 2.0;
+		size_wall = (tan(M_PI / 6.0) * data->proj_slic_height[i]) * 2.0;
 		size_to_print = PLANE_Y / size_wall * 256;
 		int j = 0;
 		while (j < PLANE_Y)
 		{
 			if (j <= 400 && (int)PLANE_Y / 2.0 - (int)size_to_print / 2 <= j)
 			{
-				color = img_pix_read(&data->wall, i % 256, j % 256);// si on est sur un mur vertical prendre modulo j sinon mudulo i
+				// if (wall == 'N')
+				// if (wall == 'S')
+				// if (wall == 'E')
+				// if (wall == 'W')
+				color = img_pix_read(&data->texture.wall_n, i % 256, j % 256);// si on est sur un mur vertical prendre modulo j sinon mudulo i
 				my_mlx_pixel_put(data, i, j,color);
 				//commencer a afficher le cube par le bas jusqu'au 400eme pixels
 			}
 			else if (j >= 400 && (int)PLANE_Y / 2.0 + (int)size_to_print / 2 >= j)
 			{
-				color = img_pix_read(&data->wall, i % 256, j % 256); // si on est sur un mur vertical prendre modulo j sinon mudulo i
+				color = img_pix_read(&data->texture.wall_n, i % 256, j % 256); // si on est sur un mur vertical prendre modulo j sinon mudulo i
 				my_mlx_pixel_put(data, i, j, color); // bordeau
 				// finir le cube a afficher
 			}

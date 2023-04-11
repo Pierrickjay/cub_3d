@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 11:18:40 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 15:22:46 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@ void	load_img(t_cbdata *data/*, t_img *wall*/)
 		DP
 		exit(0);
 	}
-	data->wall.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
-		&data->wall.width, &data->wall.heigth);
-	if (data->wall.mlx_img == NULL)
+	data->texture.wall_n.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm", // replace by the the path
+		&data->texture.wall_n.width, &data->texture.wall_n.heigth);
+	data->texture.wall_e.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
+		&data->texture.wall_e.width, &data->texture.wall_e.heigth);
+	data->texture.wall_s.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
+		&data->texture.wall_s.width, &data->texture.wall_s.heigth);
+	data->texture.wall_w.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
+		&data->texture.wall_w.width, &data->texture.wall_w.heigth);
+	if (!data->texture.wall_w.mlx_img || !data->texture.wall_s.mlx_img || !data->texture.wall_e.mlx_img || !data->texture.wall_n.mlx_img)
 		exit(0);
-	data->wall.addr = mlx_get_data_addr(data->wall.mlx_img, &data->wall.bpp,
-			&data->wall.line_len, &data->wall.endian);
+	data->texture.wall_n.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
+		&data->texture.wall_n.width, &data->texture.wall_n.heigth);
 }
 
 void	init_data2(t_cbdata *data)
@@ -41,7 +47,26 @@ void	init_data2(t_cbdata *data)
 		data->mini[i].endian = 0;
 		i++;
 	}
-
+	data->texture.wall_n.mlx_img = NULL;
+	data->texture.wall_n.addr = NULL;
+	data->texture.wall_n.bpp = 0;
+	data->texture.wall_n.line_len = 0;
+	data->texture.wall_n.endian = 0;
+	data->texture.wall_e.mlx_img = NULL;
+	data->texture.wall_e.addr = NULL;
+	data->texture.wall_e.bpp = 0;
+	data->texture.wall_e.line_len = 0;
+	data->texture.wall_e.endian = 0;
+	data->texture.wall_s.mlx_img = NULL;
+	data->texture.wall_s.addr = NULL;
+	data->texture.wall_s.bpp = 0;
+	data->texture.wall_s.line_len = 0;
+	data->texture.wall_s.endian = 0;
+	data->texture.wall_w.mlx_img = NULL;
+	data->texture.wall_w.addr = NULL;
+	data->texture.wall_w.bpp = 0;
+	data->texture.wall_w.line_len = 0;
+	data->texture.wall_w.endian = 0;
 }
 
 void	init_data(t_cbdata *data)

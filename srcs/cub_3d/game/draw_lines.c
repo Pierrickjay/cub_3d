@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/11 14:06:16 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 14:49:23 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,13 @@ void	draw_ray(t_cbdata *data, double	angle)
 	while (i < 1280)
 	{
 		data->all_dist[i] = pl_dist;
-		pl_dist += 1;
+		if (i > 500)
+			pl_dist++;
+		else if (i < 100)
+			pl_dist++;
+		else
+			pl_dist--;
+		printf("pl_dist = %f \n", pl_dist);
 		i++;
 	}
 	// slope = (intersect.y - (double)data->pos_y) / (intersect.x - (double)data->pos_x);

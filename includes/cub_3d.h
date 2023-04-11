@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 14:04:52 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 15:15:49 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,25 +59,19 @@ typedef struct s_img
 	int		width;
 	int		heigth;
 }	t_img;
-typedef struct s_angle
-{
-	int	ANGLE60;
-	int	ANGLE30;
-	int	ANGLE15;
-	int	ANGLE90;
-	int	ANGLE180;
-	int	ANGLE270;
-	int	ANGLE360;
-	int	ANGLE0;
-	int	ANGLE5;
-	int	ANGLE10;
-	int	ANGLE45;
-}	t_angle;
 typedef	struct	s_point
 {
 	double	x;
 	double	y;
 }	t_point;
+
+typedef struct s_texture
+{
+	t_img	wall_n;
+	t_img	wall_e;
+	t_img	wall_s;
+	t_img	wall_w;
+}	t_texture;
 
 
 typedef struct s_cbdata
@@ -97,9 +91,8 @@ typedef struct s_cbdata
 	int			redraw;
 	double		all_dist[1280];
 	double		proj_slic_height[1280];
-	t_angle		angle_all;
 	t_minimap	mini[2];
-	t_img		wall;
+	t_texture	texture;
 	int			mini_img;
 
 }t_cbdata;
