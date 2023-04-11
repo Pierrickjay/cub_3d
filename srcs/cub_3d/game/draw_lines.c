@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_lines.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/11 15:10:43 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:28:12 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,12 @@ t_point	get_endpoint(t_cbdata *data, double angle)
 	v_intersect = get_v_intersect(data, angle);
 	h_intersect.dist = calculate_distance(data, h_intersect);
 	v_intersect.dist = calculate_distance(data, v_intersect);
-	
+
 	if (h_intersect.dist < v_intersect.dist)
 		return (h_intersect);
 	else
 		return (v_intersect);
 }
-
 void	draw_ray(t_cbdata *data, double	angle)
 {
 	t_point	intersect;
@@ -121,3 +120,4 @@ void	draw_lines(t_cbdata *data)
 	draw_ray(data, M_PI * 3.0 / 2.0);
 	draw_ray(data, M_PI * 5.0 / 3.0);*/
 }
+

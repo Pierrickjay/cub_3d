@@ -6,13 +6,12 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 13:27:01 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:36:18 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+
 #include "cub_3d.h"
-
-
 bool	parse_line(t_cbdata *data, char *line)
 {
 	int		len;

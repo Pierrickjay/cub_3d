@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 13:55:23 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:33:17 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,13 @@ int	create_rgb(char *line_color)
 	if (!split_color)
 		return (-1);
 	color = 0;
+	if ((ft_strlen(split_color[0]) > 3 && !ft_all_isdigit(split_color[0])) \
+		|| (ft_strlen(split_color[1]) > 3 && !ft_all_isdigit(split_color[1]))\
+		|| (ft_strlen(split_color[2]) > 3 && !ft_all_isdigit(split_color[2])))
+	{
+		ft_free_strs(split_color);
+		return (-1);
+	}
 	printf("color 1 = %d, color 2 = %d, colr 3 = %d\n", ft_atoi(split_color[0]), ft_atoi(split_color[1]), ft_atoi(split_color[2]));
 	color += ft_atoi(split_color[0]) << 16 | ft_atoi(split_color[1]) << 8
 		| ft_atoi(split_color[2]);

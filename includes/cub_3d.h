@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 13:25:39 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/11 15:44:15 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "../minilibx-linux/mlx.h"
 # include <X11/keysym.h>
 # include <X11/X.h>
+# include <errno.h>
 
 # define KEY_W 119
 # define KEY_A 97
@@ -34,12 +35,13 @@
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
-# define MINI_X	1280 //320
-# define MINI_Y	800//200
-# define BLOCK_SIZE 64  
+# define MINI_X	1280
+# define MINI_Y	800
+# define BLOCK_SIZE 64
 # define PLANE_X 1280
 # define PLANE_Y 800
-# define ANGLE_PACE M_PI / (3.0 * PLANE_X) 
+# define PROJ_PLAN 1108.51251684 // MINI_X / 2 - tan(M_PI / 6)
+# define ANGLE_PACE M_PI / (3 * PLANE_X)
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
 enum e_keycode {up, down, left, right, left_view, right_view};
@@ -54,6 +56,16 @@ typedef struct s_minimap
 
 }	t_minimap;
 
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+	int		width;
+	int		heigth;
+}	t_img;
 typedef	struct	s_point
 {
 	double	x;
@@ -61,6 +73,14 @@ typedef	struct	s_point
 	double	dist;
 	char	wall;
 }	t_point;
+
+typedef struct s_texture
+{
+	t_img	wall_n;
+	t_img	wall_e;
+	t_img	wall_s;
+	t_img	wall_w;
+}	t_texture;
 
 
 typedef struct s_cbdata
@@ -80,7 +100,10 @@ typedef struct s_cbdata
 	int			pos_y;
 	double		angle;
 	int			redraw;
+	double		all_dist[1280];
+	double		proj_slic_height[1280];
 	t_minimap	mini[2];
+	t_texture	texture;
 	int			mini_img;
 
 }t_cbdata;
@@ -111,4 +134,6 @@ bool	bump_wall(t_cbdata *data, int new_x, int new_y);
 void	draw_lines(t_cbdata *data);
 void	redraw_mini_map(t_cbdata *data);
 void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color);
+void	render_3d(t_cbdata *data);
+void	load_img(t_cbdata *data/*, t_img *wall*/);
 #endif
