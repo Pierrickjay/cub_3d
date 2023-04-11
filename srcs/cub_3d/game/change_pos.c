@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:56:00 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 10:56:13 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 14:51:29 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,12 @@ void	change_pos_player(t_cbdata *data, enum e_keycode move)
 		new_y += 1;
 	else if (move == left)
 		new_x -= 1;
-	else
+	else if (move == right)
 		new_x += 1;
+	else if (move == left_view)
+		data->angle = fmod(data->angle + ANGLE_PACE + 2.0 * M_PI, 2.0 * M_PI);
+	else if (move == right_view)
+		data->angle = fmod(data->angle - ANGLE_PACE + 2.0 * M_PI, 2.0 * M_PI);
 	if (!bump_wall(data, new_x, new_y))
 	{
 		data->pos_x = new_x;

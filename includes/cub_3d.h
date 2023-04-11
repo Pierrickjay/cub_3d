@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/10 11:48:57 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/11 13:25:39 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@
 # include <X11/keysym.h>
 # include <X11/X.h>
 
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
@@ -33,10 +39,10 @@
 # define BLOCK_SIZE 64  
 # define PLANE_X 1280
 # define PLANE_Y 800
-# define ANGLE_PACE M_PI / (3 * PLANE_X) 
+# define ANGLE_PACE M_PI / (3.0 * PLANE_X) 
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
-enum e_keycode {up, down, left, right};
+enum e_keycode {up, down, left, right, left_view, right_view};
 typedef struct s_minimap
 {
 	void	*img;
@@ -66,6 +72,8 @@ typedef struct s_cbdata
 	int			ceiling_color;
 	int			floor_color;
 	char		**map;
+	int			map_x;
+	int			map_y;
 	void		*mlx;
 	void		*mlx_win;
 	int			pos_x;
@@ -77,8 +85,10 @@ typedef struct s_cbdata
 
 }t_cbdata;
 
-bool	point_outofrange(t_point *p);
+double	calculate_distance(t_cbdata *data, t_point intersect);
+bool	point_outofrange(t_cbdata *data, t_point *p);
 t_point	get_h_intersect(t_cbdata *data, double angle);
+t_point	get_v_intersect(t_cbdata *data, double angle);
 void	init_data(t_cbdata *data);
 char	**ft_mapped(int fd);
 void	print_strs(char **strs);
@@ -90,9 +100,9 @@ void	cb_exit(t_cbdata *data, char *err_msg);
 bool	cell_isa(char c, char *set);
 bool	map_check_ok(t_cbdata *data);
 int		create_rgb(char *line_color);
-void	map_init(t_cbdata *data, int countmalloc);
+void	map_init(t_cbdata *data);
 void	parse_map(t_cbdata *data, char *line);
-int		count_map(char *av);
+void	count_map(t_cbdata *data, char *av);
 int		find_one(char *str);
 void	init_game(t_cbdata *data);
 void	set_hooks(t_cbdata *data);

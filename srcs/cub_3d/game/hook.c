@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:18:23 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 11:46:54 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 14:56:47 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,18 @@
 
 void	set_move_player(t_cbdata *data, int keycode)
 {
-	if (keycode == 119 || keycode == 65362)
+	if (keycode == KEY_W)
 		change_pos_player(data, up);
-	if (keycode == 115 || keycode == 65364)
+	else if (keycode == KEY_S)
 		change_pos_player(data, down);
-	if (keycode == 97 || keycode == 65361)
+	else if (keycode == KEY_A)
 		change_pos_player(data, left);
-	if (keycode == 100 || keycode == 65363)
+	else if (keycode == KEY_D)
 		change_pos_player(data, right);
-	printf("pos_x = %d pos_y =%d tile_size = %d \n", data->pos_x, data->pos_y, data->mini[0].mini_tile_size);
+	else if (keycode == KEY_LEFT)
+		change_pos_player(data, left_view);
+	else if (keycode == KEY_RIGHT)
+		change_pos_player(data, right_view);
 }
 
 int	key_press_hook(int keycode, t_cbdata *data)

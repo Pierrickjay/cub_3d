@@ -1,30 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   point_utils.c                                      :+:      :+:    :+:   */
+/*   distance.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/10 11:28:30 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/11 14:42:42 by rertzer          ###   ########.fr       */
+/*   Created: 2023/04/10 14:09:40 by rertzer           #+#    #+#             */
+/*   Updated: 2023/04/10 14:13:29 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
-bool	point_outofrange(t_cbdata *data, t_point *p)
+double	calculate_distance(t_cbdata *data, t_point intersect)
 {
-	bool	out;
-
-	out = false;
-	if (p->y >= (double)(data->map_y * BLOCK_SIZE) \
-			|| p->y <= 0.0 \
-			|| p->x <= 0.0 \
-			|| p->x >= (double)(data->map_x * BLOCK_SIZE))
-	{
-		out = true;
-		p->x = INFINITY;
-		p->y = INFINITY;
-	}
-	return (out);
+	return (sqrt(pow((double)data->pos_x - intersect.x, 2) + \
+				pow((double)data->pos_y - intersect.y, 2)));
 }

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/06 11:07:38 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 13:55:23 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,41 +25,51 @@ int	find_one(char *str)
 		return (0);
 }
 
-int	count_map(char *av)
+void	count_map(t_cbdata * data, char *av)
 {
-	int		countmalloc;
 	int		fd;
+	int		len;
 	char	*str;
 
-	countmalloc = 0;
 	fd = open(av, O_RDONLY);
 	if (fd < 0)
-		return (-1);
+		cb_exit(data, "open file failed");
 	str = get_next_line(fd);
 	while (str)
 	{
-		countmalloc += find_one(str);
+		if (find_one(str))
+		{
+			(data->map_y)++;
+			len = ft_strlen(str) - 1;
+			if (len > data->map_x)
+				data->map_x = len;
+		}
 		free(str);
 		str = get_next_line(fd);
 	}
 	close(fd);
-	return (countmalloc);
 }
 
-void	map_init(t_cbdata *data, int countmalloc)
+void	map_init(t_cbdata *data)
 {
-	data->map = ft_calloc(sizeof(data->map), countmalloc + 1);
+	int	i;
+	data->map = ft_calloc(sizeof(data->map), data->map_y + 1);
 	if (data->map == NULL)
 		cb_exit(data, "Malloc failed");
+	i = -1;
+	while (++i < data->map_y)
+	{
+		data->map[i] = ft_calloc(data->map_x, sizeof(char));
+		if (data->map[i] == NULL)
+			cb_exit(data, "Malloc failed");
+	}
 }
 
 void	parse_map(t_cbdata *data, char *line)
 {
 	static int	i = 0;
 
-
-	data->map[i] = ft_strdup(line);
-
+	ft_strlcpy(data->map[i], line, ft_strlen(line));
 	if (!data->map[i])
 	{
 		free(line);
