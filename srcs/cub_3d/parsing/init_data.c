@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 10:48:41 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 12:21:32 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	load_img(t_cbdata *data/*, t_img *wall*/)
 {
-	data->texture.wall_n.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_00.xpm", // replace by the the path
+	data->texture.wall_n.mlx_img = mlx_xpm_file_to_image(data->mlx,  data->n_file,
 		&data->texture.wall_n.width, &data->texture.wall_n.heigth);
-	data->texture.wall_e.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_01.xpm",
+	data->texture.wall_e.mlx_img = mlx_xpm_file_to_image(data->mlx, data->e_file,
 		&data->texture.wall_e.width, &data->texture.wall_e.heigth);
-	data->texture.wall_s.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_02.xpm",
+	data->texture.wall_s.mlx_img = mlx_xpm_file_to_image(data->mlx,  data->s_file,
 		&data->texture.wall_s.width, &data->texture.wall_s.heigth);
-	data->texture.wall_w.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_03.xpm",
+	data->texture.wall_w.mlx_img = mlx_xpm_file_to_image(data->mlx, data->w_file,
 		&data->texture.wall_w.width, &data->texture.wall_w.heigth);
 	if (!data->texture.wall_w.mlx_img || !data->texture.wall_s.mlx_img || !data->texture.wall_e.mlx_img || !data->texture.wall_n.mlx_img)
 	{
@@ -64,6 +64,7 @@ void	init_data2(t_cbdata *data)
 		data->raycast[i].y = 0;
 		data->raycast[i].dist = 0;
 		data->raycast[i].wall = 0;
+		data->raycast[i].angle = 0.0;
 		i++;
 	}
 	data->texture.wall_n.mlx_img = NULL;

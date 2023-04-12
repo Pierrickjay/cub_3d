@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 10:49:39 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 14:31:40 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@
 # define CELL_START "NSEW"
 # define MINI_X	320
 # define MINI_Y 200
-# define BLOCK_SIZE 64
-# define PLANE_X 1280
-# define PLANE_Y 800
-# define PROJ_PLAN 1108.51251684 // MINI_X / 2 - tan(M_PI / 6)
+# define BLOCK_SIZE 64.0
+# define PLANE_X 1280.0
+# define PLANE_Y 800.0
+# define PROJ_PLAN 639.422649731//1108.51251684 // MINI_X / 2 - tan(M_PI / 6)
 # define ANGLE_PACE M_PI / (3 * PLANE_X)
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
