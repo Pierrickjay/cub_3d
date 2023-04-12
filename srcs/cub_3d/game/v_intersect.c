@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:48:16 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/11 15:08:46 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/11 17:35:58 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static bool	special_value(t_point *pointB, double tangente)
 
 static void	set_pointB(t_cbdata *data, t_point *pointB, double angle, double tangente)
 {
-	pointB->x = (double)(data->pos_x - data->pos_x % BLOCK_SIZE);
+	pointB->x = data->pos_x - fmod(data->pos_x, BLOCK_SIZE);
 	if (angle < M_PI / 2.0 || angle > 3.0 / 2.0 * M_PI)
 		pointB->x += BLOCK_SIZE;
 	else
 		pointB->x -= 1.0;
-	pointB->y = (double)data->pos_y + ((double)data->pos_x - pointB->x) * tangente;
+	pointB->y = data->pos_y + (data->pos_x - pointB->x) * tangente;
 }
 
 static void	set_offset(t_point *offset, double angle, double tangente)

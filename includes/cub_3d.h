@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 17:07:22 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 10:49:39 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,11 +66,13 @@ typedef struct s_img
 	int		width;
 	int		heigth;
 }	t_img;
+
 typedef	struct	s_point
 {
 	double	x;
 	double	y;
 	double	dist;
+	double	angle;
 	char	wall;
 }	t_point;
 
@@ -96,8 +98,8 @@ typedef struct s_cbdata
 	int			floor_color;
 	int			map_x;
 	int			map_y;
-	int			pos_x;
-	int			pos_y;
+	double		pos_x;
+	double		pos_y;
 	double		angle;
 	int			redraw;
 	t_point		raycast[1280];
@@ -106,7 +108,7 @@ typedef struct s_cbdata
 	t_texture	texture;
 	int			mini_img;
 
-}t_cbdata;
+}	t_cbdata;
 
 double	calculate_distance(t_cbdata *data, t_point intersect);
 bool	point_outofrange(t_cbdata *data, t_point *p);

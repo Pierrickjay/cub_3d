@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:32:50 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/11 15:07:34 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:13:51 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ static bool	special_value(t_point *pointA, double cot)
 
 static void	set_pointA(t_cbdata *data, t_point *pointA, double angle, double cot)
 {
-	pointA->y = (double)(data->pos_y - data->pos_y % BLOCK_SIZE);
+	pointA->y = data->pos_y - fmod(data->pos_y, BLOCK_SIZE);
 	if (angle > M_PI)
 		pointA->y += BLOCK_SIZE;
 	else
-		pointA->y -= 1;
-	pointA->x = (double)data->pos_x + ((double)data->pos_y - pointA->y) * cot;
+		pointA->y -= 1.0;
+	pointA->x = data->pos_x + (data->pos_y - pointA->y) * cot;
 }
 
 static void	set_offset(t_point *offset, double angle, double cot)

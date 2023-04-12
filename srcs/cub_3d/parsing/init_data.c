@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 10:30:29 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 10:48:41 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,11 +100,11 @@ void	init_data(t_cbdata *data)
 	data->ceiling_color = 0;
 	data->ceiling_color = 0;
 	data->mini_img = 0;
-	data->pos_x = 0;
+	data->pos_x = 0.0;
+	data->pos_y = 0.0;
 	data->map_x = 0;
 	data->map_y = 0;
-	data->pos_y = 0;
-	data->angle = 0;
+	data->angle = 0.0;
 	data->redraw = 1;
 	init_data2(data);
 }
