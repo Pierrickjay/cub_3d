@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 16:01:35 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 10:17:35 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,37 +59,37 @@ void	mini_pos_file(t_cbdata *data)
 	{
 		j = -1;
 		while (++j < tile / 3)
-			my_mlx_pixel_put(data, posx - tile / 6 + j //faire diviser par 4 pour lavoir dans le coin a droite
-				, posy - tile / 6  + i, 0x00FF0000);
+			my_mlx_pixel_put(data, posx - tile / 6 / 4 + j //faire diviser par 4 pour lavoir dans le coin a droite
+				, posy - tile / 6 / 4  + i, 0x00FF0000);
 	}
 }
 
 void	redraw_mini_map(t_cbdata *data)
 {
-	// int	x;
-	// int	y;
-	// int	color;
+	int	x;
+	int	y;
+	int	color;
 
-	// y = 0;
-	//render_3d(data);
-	// while (data->map[y])
-	// {
-	// 	x = 0;
-	// 	while (data->map[y][x])
-	// 	{
-	// 		if (data->map[y][x] == '1')
-	// 			color = 0x4848BB;
-	// 		else if (cell_isa(data->map[y][x], CELL_SOFT))
-	// 			color = 0xF4D691;
-	// 		else
-	// 			color = 0x000000;
-	// 		mini_tile_file(data, x, y, color);
-	// 		x++;
-	// 	}
-	// 	y++;
-	// }
+	y = 0;
+	render_3d(data);
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == '1')
+				color = 0x4848BB;
+			else if (cell_isa(data->map[y][x], CELL_SOFT))
+				color = 0xF4D691;
+			else
+				color = 0x000000;
+			mini_tile_file(data, x, y, color);
+			x++;
+		}
+		y++;
+	}
 	draw_lines(data);
-	//mini_pos_file(data);
+	mini_pos_file(data);
 	render_3d(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, \
 		data->mini[data->mini_img].img, 0, 0);

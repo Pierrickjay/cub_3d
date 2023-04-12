@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 16:54:09 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 10:30:29 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,32 @@
 
 void	load_img(t_cbdata *data/*, t_img *wall*/)
 {
-	if (data->mlx == NULL)
-	{
-		DP
-		exit(0);
-	}
-	data->texture.wall_n.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm", // replace by the the path
+	data->texture.wall_n.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_00.xpm", // replace by the the path
 		&data->texture.wall_n.width, &data->texture.wall_n.heigth);
-	data->texture.wall_e.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
+	data->texture.wall_e.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_01.xpm",
 		&data->texture.wall_e.width, &data->texture.wall_e.heigth);
-	data->texture.wall_s.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
+	data->texture.wall_s.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_02.xpm",
 		&data->texture.wall_s.width, &data->texture.wall_s.heigth);
-	data->texture.wall_w.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
+	data->texture.wall_w.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_03.xpm",
 		&data->texture.wall_w.width, &data->texture.wall_w.heigth);
 	if (!data->texture.wall_w.mlx_img || !data->texture.wall_s.mlx_img || !data->texture.wall_e.mlx_img || !data->texture.wall_n.mlx_img)
+	{
+		cb_exit(data, "MLX FAILED");
 		exit(0);
-	data->texture.wall_n.mlx_img = mlx_get_data_addr(data->texture.wall_n.mlx_img, &data->texture.wall_n.bpp,
+	}
+	data->texture.wall_n.addr = mlx_get_data_addr(data->texture.wall_n.mlx_img, &data->texture.wall_n.bpp,
 			&data->texture.wall_n.line_len, &data->texture.wall_n.endian);
-	data->texture.wall_e.mlx_img = mlx_get_data_addr(data->texture.wall_e.mlx_img, &data->texture.wall_e.bpp,
+	data->texture.wall_e.addr = mlx_get_data_addr(data->texture.wall_e.mlx_img, &data->texture.wall_e.bpp,
 			&data->texture.wall_e.line_len, &data->texture.wall_e.endian);
-	data->texture.wall_s.mlx_img = mlx_get_data_addr(data->texture.wall_s.mlx_img, &data->texture.wall_s.bpp,
+	data->texture.wall_s.addr = mlx_get_data_addr(data->texture.wall_s.mlx_img, &data->texture.wall_s.bpp,
 			&data->texture.wall_s.line_len, &data->texture.wall_s.endian);
-	data->texture.wall_w.mlx_img = mlx_get_data_addr(data->texture.wall_w.mlx_img, &data->texture.wall_w.bpp,
+	data->texture.wall_w.addr = mlx_get_data_addr(data->texture.wall_w.mlx_img, &data->texture.wall_w.bpp,
 			&data->texture.wall_w.line_len, &data->texture.wall_w.endian);
+	if (!data->texture.wall_w.addr || !data->texture.wall_s.addr || !data->texture.wall_e.addr || !data->texture.wall_n.addr)
+	{
+		cb_exit(data, "MLX FAILED");
+		exit(0);
+	}
 }
 
 void	init_data2(t_cbdata *data)
@@ -51,6 +54,16 @@ void	init_data2(t_cbdata *data)
 		data->mini[i].bits_per_pixel = 0;
 		data->mini[i].line_length = 0;
 		data->mini[i].endian = 0;
+		i++;
+	}
+	i = 0;
+	while (i < 1280)
+	{
+		data->proj_slic_height[i] = 0;
+		data->raycast[i].x = 0;
+		data->raycast[i].y = 0;
+		data->raycast[i].dist = 0;
+		data->raycast[i].wall = 0;
 		i++;
 	}
 	data->texture.wall_n.mlx_img = NULL;

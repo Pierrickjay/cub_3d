@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 16:53:06 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 10:05:03 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	map_init(t_cbdata *data)
 	i = -1;
 	while (++i < data->map_y)
 	{
-		data->map[i] = ft_calloc(data->map_x, sizeof(char));
+		data->map[i] = ft_calloc(data->map_x + 1, sizeof(char));
 		if (data->map[i] == NULL)
 			cb_exit(data, "Malloc failed");
 	}

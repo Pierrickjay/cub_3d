@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 16:02:12 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/11 17:07:22 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,13 +89,13 @@ typedef struct s_cbdata
 	char		*s_file;
 	char		*e_file;
 	char		*w_file;
-	int			ceiling_color;
-	int			floor_color;
 	char		**map;
-	int			map_x;
-	int			map_y;
 	void		*mlx;
 	void		*mlx_win;
+	int			ceiling_color;
+	int			floor_color;
+	int			map_x;
+	int			map_y;
 	int			pos_x;
 	int			pos_y;
 	double		angle;

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/11 16:58:56 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 10:44:47 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	draw_lines(t_cbdata *data)
 		angle = angle + ANGLE_PACE;
 		i++;
 	}
-	printf("i = %d\n", i);
+	//printf("i = %d\n", i);
 /*	draw_ray(data, 0.0);
 	draw_ray(data, M_PI / 2.0);
 	draw_ray(data, M_PI);
