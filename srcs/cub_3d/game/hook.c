@@ -5,36 +5,43 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 13:18:23 by pjay              #+#    #+#             *//*   Updated: 2023/04/11 14:56:47 by rertzer          ###   ########.fr       */
+/*   Created: 2023/04/05 13:18:23 by pjay              #+#    #+#             */
+/*   Updated: 2023/04/12 14:37:07 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
-void	set_move_player(t_cbdata *data, int keycode)
+void	set_move_player(t_cbdata *data, int keycode, int value)
 {
 	if (keycode == KEY_W)
-		change_pos_player(data, up);
+		data->keypressed[up] = value;
 	else if (keycode == KEY_S)
-		change_pos_player(data, down);
+		data->keypressed[down] = value;
 	else if (keycode == KEY_A)
-		change_pos_player(data, left);
+		data->keypressed[left] = value;
 	else if (keycode == KEY_D)
-		change_pos_player(data, right);
+		data->keypressed[right] = value;
 	else if (keycode == KEY_LEFT)
-		change_pos_player(data, left_view);
+		data->keypressed[left_view] = value;
 	else if (keycode == KEY_RIGHT)
-		change_pos_player(data, right_view);
+		data->keypressed[right_view] = value;
+	//data->redraw = 1;
 }
 
 int	key_press_hook(int keycode, t_cbdata *data)
 {
 	if (keycode == XK_Escape)
 		cb_exit(data, NULL);
-	if (keycode == 119 || keycode == 65362 || keycode == 115 || keycode == 65364
-		|| keycode == 97 || keycode == 65361 || keycode == 100
-		|| keycode == 65363)
-		set_move_player(data, keycode);
+	set_move_player(data, keycode, 1);
+	return (0);
+}
+
+int	key_release_hook(int keycode, t_cbdata *data)
+{
+	if (keycode == XK_Escape)
+		cb_exit(data, NULL);
+	set_move_player(data, keycode, 0);
 	return (0);
 }
 
@@ -47,6 +54,6 @@ int	exit_hook(t_cbdata *data)
 void	set_hooks(t_cbdata *data)
 {
 	mlx_hook(data->mlx_win, KeyPress, KeyPressMask, &key_press_hook, data);
-	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &key_press_hook, data);
+	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &key_release_hook, data);
 	mlx_hook(data->mlx_win, 17, 0, &exit_hook, data);
 }

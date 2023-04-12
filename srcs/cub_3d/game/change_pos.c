@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:56:00 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 09:04:46 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 14:11:50 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 bool	bump_wall(t_cbdata *data, int new_x, int new_y)
 {
+	// TO DO : check out of range
 	new_x /= BLOCK_SIZE;
 	new_y /= BLOCK_SIZE;
 	if (data->map[new_y][new_x] == '1')
@@ -22,7 +23,7 @@ bool	bump_wall(t_cbdata *data, int new_x, int new_y)
 		return (false);
 }
 
-void	change_pos_player(t_cbdata *data, enum e_keycode move)
+void	change_pos_player(t_cbdata *data)
 {
 	double	new_x;
 	double	new_y;
@@ -32,34 +33,40 @@ void	change_pos_player(t_cbdata *data, enum e_keycode move)
 	new_x = data->pos_x;
 	new_y = data->pos_y;
 
-	if (move == up)
+	if (data->keypressed[up])
 	{
 		new_x += cos(data->angle);
 		new_y -= sin(data->angle);
 	}
-	else if (move == down)
+	if (data->keypressed[down])
 	{
 		new_x -= cos(data->angle);
 		new_y += sin(data->angle);
 	}
-	else if (move == left)
+	if (data->keypressed[left])
 	{
 		new_x += cos(ortho);
 		new_y -= sin(ortho);
 	}
-	else if (move == right)
+	if (data->keypressed[right])
 	{
 		new_x -= cos(ortho);
 		new_y += sin(ortho);
 	}
-	else if (move == left_view)
+	if (data->keypressed[left_view])
+	{
 		data->angle = fmod(data->angle + ANGLE_PACE + 2.0 * M_PI, 2.0 * M_PI);
-	else if (move == right_view)
+	}
+	if (data->keypressed[right_view])
+	{
 		data->angle = fmod(data->angle - ANGLE_PACE + 2.0 * M_PI, 2.0 * M_PI);
-	if (!bump_wall(data, new_x, new_y))
+	}
+	if (!bump_wall(data, (int)new_x, (int)data->pos_y))
 	{
 		data->pos_x = new_x;
+	}
+	if (!bump_wall(data, (int)data->pos_x, (int)new_y))
+	{
 		data->pos_y = new_y;
-		data->redraw = 1;
 	}
 }

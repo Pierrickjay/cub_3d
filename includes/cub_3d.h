@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 10:49:39 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 13:27:24 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
 enum e_keycode {up, down, left, right, left_view, right_view};
+
 typedef struct s_minimap
 {
 	void	*img;
@@ -87,26 +88,27 @@ typedef struct s_texture
 
 typedef struct s_cbdata
 {
-	char		*n_file;
-	char		*s_file;
-	char		*e_file;
-	char		*w_file;
-	char		**map;
-	void		*mlx;
-	void		*mlx_win;
-	int			ceiling_color;
-	int			floor_color;
-	int			map_x;
-	int			map_y;
-	double		pos_x;
-	double		pos_y;
-	double		angle;
-	int			redraw;
-	t_point		raycast[1280];
-	double		proj_slic_height[1280];
-	t_minimap	mini[2];
-	t_texture	texture;
-	int			mini_img;
+	char			*n_file;
+	char			*s_file;
+	char			*e_file;
+	char			*w_file;
+	char			**map;
+	void			*mlx;
+	void			*mlx_win;
+	int				ceiling_color;
+	int				floor_color;
+	int				map_x;
+	int				map_y;
+	double			pos_x;
+	double			pos_y;
+	double			angle;
+	int				redraw;
+	t_point			raycast[1280];
+	double			proj_slic_height[1280];
+	t_minimap		mini[2];
+	t_texture		texture;
+	int				mini_img;
+	enum e_keycode	keypressed[6];
 
 }	t_cbdata;
 
@@ -131,7 +133,7 @@ void	count_map(t_cbdata *data, char *av);
 int		find_one(char *str);
 void	init_game(t_cbdata *data);
 void	set_hooks(t_cbdata *data);
-void	change_pos_player(t_cbdata *data, enum e_keycode move);
+void	change_pos_player(t_cbdata *data);
 bool	bump_wall(t_cbdata *data, int new_x, int new_y);
 void	draw_lines(t_cbdata *data);
 void	redraw_mini_map(t_cbdata *data);

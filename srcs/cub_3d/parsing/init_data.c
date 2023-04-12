@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 10:48:41 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 12:35:26 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,15 @@ void	init_data2(t_cbdata *data)
 	data->texture.wall_w.endian = 0;
 }
 
+void	init_data_keypressed(t_cbdata *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 6)
+		data->keypressed[i] = 0;
+}
+
 void	init_data(t_cbdata *data)
 {
 	data->map = NULL;
@@ -107,6 +116,7 @@ void	init_data(t_cbdata *data)
 	data->angle = 0.0;
 	data->redraw = 1;
 	init_data2(data);
+	init_data_keypressed(data);
 }
 
 void	cb_exit(t_cbdata *data, char *err_msg)
