@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 15:43:13 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 09:17:30 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color)
 {
 	char	*dst;
 
-	//printf("x = %d || y = %d\n", x, y);
 	dst = data->mini[data->mini_img].addr \
 		+ (y * data->mini[data->mini_img].line_length + x \
 		* (data->mini[data->mini_img].bits_per_pixel / 8));
@@ -48,12 +47,12 @@ void	mini_pos_file(t_cbdata *data)
 	int	posy;
 
 	tile = data->mini[data->mini_img].mini_tile_size;
-	if (tile == 0)
+	if (tile < 1)
 		tile = 1;
-	posx = data->pos_x * tile;
-	posy = data->pos_y * tile;
-	posx /= 64;
-	posy /= 64;
+	posx = (int)data->pos_x * tile;
+	posy = (int)data->pos_y * tile;
+	posx /= BLOCK_SIZE;
+	posy /= BLOCK_SIZE;
 	i = -1;
 	while (++i < tile / 3)
 	{

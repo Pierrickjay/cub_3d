@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/11 15:33:17 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 09:47:25 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	count_map(t_cbdata * data, char *av)
 		if (find_one(str))
 		{
 			(data->map_y)++;
-			len = ft_strlen(str) - 1;
+			len = ft_strlen(str);
 			if (len > data->map_x)
 				data->map_x = len;
 		}
@@ -53,6 +53,7 @@ void	count_map(t_cbdata * data, char *av)
 void	map_init(t_cbdata *data)
 {
 	int	i;
+
 	data->map = ft_calloc(sizeof(data->map), data->map_y + 1);
 	if (data->map == NULL)
 		cb_exit(data, "Malloc failed");

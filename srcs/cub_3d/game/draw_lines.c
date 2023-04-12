@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/11 16:16:38 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:33:30 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,15 @@ t_point	get_endpoint(t_cbdata *data, double angle)
 	v_intersect = get_v_intersect(data, angle);
 	h_intersect.dist = calculate_distance(data, h_intersect);
 	v_intersect.dist = calculate_distance(data, v_intersect);
+	h_intersect.angle = angle;
+	v_intersect.angle = angle;
 
 	if (h_intersect.dist < v_intersect.dist)
 		return (h_intersect);
 	else
 		return (v_intersect);
 }
+
 void	draw_ray(t_cbdata *data, double	angle)
 {
 	t_point	intersect;
@@ -44,11 +47,11 @@ void	draw_ray(t_cbdata *data, double	angle)
 	if (tile == 0)
 		tile = 1;
 	intersect = get_endpoint(data, angle);
-	//printf("Intersect: x: %f, y: %f, dist: %f, wall: %c\n", intersect.x, intersect.y, intersect.dist, intersect.wall);
+	//printf("Intersect: x: %f, y: %f, dist: %f, angle: %f wall: %c\n", intersect.x, intersect.y, intersect.dist, intersect.angle, intersect.wall);
 	if (isinf(intersect.x) || isinf(intersect.y))
 		return ;
-	slope = (intersect.y - (double)data->pos_y) / (intersect.x - (double)data->pos_x);
-	x = data->pos_x;
+	slope = (intersect.y - data->pos_y) / (intersect.x - data->pos_x);
+	x = (int)data->pos_x;
 	y = data->pos_y;
 	if (isinf(slope) == -1)
 	{
@@ -56,7 +59,7 @@ void	draw_ray(t_cbdata *data, double	angle)
 		print_x /= 64;
 		while (y >= (int)intersect.y)
 		{
-			print_y = (int)y * tile;
+			print_y = y * tile;
 			print_y /= 64;
 			my_mlx_pixel_put(data, print_x, print_y, color);
 			y--;
@@ -68,13 +71,13 @@ void	draw_ray(t_cbdata *data, double	angle)
 		print_x /= 64;
 		while (y <= (int)intersect.y)
 		{
-			print_y = (int)y * tile;
+			print_y = y * tile;
 			print_y /= 64;
 			my_mlx_pixel_put(data, print_x, print_y, color);
 			y++;
 		}
 	}
-	else if (intersect.x > (double)data->pos_x)
+	else if (intersect.x > data->pos_x)
 	{
 		while (x < (int)intersect.x)
 		{
