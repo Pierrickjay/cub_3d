@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 09:17:30 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:36:05 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,30 +65,31 @@ void	mini_pos_file(t_cbdata *data)
 
 void	redraw_mini_map(t_cbdata *data)
 {
-	int	x;
-	int	y;
-	int	color;
+	// int	x;
+	// int	y;
+	// int	color;
 
-	y = 0;
+	// y = 0;
 	//render_3d(data);
-	while (data->map[y])
-	{
-		x = 0;
-		while (data->map[y][x])
-		{
-			if (data->map[y][x] == '1')
-				color = 0x4848BB;
-			else if (cell_isa(data->map[y][x], CELL_SOFT))
-				color = 0xF4D691;
-			else
-				color = 0x000000;
-			mini_tile_file(data, x, y, color);
-			x++;
-		}
-		y++;
-	}
+	// while (data->map[y])
+	// {
+	// 	x = 0;
+	// 	while (data->map[y][x])
+	// 	{
+	// 		if (data->map[y][x] == '1')
+	// 			color = 0x4848BB;
+	// 		else if (cell_isa(data->map[y][x], CELL_SOFT))
+	// 			color = 0xF4D691;
+	// 		else
+	// 			color = 0x000000;
+	// 		mini_tile_file(data, x, y, color);
+	// 		x++;
+	// 	}
+	// 	y++;
+	// }
 	draw_lines(data);
-	mini_pos_file(data);
+	//mini_pos_file(data);
+	render_3d(data);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, \
 		data->mini[data->mini_img].img, 0, 0);
 }

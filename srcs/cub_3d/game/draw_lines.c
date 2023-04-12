@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/12 10:33:30 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:40:47 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ t_point	get_endpoint(t_cbdata *data, double angle)
 	else
 		return (v_intersect);
 }
-
-void	draw_ray(t_cbdata *data, double	angle)
+void	draw_ray(t_cbdata *data, t_point intersect)
 {
-	t_point	intersect;
 	double	slope;
 	int		color;
 	int		x;
@@ -46,8 +44,8 @@ void	draw_ray(t_cbdata *data, double	angle)
 	tile = data->mini[data->mini_img].mini_tile_size;
 	if (tile == 0)
 		tile = 1;
-	intersect = get_endpoint(data, angle);
-	//printf("Intersect: x: %f, y: %f, dist: %f, angle: %f wall: %c\n", intersect.x, intersect.y, intersect.dist, intersect.angle, intersect.wall);
+	//intersect = get_endpoint(data, angle);
+	//printf("Intersect: x: %f, y: %f, dist: %f, wall: %c\n", intersect.x, intersect.y, intersect.dist, intersect.wall);
 	if (isinf(intersect.x) || isinf(intersect.y))
 		return ;
 	slope = (intersect.y - data->pos_y) / (intersect.x - data->pos_x);
@@ -108,13 +106,20 @@ void	draw_ray(t_cbdata *data, double	angle)
 void	draw_lines(t_cbdata *data)
 {
 	double	angle;
+	int		i;
 
+	i = 0;
 	angle = data->angle - M_PI / 6.0;
-	while (angle <= data->angle + M_PI / 6.0)
+
+	while (i < 1280)
 	{
-		draw_ray(data, fmod(angle + 2 * M_PI, 2.0 * M_PI));
+		angle = fmod(angle + 2 * M_PI, 2.0 * M_PI);
+		data->raycast[i] = get_endpoint(data, angle);
+		//draw_ray(data, data->raycast[i]);
 		angle = angle + ANGLE_PACE;
+		i++;
 	}
+	printf("i = %d\n", i);
 /*	draw_ray(data, 0.0);
 	draw_ray(data, M_PI / 2.0);
 	draw_ray(data, M_PI);

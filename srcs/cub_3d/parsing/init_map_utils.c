@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 09:47:25 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:42:34 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	count_map(t_cbdata * data, char *av)
 	{
 		if (find_one(str))
 		{
-			(data->map_y)++;
-			len = ft_strlen(str);
+			data->map_y++;
+			len = ft_strlen(str) - 1;
 			if (len > data->map_x)
 				data->map_x = len;
 		}

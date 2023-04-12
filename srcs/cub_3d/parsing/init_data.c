@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 09:20:32 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:41:50 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,14 @@ void	load_img(t_cbdata *data/*, t_img *wall*/)
 		&data->texture.wall_w.width, &data->texture.wall_w.heigth);
 	if (!data->texture.wall_w.mlx_img || !data->texture.wall_s.mlx_img || !data->texture.wall_e.mlx_img || !data->texture.wall_n.mlx_img)
 		exit(0);
-	data->texture.wall_n.mlx_img = mlx_xpm_file_to_image(data->mlx, "textures/wall_04_256.xpm",
-		&data->texture.wall_n.width, &data->texture.wall_n.heigth);
+	data->texture.wall_n.mlx_img = mlx_get_data_addr(data->texture.wall_n.mlx_img, &data->texture.wall_n.bpp,
+			&data->texture.wall_n.line_len, &data->texture.wall_n.endian);
+	data->texture.wall_e.mlx_img = mlx_get_data_addr(data->texture.wall_e.mlx_img, &data->texture.wall_e.bpp,
+			&data->texture.wall_e.line_len, &data->texture.wall_e.endian);
+	data->texture.wall_s.mlx_img = mlx_get_data_addr(data->texture.wall_s.mlx_img, &data->texture.wall_s.bpp,
+			&data->texture.wall_s.line_len, &data->texture.wall_s.endian);
+	data->texture.wall_w.mlx_img = mlx_get_data_addr(data->texture.wall_w.mlx_img, &data->texture.wall_w.bpp,
+			&data->texture.wall_w.line_len, &data->texture.wall_w.endian);
 }
 
 void	init_data2(t_cbdata *data)

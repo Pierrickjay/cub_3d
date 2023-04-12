@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 10:29:00 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 10:35:15 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
-# define MINI_X	1280
-# define MINI_Y	800
+# define MINI_X	320
+# define MINI_Y 200
 # define BLOCK_SIZE 64
 # define PLANE_X 1280
 # define PLANE_Y 800
@@ -102,7 +102,7 @@ typedef struct s_cbdata
 	double		pos_y;
 	double		angle;
 	int			redraw;
-	double		all_dist[1280];
+	t_point		raycast[1280];
 	double		proj_slic_height[1280];
 	t_minimap	mini[2];
 	t_texture	texture;
