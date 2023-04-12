@@ -6,21 +6,21 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:48:16 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/11 17:35:58 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 15:34:20 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
-static bool	special_value(t_point *pointB, double tangente);
-static void	set_pointB(t_cbdata *data, t_point *pointB, double angle, double tangente);
-static void	set_offset(t_point *offset, double angle, double tangente);
-static int	next_pointB(t_cbdata *data, t_point *pointB, t_point offset, double angle);
+static bool	special_value(t_point *pointB, float tangente);
+static void	set_pointB(t_cbdata *data, t_point *pointB, float angle, float tangente);
+static void	set_offset(t_point *offset, float angle, float tangente);
+static int	next_pointB(t_cbdata *data, t_point *pointB, t_point offset, float angle);
 
-t_point	get_v_intersect(t_cbdata *data, double angle)
+t_point	get_v_intersect(t_cbdata *data, float angle)
 {
 	int		found;
-	double	tangente;
+	float	tangente;
 	t_point	offset;
 	t_point	pointB;
 
@@ -39,7 +39,7 @@ t_point	get_v_intersect(t_cbdata *data, double angle)
 	return (pointB);
 }
 
-static bool	special_value(t_point *pointB, double tangente)
+static bool	special_value(t_point *pointB, float tangente)
 {
 	int	class;
 
@@ -53,7 +53,7 @@ static bool	special_value(t_point *pointB, double tangente)
 	return (false);
 }
 
-static void	set_pointB(t_cbdata *data, t_point *pointB, double angle, double tangente)
+static void	set_pointB(t_cbdata *data, t_point *pointB, float angle, float tangente)
 {
 	pointB->x = data->pos_x - fmod(data->pos_x, BLOCK_SIZE);
 	if (angle < M_PI / 2.0 || angle > 3.0 / 2.0 * M_PI)
@@ -63,7 +63,7 @@ static void	set_pointB(t_cbdata *data, t_point *pointB, double angle, double tan
 	pointB->y = data->pos_y + (data->pos_x - pointB->x) * tangente;
 }
 
-static void	set_offset(t_point *offset, double angle, double tangente)
+static void	set_offset(t_point *offset, float angle, float tangente)
 {
 	if (angle < M_PI / 2.0 || angle > 3.0 / 2.0 * M_PI)
 	{
@@ -77,7 +77,7 @@ static void	set_offset(t_point *offset, double angle, double tangente)
 	}
 }
 
-static int	next_pointB(t_cbdata *data, t_point *pointB, t_point offset, double angle)
+static int	next_pointB(t_cbdata *data, t_point *pointB, t_point offset, float angle)
 {
 	int 	x;
 	int		y;

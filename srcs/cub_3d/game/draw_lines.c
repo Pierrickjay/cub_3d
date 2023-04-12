@@ -6,14 +6,14 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/12 14:42:25 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 15:33:19 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
 
-t_point	get_endpoint(t_cbdata *data, double angle)
+t_point	get_endpoint(t_cbdata *data, float angle)
 {
 	t_point	h_intersect;
 	t_point	v_intersect;
@@ -32,7 +32,7 @@ t_point	get_endpoint(t_cbdata *data, double angle)
 }
 void	draw_ray(t_cbdata *data, t_point intersect)
 {
-	double	slope;
+	float	slope;
 	int		color;
 	int		x;
 	int		tile;
@@ -105,7 +105,7 @@ void	draw_ray(t_cbdata *data, t_point intersect)
 
 void	draw_lines(t_cbdata *data)
 {
-	double	angle;
+	float	angle;
 	int		i;
 
 	i = 0;

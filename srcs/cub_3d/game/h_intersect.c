@@ -6,21 +6,21 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:32:50 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/12 10:13:51 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 15:33:38 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
-static bool	special_value(t_point *pointA, double cot);
-static void	set_pointA(t_cbdata *data, t_point *pointA, double angle, double cot);
-static void	set_offset(t_point *offset, double angle, double cot);
-static int	next_pointA(t_cbdata *data, t_point *pointA, t_point offset, double angle);
+static bool	special_value(t_point *pointA, float cot);
+static void	set_pointA(t_cbdata *data, t_point *pointA, float angle, float cot);
+static void	set_offset(t_point *offset, float angle, float cot);
+static int	next_pointA(t_cbdata *data, t_point *pointA, t_point offset, float angle);
 
-t_point	get_h_intersect(t_cbdata *data, double angle)
+t_point	get_h_intersect(t_cbdata *data, float angle)
 {
 	int		found;
-	double	cot;
+	float	cot;
 	t_point	offset;
 	t_point	pointA;
 
@@ -39,7 +39,7 @@ t_point	get_h_intersect(t_cbdata *data, double angle)
 	return (pointA);
 }
 
-static bool	special_value(t_point *pointA, double cot)
+static bool	special_value(t_point *pointA, float cot)
 {
 	int	class;
 
@@ -53,7 +53,7 @@ static bool	special_value(t_point *pointA, double cot)
 	return (false);
 }
 
-static void	set_pointA(t_cbdata *data, t_point *pointA, double angle, double cot)
+static void	set_pointA(t_cbdata *data, t_point *pointA, float angle, float cot)
 {
 	pointA->y = data->pos_y - fmod(data->pos_y, BLOCK_SIZE);
 	if (angle > M_PI)
@@ -63,7 +63,7 @@ static void	set_pointA(t_cbdata *data, t_point *pointA, double angle, double cot
 	pointA->x = data->pos_x + (data->pos_y - pointA->y) * cot;
 }
 
-static void	set_offset(t_point *offset, double angle, double cot)
+static void	set_offset(t_point *offset, float angle, float cot)
 {
 	if (angle < M_PI)
 	{
@@ -77,7 +77,7 @@ static void	set_offset(t_point *offset, double angle, double cot)
 	}
 }
 
-static int	next_pointA(t_cbdata *data, t_point *pointA, t_point offset, double angle)
+static int	next_pointA(t_cbdata *data, t_point *pointA, t_point offset, float angle)
 {
 	int 	x;
 	int		y;

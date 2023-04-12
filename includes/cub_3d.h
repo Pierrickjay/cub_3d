@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 13:27:24 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 15:29:15 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,10 @@ typedef struct s_img
 
 typedef	struct	s_point
 {
-	double	x;
-	double	y;
-	double	dist;
-	double	angle;
+	float	x;
+	float	y;
+	float	dist;
+	float	angle;
 	char	wall;
 }	t_point;
 
@@ -99,12 +99,12 @@ typedef struct s_cbdata
 	int				floor_color;
 	int				map_x;
 	int				map_y;
-	double			pos_x;
-	double			pos_y;
-	double			angle;
+	float			pos_x;
+	float			pos_y;
+	float			angle;
 	int				redraw;
 	t_point			raycast[1280];
-	double			proj_slic_height[1280];
+	float			proj_slic_height[1280];
 	t_minimap		mini[2];
 	t_texture		texture;
 	int				mini_img;
@@ -112,10 +112,10 @@ typedef struct s_cbdata
 
 }	t_cbdata;
 
-double	calculate_distance(t_cbdata *data, t_point intersect);
+float	calculate_distance(t_cbdata *data, t_point intersect);
 bool	point_outofrange(t_cbdata *data, t_point *p);
-t_point	get_h_intersect(t_cbdata *data, double angle);
-t_point	get_v_intersect(t_cbdata *data, double angle);
+t_point	get_h_intersect(t_cbdata *data, float angle);
+t_point	get_v_intersect(t_cbdata *data, float angle);
 void	init_data(t_cbdata *data);
 char	**ft_mapped(int fd);
 void	print_strs(char **strs);

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 10:45:46 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 15:34:04 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ void	render_3d(t_cbdata *data)
 {
  	int	i;
 	unsigned int		color;
-	//double	size_wall;
-	double	size_to_print;
+	//float	size_wall;
+	float	size_to_print;
 	int j;
 
 	size_to_print = 0;

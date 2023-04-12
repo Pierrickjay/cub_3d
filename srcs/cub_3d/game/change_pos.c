@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:56:00 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 14:11:50 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/12 15:32:28 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ bool	bump_wall(t_cbdata *data, int new_x, int new_y)
 
 void	change_pos_player(t_cbdata *data)
 {
-	double	new_x;
-	double	new_y;
-	double	ortho;
+	float	new_x;
+	float	new_y;
+	float	ortho;
 
 	ortho = data->angle + M_PI_2;
 	new_x = data->pos_x;
