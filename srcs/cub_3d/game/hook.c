@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:18:23 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 14:37:07 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/13 09:20:39 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 void	set_move_player(t_cbdata *data, int keycode, int value)
 {
 	if (keycode == KEY_W)
-		data->keypressed[up] = value;
+		data->keypressed[down] = -1 * value;
 	else if (keycode == KEY_S)
 		data->keypressed[down] = value;
 	else if (keycode == KEY_A)
-		data->keypressed[left] = value;
+		data->keypressed[right] = -1 * value;
 	else if (keycode == KEY_D)
 		data->keypressed[right] = value;
 	else if (keycode == KEY_LEFT)
-		data->keypressed[left_view] = value;
+		data->keypressed[right_view] = -1 * value;
 	else if (keycode == KEY_RIGHT)
 		data->keypressed[right_view] = value;
 	//data->redraw = 1;
@@ -54,6 +54,7 @@ int	exit_hook(t_cbdata *data)
 void	set_hooks(t_cbdata *data)
 {
 	mlx_hook(data->mlx_win, KeyPress, KeyPressMask, &key_press_hook, data);
-	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, &key_release_hook, data);
+	mlx_hook(data->mlx_win, KeyRelease, KeyReleaseMask, \
+			&key_release_hook, data);
 	mlx_hook(data->mlx_win, 17, 0, &exit_hook, data);
 }

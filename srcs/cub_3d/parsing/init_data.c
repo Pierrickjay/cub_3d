@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 16:20:38 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 11:16:28 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	init_data_keypressed(t_cbdata *data)
 	int	i;
 
 	i = -1;
-	while (++i < 6)
+	while (++i < 3)
 		data->keypressed[i] = 0;
 }
 

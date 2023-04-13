@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 15:34:11 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 11:12:56 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,13 @@
 # define BLOCK_SIZE 64.0
 # define PLANE_X 1280.0
 # define PLANE_Y 800.0
-# define PROJ_PLAN 639.422649731//1108.51251684 // MINI_X / 2 - tan(M_PI / 6)
+# define PROJ_PLAN 639.4226497314 // MINI_X / 2 - tan(M_PI / 6)
 # define ANGLE_PACE M_PI / (3 * PLANE_X)
+# define RAY_COLOR 0xFFFF84
+
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
-enum e_keycode {up, down, left, right, left_view, right_view};
+enum e_keycode {down, right, right_view};
 
 typedef struct s_minimap
 {
@@ -70,10 +72,10 @@ typedef struct s_img
 
 typedef	struct	s_point
 {
-	double	x;
-	double	y;
-	double	dist;
-	double	angle;
+	float	x;
+	float	y;
+	float	dist;
+	float	angle;
 	char	wall;
 }	t_point;
 
@@ -99,23 +101,23 @@ typedef struct s_cbdata
 	int				floor_color;
 	int				map_x;
 	int				map_y;
-	double			pos_x;
-	double			pos_y;
-	double			angle;
+	float			pos_x;
+	float			pos_y;
+	float			angle;
 	int				redraw;
 	t_point			raycast[1280];
-	double			proj_slic_height[1280];
+	float			proj_slic_height[1280];
 	t_minimap		mini[2];
 	t_texture		texture;
 	int				mini_img;
-	enum e_keycode	keypressed[6];
+	int				keypressed[3];
 
 }	t_cbdata;
 
-double	calculate_distance(t_cbdata *data, t_point intersect);
+float	calculate_distance(t_cbdata *data, t_point intersect);
 bool	point_outofrange(t_cbdata *data, t_point *p);
-t_point	get_h_intersect(t_cbdata *data, double angle);
-t_point	get_v_intersect(t_cbdata *data, double angle);
+t_point	get_h_intersect(t_cbdata *data, float angle);
+t_point	get_v_intersect(t_cbdata *data, float angle);
 void	init_data(t_cbdata *data);
 char	**ft_mapped(int fd);
 void	print_strs(char **strs);
@@ -134,6 +136,7 @@ int		find_one(char *str);
 void	init_game(t_cbdata *data);
 void	set_hooks(t_cbdata *data);
 void	change_pos_player(t_cbdata *data);
+void	change_view_player(t_cbdata *data);
 bool	bump_wall(t_cbdata *data, int new_x, int new_y);
 void	draw_lines(t_cbdata *data);
 void	redraw_mini_map(t_cbdata *data);
