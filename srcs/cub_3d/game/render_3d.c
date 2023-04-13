@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 15:24:03 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 15:45:58 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	render_3d(t_cbdata *data)
 			top_y = 0;
 		j = top_y;
 		i = bottom_y;
-		while (top_y <= bottom_y && top_y < PLANE_Y)
+		while (top_y <= bottom_y && top_y <= PLANE_Y)
 		{
 			if (data->raycast[column].wall == 'N') // horizontal domc off set sur x
 			{
@@ -95,21 +95,24 @@ void	render_3d(t_cbdata *data)
 			{
 				color = img_pix_read(&data->texture.wall_w, 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
 			}
-			if (!(inversed < 320 && top_y < 150))
-				my_mlx_pixel_put(data, inversed/*column*/, top_y, color);
+			if (!(inversed - 1 < 320 && top_y < 150))
+				my_mlx_pixel_put(data, inversed - 1/*column*/, top_y, color);
 			top_y++;
 			//printf("top_y = %d || column= %d\n", top_y, column);
 		}
 		while (i < 800)
 		{
 			// pas dessiner sur la minimap // censer etre 200 pour j mais minimap plus petiteif (!(i < 320 && j < 200)) // pas dessiner sur la minimap
-			my_mlx_pixel_put(data, inversed/*column*/, i, data->floor_color);
+			my_mlx_pixel_put(data, inversed - 1/*column*/, i, data->floor_color);
 			i++; // sol
 		}
-		while (j > 0)
+		while (j >= 0 && top_y < PLANE_Y)
 		{
-			if (!(inversed < 320 && j < 150))
-				my_mlx_pixel_put(data, inversed/*column*/, j, data->ceiling_color);
+			// if (top_y >= 780)
+			// 	printf("top y = %f\n", top_y);
+			//printf("bottom_y = %f || top_y = %f\n", bottom_y, top_y);
+			if (!(inversed - 1 < 320 && j < 150))
+				my_mlx_pixel_put(data, inversed - 1/*column*/, j, data->ceiling_color);
 			j--;
 		}
 		inversed--;
