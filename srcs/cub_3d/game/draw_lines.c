@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/13 14:03:09 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 14:11:02 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ t_point	get_endpoint(t_cbdata *data, float angle)
 
 	h_intersect = get_h_intersect(data, angle);
 	v_intersect = get_v_intersect(data, angle);
+	//if (h_intersect.wall == 'N')
+	//	h_intersect.y -= 1;
+	//if (v_intersect.wall == 'W')
+	//	v_intersect.x += 1;
 	h_intersect.dist = calculate_distance(data, h_intersect);
 	v_intersect.dist = calculate_distance(data, v_intersect);
 	h_intersect.angle = angle;
@@ -103,11 +107,7 @@ void	draw_lines(t_cbdata *data)
 	{
 		angle = fmod(angle + 2.0 * M_PI, 2.0 * M_PI);
 		data->raycast[i] = get_endpoint(data, angle);
-		if (data->raycast[i].wall == 'N')
-			data->raycast[i].y += 24;
-		else if (data->raycast[i].wall == 'W')
-			data->raycast[i].x += 1;
-		//draw_ray(data, data->raycast[i]);
+		draw_ray(data, data->raycast[i]);
 		angle = angle + ANGLE_PACE;
 		i++;
 	}
