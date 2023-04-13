@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 11:57:19 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 13:59:15 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	render_3d(t_cbdata *data)
 	int				top_y;
 	int				bottom_y;
 	int				j;
+	int				inversed = 1279;
 
 	size_to_print = 0;
 	i = 0;
@@ -93,23 +94,24 @@ void	render_3d(t_cbdata *data)
 			{
 				color = img_pix_read(&data->texture.wall_w, 1.0 - (double)(bottom_y - top_y) / size_to_print, data, column);
 			}
-			if (!(column < 320 && top_y < 150))
-				my_mlx_pixel_put(data, column, top_y, color);
+			if (!(inversed < 320 && top_y < 150))
+				my_mlx_pixel_put(data, inversed/*column*/, top_y, color);
 			top_y++;
 			//printf("top_y = %d || column= %d\n", top_y, column);
 		}
 		while (i < 800)
 		{
 			// pas dessiner sur la minimap // censer etre 200 pour j mais minimap plus petiteif (!(i < 320 && j < 200)) // pas dessiner sur la minimap
-			my_mlx_pixel_put(data, column, i, data->floor_color);
+			my_mlx_pixel_put(data, inversed/*column*/, i, data->floor_color);
 			i++; // sol
 		}
 		while (j > 0)
 		{
-			if (!(column < 320 && j < 150))
-				my_mlx_pixel_put(data, column, j, data->ceiling_color);
+			if (!(inversed < 320 && j < 150))
+				my_mlx_pixel_put(data, inversed/*column*/, j, data->ceiling_color);
 			j--;
 		}
+		inversed--;
 		column++;
 	}
 }
