@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 11:16:19 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 11:37:09 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	render_3d(t_cbdata *data)
 	while (i < 1280)
 	{
 		//printf("angle = %f || M_PI/6.0 = %f\n", data->raycast[i].angle, M_PI /6.0);
-		data->proj_slic_height[i] = BLOCK_SIZE / (data->raycast[i].dist * cos(data->angle - data->raycast[i].angle)) * PROJ_PLAN; // il faut que je recup l'angle par rapport a player dir pour reduire le fisheye
+		data->proj_slic_height[i] = (double)BLOCK_SIZE / (data->raycast[i].dist * cos(data->angle - data->raycast[i].angle)) * PROJ_PLAN; // il faut que je recup l'angle par rapport a player dir pour reduire le fisheye
 		//printf("data->proj_slic_height[%d] = %f || alldist  = %f\n", i, data->proj_slic_height[i],  data->all_dist[i]);
 		i++;
 	}
@@ -99,7 +99,8 @@ void	render_3d(t_cbdata *data)
 			{
 				color = img_pix_read(&data->texture.wall_w, 1.0 - (double)(bottom_y - top_y) / size_to_print, true, data->raycast[column]);
 			}
-			my_mlx_pixel_put(data, column, top_y, color);
+			if (!(column < 320 && top_y < 150))
+				my_mlx_pixel_put(data, column, top_y, color);
 			top_y++;
 			//printf("top_y = %d || column= %d\n", top_y, column);
 		}
@@ -111,7 +112,8 @@ void	render_3d(t_cbdata *data)
 		}
 		while (j > 0)
 		{
-			my_mlx_pixel_put(data, column, j, data->ceiling_color);
+			if (!(column < 320 && j < 150))
+				my_mlx_pixel_put(data, column, j, data->ceiling_color);
 			j--;
 		}
 		column++;
