@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 11:12:56 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 11:27:07 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@
 # define BLOCK_SIZE 64.0
 # define PLANE_X 1280.0
 # define PLANE_Y 800.0
-# define PROJ_PLAN 639.4226497314 // MINI_X / 2 - tan(M_PI / 6)
+# define PROJ_PLAN 1108.51251684 // (MINI_Y / 2) / tan(M_PI / 6)
 # define ANGLE_PACE M_PI / (3 * PLANE_X)
 # define RAY_COLOR 0xFFFF84
 
