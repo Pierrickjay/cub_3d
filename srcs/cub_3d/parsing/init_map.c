@@ -6,12 +6,13 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 09:46:12 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/13 08:55:57 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "cub_3d.h"
+
 bool	parse_line(t_cbdata *data, char *line)
 {
 	int		len;
@@ -25,19 +26,32 @@ bool	parse_line(t_cbdata *data, char *line)
 	len = ft_strlen(line);
 	token = ft_split(line, ' ');
 	if (ft_strcmp(token[0], "NO") == 0)
+	{
 		data->n_file = ft_strdup(token[1]);
+		data->n_file[ft_strlen(token[1]) - 1] = 0;
+	}
 	else if (ft_strcmp(token[0], "SO") == 0)
+	{
 		data->s_file = ft_strdup(token[1]);
+		data->s_file[ft_strlen(token[1]) - 1] = 0;
+	}
 	else if (ft_strcmp(token[0], "WE") == 0)
+	{
 		data->w_file = ft_strdup(token[1]);
+		data->w_file[ft_strlen(token[1]) - 1] = 0;
+	}
 	else if (ft_strcmp(token[0], "EA") == 0)
+	{
 		data->e_file = ft_strdup(token[1]);
+		data->e_file[ft_strlen(token[1]) - 1] = 0;
+	}
 	else if (ft_strcmp(token[0], "F") == 0)
 		data->floor_color = create_rgb(token[1]);
 	else if (ft_strcmp(token[0], "C") == 0)
 		data->ceiling_color = create_rgb(token[1]);
 	else
 		return (ft_free_strs(token), -1);
+
 	return (ft_free_strs(token), 0);
 }
 
@@ -85,10 +99,10 @@ void	parse_file(t_cbdata *data, char *av)
 	data->mini[1].mini_tile_size = ft_min(MINI_X / data->map_x, \
 		MINI_Y / data->map_y);
 	print_strs(data->map);
-	printf("n _ file = %s", data->n_file);
-	printf("s _ file = %s", data->s_file);
-	printf("w _ file = %s", data->w_file);
-	printf("e _ file = %s", data->e_file);
+	printf("\nn _ file = %s\n", data->n_file);
+	printf("s _ file = %s\n", data->s_file);
+	printf("w _ file = %s\n", data->w_file);
+	printf("e _ file = %s\n", data->e_file);
 	printf("color ceiling = %d\n", data->ceiling_color);
 	printf("floor color = %d\n", data->floor_color);
 	close(fd);

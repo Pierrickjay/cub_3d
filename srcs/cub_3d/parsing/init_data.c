@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 12:21:32 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/12 16:20:38 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 void	load_img(t_cbdata *data/*, t_img *wall*/)
 {
-	data->texture.wall_n.mlx_img = mlx_xpm_file_to_image(data->mlx,  data->n_file,
+	if (!data->mlx)
+	{
+		DP
+		cb_exit(data, "MLX FAILED");
+		exit(0);
+	}
+	data->texture.wall_n.mlx_img = mlx_xpm_file_to_image(data->mlx, data->n_file,
 		&data->texture.wall_n.width, &data->texture.wall_n.heigth);
 	data->texture.wall_e.mlx_img = mlx_xpm_file_to_image(data->mlx, data->e_file,
 		&data->texture.wall_e.width, &data->texture.wall_e.heigth);
@@ -22,8 +28,13 @@ void	load_img(t_cbdata *data/*, t_img *wall*/)
 		&data->texture.wall_s.width, &data->texture.wall_s.heigth);
 	data->texture.wall_w.mlx_img = mlx_xpm_file_to_image(data->mlx, data->w_file,
 		&data->texture.wall_w.width, &data->texture.wall_w.heigth);
-	if (!data->texture.wall_w.mlx_img || !data->texture.wall_s.mlx_img || !data->texture.wall_e.mlx_img || !data->texture.wall_n.mlx_img)
+	if (!data->texture.wall_n.mlx_img || !data->texture.wall_s.mlx_img || !data->texture.wall_e.mlx_img || !data->texture.wall_w.mlx_img)
 	{
+		printf("n =|%s|\n", data->n_file);
+		printf("e =|%s|\n", data->e_file);
+		printf("w =|%s|\n", data->w_file);
+		printf("s= |%s|\n", data->s_file);
+		DP
 		cb_exit(data, "MLX FAILED");
 		exit(0);
 	}
@@ -35,8 +46,9 @@ void	load_img(t_cbdata *data/*, t_img *wall*/)
 			&data->texture.wall_s.line_len, &data->texture.wall_s.endian);
 	data->texture.wall_w.addr = mlx_get_data_addr(data->texture.wall_w.mlx_img, &data->texture.wall_w.bpp,
 			&data->texture.wall_w.line_len, &data->texture.wall_w.endian);
-	if (!data->texture.wall_w.addr || !data->texture.wall_s.addr || !data->texture.wall_e.addr || !data->texture.wall_n.addr)
+	if (!data->texture.wall_n.addr || !data->texture.wall_s.addr || !data->texture.wall_e.addr || !data->texture.wall_w.addr)
 	{
+		DP
 		cb_exit(data, "MLX FAILED");
 		exit(0);
 	}
@@ -89,6 +101,15 @@ void	init_data2(t_cbdata *data)
 	data->texture.wall_w.endian = 0;
 }
 
+void	init_data_keypressed(t_cbdata *data)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 6)
+		data->keypressed[i] = 0;
+}
+
 void	init_data(t_cbdata *data)
 {
 	data->map = NULL;
@@ -108,6 +129,7 @@ void	init_data(t_cbdata *data)
 	data->angle = 0.0;
 	data->redraw = 1;
 	init_data2(data);
+	init_data_keypressed(data);
 }
 
 void	cb_exit(t_cbdata *data, char *err_msg)
