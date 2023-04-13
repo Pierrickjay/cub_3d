@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 15:29:15 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/13 10:49:07 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,18 @@
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
-# define MINI_X	320
-# define MINI_Y 200
+# define MINI_X	1280 //320
+# define MINI_Y 800 //200
 # define BLOCK_SIZE 64
 # define PLANE_X 1280
 # define PLANE_Y 800
 # define PROJ_PLAN 1108.51251684 // MINI_X / 2 - tan(M_PI / 6)
 # define ANGLE_PACE M_PI / (3 * PLANE_X)
+# define RAY_COLOR 0xFFFF84
+
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
-enum e_keycode {up, down, left, right, left_view, right_view};
+enum e_keycode {down, right, right_view};
 
 typedef struct s_minimap
 {
@@ -108,7 +110,7 @@ typedef struct s_cbdata
 	t_minimap		mini[2];
 	t_texture		texture;
 	int				mini_img;
-	enum e_keycode	keypressed[6];
+	int				keypressed[3];
 
 }	t_cbdata;
 
@@ -134,6 +136,7 @@ int		find_one(char *str);
 void	init_game(t_cbdata *data);
 void	set_hooks(t_cbdata *data);
 void	change_pos_player(t_cbdata *data);
+void	change_view_player(t_cbdata *data);
 bool	bump_wall(t_cbdata *data, int new_x, int new_y);
 void	draw_lines(t_cbdata *data);
 void	redraw_mini_map(t_cbdata *data);

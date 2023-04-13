@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:02 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/12 14:37:24 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/13 09:17:15 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_mini_map(t_cbdata *data)
 {
-	data->mini[0].img = mlx_new_image(data->mlx, PLANE_X,  PLANE_Y);
+	data->mini[0].img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
 	data->mini[0].addr = mlx_get_data_addr(data->mini[0].img,
 			&data->mini[0].bits_per_pixel,
 			&data->mini[0].line_length, &data->mini[0].endian);
@@ -32,10 +32,11 @@ int	run_loop(void *voiddata)
 //	if (data->redraw == 1)
 //	{
 		change_pos_player(data);
+		change_view_player(data);
 		redraw_mini_map(data);
 		data->mini_img++;
 		if (data->mini_img == 2)
-		data->mini_img = 0;
+			data->mini_img = 0;
 //		data->redraw = 0;
 //	}
 	return (0);
