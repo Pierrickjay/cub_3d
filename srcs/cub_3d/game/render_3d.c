@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 14:17:07 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 15:24:03 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	render_3d(t_cbdata *data)
 	int				j;
 	int				inversed;
 
-	inversed = 1279;
+	inversed = 1280;
 	size_to_print = 0;
 	i = 0;
 	while (i < 1280)
