@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/13 11:14:43 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 11:41:00 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,9 +104,9 @@ void	draw_lines(t_cbdata *data)
 		angle = fmod(angle + 2.0 * M_PI, 2.0 * M_PI);
 		data->raycast[i] = get_endpoint(data, angle);
 		if (data->raycast[i].wall == 'N')
-			data->raycast[i].y += 1;
+			data->raycast[i].y += 24;
 		else if (data->raycast[i].wall == 'W')
-			data->raycast[i].x += 1;
+			data->raycast[i].x += 24;
 		draw_ray(data, data->raycast[i]);
 		angle = angle + ANGLE_PACE;
 		i++;
