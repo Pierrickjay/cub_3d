@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:32:50 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/13 11:15:15 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 14:51:48 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void	set_point_a(t_cbdata *data, t_point *point_a, float angle, float cot
 	if (angle > M_PI)
 		point_a->y += BLOCK_SIZE;
 	else
-		point_a->y -= 1.0;
+		point_a->y -= 0.0001;
 	point_a->x = data->pos_x + (data->pos_y - point_a->y) * cot;
 }
 
