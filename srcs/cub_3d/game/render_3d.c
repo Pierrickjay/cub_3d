@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 11:37:09 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 11:57:19 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_color(t_img *img, int x, int y)
 	return (rgb);
 }
 
-unsigned int img_pix_read(t_img *img, double sreeen_y, bool north, t_point raycast)
+unsigned int img_pix_read(t_img *img, double sreeen_y, t_cbdata *data, int column)
 {
 	char *pixel;
 	int		texture_x;
@@ -32,13 +32,13 @@ unsigned int img_pix_read(t_img *img, double sreeen_y, bool north, t_point rayca
 
 	texture_y = sreeen_y * 64;
 	//pixel = 0;
-	if (north == true)
+	if (data->raycast[column].wall == 'E' || data->raycast[column].wall == 'W')
 	{
-		texture_x = fmod(raycast.y / (double)33, 1.0) * 64; // le 33 est egal a map->x a recup quelque part
+		texture_x = fmod(data->raycast[column].y / (double)data->map_x, 1.0) * BLOCK_SIZE;
 	}
 	else
 	{
-		texture_x = fmod(raycast.x / (double)33, 1.0) * 64;
+		texture_x =fmod(data->raycast[column].x / (double)data->map_x, 1.0) * BLOCK_SIZE;
 	}
 	pixel = ( img->addr + (texture_y * img->line_len + texture_x * (img->bpp / 8)));
 	return (*(unsigned int *)pixel);
@@ -46,14 +46,13 @@ unsigned int img_pix_read(t_img *img, double sreeen_y, bool north, t_point rayca
 
 void	render_3d(t_cbdata *data)
 {
- 	int	i;
-	unsigned int		color;
-	int					column;
-	//double	size_wall;
-	double	size_to_print;
-	int top_y;
-	int bottom_y;
-	int j;
+ 	int				i;
+	unsigned int	color;
+	int				column;
+	double			size_to_print;
+	int				top_y;
+	int				bottom_y;
+	int				j;
 
 	size_to_print = 0;
 	i = 0;
@@ -65,11 +64,8 @@ void	render_3d(t_cbdata *data)
 		i++;
 	}
 	i = 0;
-
-		// size_wall = (tan(M_PI / 6.0) * (data->raycast[i].dist)) * 2.0;
-		// size_wall = size_wall * cos(M_PI / 6);
 	column = 0;
-	while (column < PLANE_X)
+	while (column < PLANE_X) // regarder si je dessine pas dans le mauvais sens.
 	{
 		size_to_print = data->proj_slic_height[column]; //PLANE_Y / size_wall * 64;
 		//j = 0;
@@ -77,27 +73,25 @@ void	render_3d(t_cbdata *data)
 		bottom_y = (double)top_y + size_to_print;
 		if (top_y < 0)
 			top_y = 0;
-		// if (bottom_y > PLANE_Y)
-		// 	bottom_y = PLANE_Y;
 		j = top_y;
 		i = bottom_y;
 		while (top_y <= bottom_y && top_y < PLANE_Y)
 		{
 			if (data->raycast[column].wall == 'N') // horizontal domc off set sur x
 			{
-				color = img_pix_read(&data->texture.wall_n, 1.0 - (double)(bottom_y - top_y) / size_to_print, false, data->raycast[column]);
+				color = img_pix_read(&data->texture.wall_n, 1.0 - (double)(bottom_y - top_y) / size_to_print, data, column);
 			}
 			else if (data->raycast[column].wall == 'S') // horizontal domc off set sur x
 			{
-				color = img_pix_read(&data->texture.wall_s, 1.0 - (double)(bottom_y - top_y) / size_to_print, false, data->raycast[column]);
+				color = img_pix_read(&data->texture.wall_s, 1.0 - (double)(bottom_y - top_y) / size_to_print, data, column);
 			}
 			else if (data->raycast[column].wall == 'E') // vertical domc off set sur y
 			{
-				color = img_pix_read(&data->texture.wall_e, 1.0 - (double)(bottom_y - top_y) / size_to_print, true, data->raycast[column]);
+				color = img_pix_read(&data->texture.wall_e, 1.0 - (double)(bottom_y - top_y) / size_to_print, data, column);
 			}
 			else // vertical domc off set sur y
 			{
-				color = img_pix_read(&data->texture.wall_w, 1.0 - (double)(bottom_y - top_y) / size_to_print, true, data->raycast[column]);
+				color = img_pix_read(&data->texture.wall_w, 1.0 - (double)(bottom_y - top_y) / size_to_print, data, column);
 			}
 			if (!(column < 320 && top_y < 150))
 				my_mlx_pixel_put(data, column, top_y, color);
@@ -107,8 +101,8 @@ void	render_3d(t_cbdata *data)
 		while (i < 800)
 		{
 			// pas dessiner sur la minimap // censer etre 200 pour j mais minimap plus petiteif (!(i < 320 && j < 200)) // pas dessiner sur la minimap
-				my_mlx_pixel_put(data, column, i, data->floor_color);
-				i++; // sol
+			my_mlx_pixel_put(data, column, i, data->floor_color);
+			i++; // sol
 		}
 		while (j > 0)
 		{
@@ -117,130 +111,8 @@ void	render_3d(t_cbdata *data)
 			j--;
 		}
 		column++;
-		//printf("colums = %d\n", column);
 	}
-
-	// 	while (j < PLANE_Y)
-	// 	{
-	// 		if (j < 400 && PLANE_Y / 2.0 - size_to_print / 2.0 < j)
-	// 		{
-	// 			//printf("PLANE_Y / 2.0 - size_to_print / 2.0 = %f\n", size_to_print);
-	// 			//Il faut ajouter i et/ou j pour read la texture
-	// 			//printf("data->raycast[i].y = %f\n", fmod(data->raycast[i].y, 64));
-	// 			if (data->raycast[i].wall == 'N') // horizontal domc off set sur x
-	// 			{
-	// 				double	offset = fmod(data->raycast[i].x, 64);
-	// 				int		print = 0;
-	// 				int		position = fmod(data->raycast[i].x / data->map_x, 1.0) * 64;
-	// 				printf("ddd = %d|| data->map_x\n",  position);
-	// 				color = img_pix_read(&data->texture.wall_n, offset, data->raycast[i].y);
-	// 				print++;
-	// 				if (print == 65)
-	// 					print = 0;
-	// 			}
-	// 				 // si on est sur un mur vertical prendre modulo j sinon mudulo i
-	// 			else if (data->raycast[i].wall == 'S')// horizontal domc off set sur x
-	// 			{
-	// 				double offset = fmod(data->raycast[i].x, 64);
-	// 				int		print;
-	// 				print = 0;
-	// 				//printf("off set = %f\n", offset);
-	// 				color = img_pix_read(&data->texture.wall_n, offset, data->raycast[i].y);
-	// 				print++;
-	// 				if (print == 65)
-	// 					print = 0;
-	// 			}
-	// 			else if (data->raycast[i].wall == 'E') // vertical donc off set sur y
-	// 			{
-	// 				//printf("off set = %f\n", fmod(data->raycast[i].y, 64));
-	// 				int		print;
-	// 				print = 0;
-	// 				color = img_pix_read(&data->texture.wall_s, data->raycast[i].x / 64, fmod(data->raycast[i].y, 64));
-	// 				print++;
-	// 				if (print == 65)
-	// 					print = 0;
-	// 			}
-	// 			else if (data->raycast[i].wall == 'W') // vertical donc off set sur y
-	// 			{
-	// 				//ggprintf("off set = %f\n", fmod(data->raycast[i].y, 64));
-	// 				int		print;
-	// 				print = 0;
-	// 				color = img_pix_read(&data->texture.wall_s, data->raycast[i].x / 64, fmod(data->raycast[i].y, 64));
-	// 				print++;
-	// 				if (print == 65)
-	// 					print = 0;
-	// 			}
-	// 			else
-	// 			 	color = 9198000;
-	// 			if (!(i < 320 && j < 150)) // pas dessiner sur la minimap // censer etre 200 pour j mais minimap plus petitef (!(i < 320 && j < 200)) // pas dessiner sur la minimap
-	// 				my_mlx_pixel_put(data, i, j, color);
-	// 			//commencer a afficher le cube par le bas jusqu'au 400eme pixels
-	// 		}
-	// 		else if (j >= 400 && PLANE_Y / 2.0 + size_to_print / 2.0 > j)
-	// 		{
-	// 			//printf("data->raycast[i].y = %f || data->raycast[i].x = %f\n ", data->raycast[i].y, data->raycast[i].x );
-	// 			if (data->raycast[i].wall == 'N') // horizontal domc off set sur x
-	// 			{
-	// 				double offset = fmod(data->raycast[i].x, 64);
-	// 				int		print;
-	// 				print = 0;
-	// 				//printf("off set = %f\n", offset);
-	// 				color = img_pix_read(&data->texture.wall_n, print, offset);
-	// 				print++;
-	// 				if (print == 65)
-	// 					print = 0;
-	// 			}
-	// 				 // si on est sur un mur vertical prendre modulo j sinon mudulo i
-	// 			else if (data->raycast[i].wall == 'S')// horizontal domc off set sur x
-	// 			{
-	// 				double offset = fmod(data->raycast[i].x, 64);
-	// 				int		print;
-	// 				print = 0;
-	// 				//printf("off set = %f\n", offset);
-	// 				color = img_pix_read(&data->texture.wall_n, print, offset);
-	// 				print++;
-	// 				if (print == 65)
-	// 					print = 0;
-	// 			}
-	// 			else if (data->raycast[i].wall == 'E') // vertical donc off set sur y
-	// 			{
-	// 				//printf("off set = %f\n", fmod(data->raycast[i].y, 64));
-	// 				color = img_pix_read(&data->texture.wall_s, data->raycast[i].x / 64, fmod(data->raycast[i].y, 64));
-	// 			}
-	// 			else if (data->raycast[i].wall == 'W') // vertical donc off set sur y
-	// 			{
-	// 				//ggprintf("off set = %f\n", fmod(data->raycast[i].y, 64));
-	// 				color = img_pix_read(&data->texture.wall_s, data->raycast[i].x / 64, fmod(data->raycast[i].y, 64));
-	// 			}
-	// 			else
-	// 			 	color = 9198000;
-	// 			if (!(i < 320 && j < 150)) // pas dessiner sur la minimap // censer etre 200 pour j mais minimap plus petite
-	// 				my_mlx_pixel_put(data, i, j,  color); // bordeau
-	// 			// finir le cube a afficher
-	// 		}
-	// 		else
-	// 		{
-	// 			// affiche le sol ou le plafond
-	// 			if (j < 400)
-	// 			{
-	// 				// plafond
-	// 				//printf("PLANE_Y / 2.0 - size_to_print / 2 = %f || j = %d\n", PLANE_Y / 2.0 - size_to_print / 2, j);
-	// 				if (!(i < 320 && j < 150)) // pas dessiner sur la minimap // censer etre 200 pour j mais minimap plus petiteif (!(i < 320 && j < 200)) // pas dessiner sur la minimap
-	// 					my_mlx_pixel_put(data, i, j, data->ceiling_color);
-	// 			}
-	// 			else
-	// 			{
-	// 				if (!(i < 320 && j < 150)) // pas dessiner sur la minimap // censer etre 200 pour j mais minimap plus petiteif (!(i < 320 && j < 200)) // pas dessiner sur la minimap
-	// 					my_mlx_pixel_put(data, i, j, data->floor_color);
-	// 				//sol
-	// 			}
-	// 		}
-	// 		j++;
-	// 	}
-	// 	//printf("size_wall * 2 = %f || size_to_print = %f\n", size_wall, size_to_print);
-	// 	//printf("i = %d\n", i);
-	// 	i++;
-	}
+}
 	// to know wichh slice of the texture we need to draw
 	// we determine the offset : if on a vertical grid (y % 64) else (x % 64)
 	//data->angle_all = init_angle();
