@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 14:04:28 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/13 14:17:07 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,12 @@ void	render_3d(t_cbdata *data)
 	unsigned int	color;
 	int				column;
 	float			size_to_print;
-	int				top_y;
-	int				bottom_y;
+	float				top_y;
+	float				bottom_y;
 	int				j;
-	int				inversed = 1279;
+	int				inversed;
 
+	inversed = 1279;
 	size_to_print = 0;
 	i = 0;
 	while (i < 1280)
