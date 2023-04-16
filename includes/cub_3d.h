@@ -26,12 +26,12 @@
 # include <X11/X.h>
 # include <errno.h>
 
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
+# define KEY_W 65362//119
+# define KEY_A 65361//97
+# define KEY_S 65364//115
+# define KEY_D 65363//100
+# define KEY_LEFT 115//65361
+# define KEY_RIGHT 100//65363
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"

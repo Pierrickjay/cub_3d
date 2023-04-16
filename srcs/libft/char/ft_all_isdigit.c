@@ -15,14 +15,13 @@
 // check all the string if its digit return 1 else 0
 int	ft_all_isdigit(char *str)
 {
-	size_t	len;
-	size_t	i;
+	int	i;
 
-	i = 0;
-	len = 0;
-	while (str[i] && ft_isdigit(str[i]))
-		i++;
-	if (i == len)
-		return (1);
-	return (0);
+	i = -1;
+	while (str[++i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (0);
+	}
+	return (1);
 }
