@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:25:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 09:40:12 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 15:32:53 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,13 @@ void	render_3d(t_cbdata *data)
 	float				top_y;
 	float				bottom_y;
 	int				j;
-	int				inversed;
 
-	inversed = 1280;
 	size_to_print = 0;
 	i = 0;
 	while (i < 1280)
 	{
 		//printf("angle = %f || M_PI/6.0 = %f\n", data->raycast[i].angle, M_PI /6.0);
-		data->proj_slic_height[i] = (float)BLOCK_SIZE / (data->raycast[i].dist * cos(data->angle - data->raycast[i].angle)) * PROJ_PLAN; // il faut que je recup l'angle par rapport a player dir pour reduire le fisheye
+		data->proj_slice_height[i] = (float)BLOCK_SIZE / (data->raycast[i].dist * cos(data->angle - data->raycast[i].angle)) * PROJ_PLAN; // il faut que je recup l'angle par rapport a player dir pour reduire le fisheye
 		//printf("data->proj_slic_height[%d] = %f || alldist  = %f\n", i, data->proj_slic_height[i],  data->all_dist[i]);
 		i++;
 	}
@@ -68,7 +66,7 @@ void	render_3d(t_cbdata *data)
 	column = 0;
 	while (column < PLANE_X) // regarder si je dessine pas dans le mauvais sens.
 	{
-		size_to_print = data->proj_slic_height[column]; //PLANE_Y / size_wall * 64;
+		size_to_print = data->proj_slice_height[column]; //PLANE_Y / size_wall * 64;
 		//j = 0;
 		top_y = (float)PLANE_Y / 2.0 - size_to_print / 2.0;
 		bottom_y = (float)top_y + size_to_print;
@@ -80,29 +78,29 @@ void	render_3d(t_cbdata *data)
 		{
 			if (data->raycast[column].wall == 'N') // horizontal domc off set sur x
 			{
-				color = img_pix_read(&data->texture.wall_n, 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
+				color = img_pix_read(&data->texture.wall[n], 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
 			}
 			else if (data->raycast[column].wall == 'S') // horizontal domc off set sur x
 			{
-				color = img_pix_read(&data->texture.wall_s, 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
+				color = img_pix_read(&data->texture.wall[s], 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
 			}
 			else if (data->raycast[column].wall == 'E') // vertical domc off set sur y
 			{
-				color = img_pix_read(&data->texture.wall_e, 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
+				color = img_pix_read(&data->texture.wall[e], 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
 			}
 			else // vertical domc off set sur y
 			{
-				color = img_pix_read(&data->texture.wall_w, 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
+				color = img_pix_read(&data->texture.wall[w], 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
 			}
-			if (!(inversed - 1 < 320 && top_y < 200))
-				my_mlx_pixel_put(data, inversed - 1/*column*/, top_y, color);
+			if (!(column < 320 && top_y < 200))
+				my_mlx_pixel_put(data, column, top_y, color);
 			top_y++;
 			//printf("top_y = %d || column= %d\n", top_y, column);
 		}
 		while (i < 800)
 		{
 			// pas dessiner sur la minimap // censer etre 200 pour j mais minimap plus petiteif (!(i < 320 && j < 200)) // pas dessiner sur la minimap
-			my_mlx_pixel_put(data, inversed - 1/*column*/, i, data->floor_color);
+			my_mlx_pixel_put(data, column, i, data->cf_color[0]);
 			i++; // sol
 		}
 		while (j >= 0 && top_y < PLANE_Y)
@@ -110,11 +108,10 @@ void	render_3d(t_cbdata *data)
 			// if (top_y >= 780)
 			// 	printf("top y = %f\n", top_y);
 			//printf("bottom_y = %f || top_y = %f\n", bottom_y, top_y);
-			if (!(inversed - 1 < 320 && j < 200))
-				my_mlx_pixel_put(data, inversed - 1/*column*/, j, data->ceiling_color);
+			if (!(column < 320 && j < 200))
+				my_mlx_pixel_put(data, column, j, data->cf_color[1]);
 			j--;
 		}
-		inversed--;
 		column++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:02 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 09:11:18 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 15:09:48 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,14 @@
 
 void	init_render(t_cbdata *data)
 {
-	data->mini[0].img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
-	data->mini[0].addr = mlx_get_data_addr(data->mini[0].img,
-			&data->mini[0].bits_per_pixel,
-			&data->mini[0].line_length, &data->mini[0].endian);
-	data->mini[1].img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
-	data->mini[1].addr = mlx_get_data_addr(data->mini[1].img,
-			&data->mini[1].bits_per_pixel,
-			&data->mini[1].line_length, &data->mini[1].endian);
-}
-
-void	init_mini_background(t_cbdata *data)
-{
-	data->texture.background.mlx_img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
-	data->texture.background.addr = mlx_get_data_addr(data->texture.background.mlx_img,
-			&data->texture.background.bpp,
-			&data->texture.background.line_len, &data->texture.background.endian);
-	data->texture.mini_map.mlx_img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
-	data->texture.mini_map.addr = mlx_get_data_addr(data->texture.mini_map.mlx_img,
-			&data->texture.mini_map.bpp,
-			&data->texture.mini_map.line_len, &data->texture.mini_map.endian);
+	data->image[0].img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
+	data->image[0].addr = mlx_get_data_addr(data->image[0].img,
+			&data->image[0].bits_per_pixel,
+			&data->image[0].line_length, &data->image[0].endian);
+	data->image[1].img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
+	data->image[1].addr = mlx_get_data_addr(data->image[1].img,
+			&data->image[1].bits_per_pixel,
+			&data->image[1].line_length, &data->image[1].endian);
 }
 
 int	run_loop(void *voiddata)
@@ -46,9 +34,9 @@ int	run_loop(void *voiddata)
 		change_pos_player(data);
 		change_view_player(data);
 		redraw_mini_map(data);
-		data->mini_img++;
-		if (data->mini_img == 2)
-			data->mini_img = 0;
+		data->img++;
+		if (data->img == 2)
+			data->img = 0;
 	// 	data->redraw = 0;
 	// }
 	return (0);
@@ -65,7 +53,6 @@ void	init_game(t_cbdata *data)
 		cb_exit(data, "MLX failed");
 	set_hooks(data);
 	init_render(data);
-	init_mini_background(data);
 	load_img(data);
 	mlx_loop_hook(data->mlx, run_loop, data);
 	mlx_loop(data->mlx);

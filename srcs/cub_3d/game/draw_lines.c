@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/17 09:28:47 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 15:08:21 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	draw_ray(t_cbdata *data, t_point intersect)
 	int		tile;
 	float	y;
 
-	tile = data->mini[data->mini_img].mini_tile_size;
+	tile = data->image[data->img].mini_tile_size;
 	if (tile == 0)
 		tile = 1;
 	if (isinf(intersect.x) || isinf(intersect.y))
@@ -96,21 +96,11 @@ void	draw_lines(t_cbdata *data)
 	int		i;
 
 	i = 0;
-	angle = data->angle - M_PI / 6.0;
 	while (i < 1280)
 	{
-		angle = fmod(angle + 2.0 * M_PI, 2.0 * M_PI);
+		angle = data->angle - atan(((float)i - PLANE_X / 2.0) / (float)PROJ_PLAN);
+		angle = fmod(angle + M_PI * 2.0, M_PI * 2.0);
 		data->raycast[i] = get_endpoint(data, angle);
-		//draw_ray(data, data->raycast[i]);
-		angle = angle + ANGLE_PACE;
 		i++;
 	}
-	//printf("i = %d\n", i);
-/*	draw_ray(data, 0.0);
-	draw_ray(data, M_PI / 2.0);
-	draw_ray(data, M_PI);
-	draw_ray(data, M_PI * 2.0 / 3.0);
-	draw_ray(data, M_PI * 4.0 / 3.0);
-	draw_ray(data, M_PI * 3.0 / 2.0);
-	draw_ray(data, M_PI * 5.0 / 3.0);*/
 }

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:10:05 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/12 15:32:04 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 10:26:15 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static bool	map_cell_isin(char **map, int i, int j);
 
 void	map_set_start(t_cbdata *data, int i, int j)
 {
-	data->pos_x = (float)(j * 64 + 32);
-	data->pos_y = (float)(i * 64 + 32);
+	data->pos_x = (float)(j * BLOCK_SIZE + BLOCK_SIZE / 2);
+	data->pos_y = (float)(i * BLOCK_SIZE  + BLOCK_SIZE / 2);
 	if (data->map[i][j] == 'N')
 		data->angle = M_PI_2;
 	else if (data->map[i][j] == 'E')
@@ -73,9 +73,8 @@ static bool	map_cell_ok(char **map, int i, int j)
 
 static bool	map_cell_isin(char **map, int i, int j)
 {
-	if (i < 0 || j < 0 || map[i] == NULL || map[i][j] == '\0')
-		return (0);
-	if (!cell_isa(map[i][j], CELL_MAP))
+	if (i < 0 || j < 0 || map[i] == NULL || map[i][j] == '\0' \
+		|| !cell_isa(map[i][j], CELL_MAP))
 		return (0);
 	return (1);
 }

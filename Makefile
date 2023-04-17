@@ -53,12 +53,15 @@ INC_DIR := includes/
 SRCS_DIR	:= srcs/cub_3d/
 
 SRCS		+= main.c parsing/check_parsing.c parsing/init_map.c parsing/init_data.c parsing/init_map_utils.c \
-			free.c parsing/cell.c parsing/map_check.c game/game.c game/hook.c game/change_pos.c \
+			free.c parsing/cell.c parsing/map_check.c parsing/parse_line.c parsing/load_image.c parsing/frexit.c\
+			parsing/color.c \
+			game/game.c game/hook.c game/change_pos.c \
 			game/draw_lines.c game/h_intersect.c game/v_intersect.c game/draw.c game/point_utils.c \
 			game/distance.c game/render_3d.c
 
 SRCS_BONUS	+= main_bonus.c parsing/check_parsing.c parsing/init_map.c parsing/init_data.c parsing/init_map_utils.c \
-			free.c parsing/cell.c parsing/map_check.c game/game.c game/hook.c game/change_pos.c \
+			free.c parsing/cell.c parsing/map_check.c parsing/parse_line.c parsing/load_image.c frexit.c parsing/color.c\
+			game/game.c game/hook.c game/change_pos.c \
 			game/draw_lines.c game/h_intersect.c game/v_intersect.c game/point_utils.c \
 			game/distance.c game/draw_bonus.c game/render_3d_bonus.c
 

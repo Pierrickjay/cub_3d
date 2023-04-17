@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 09:38:27 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 15:50:44 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
+# define PARSING "NO,SO,WE,EA,F,C"
 # define MINI_X	320
 # define MINI_Y 200
 # define BLOCK_SIZE 64.0
@@ -47,8 +48,9 @@
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
 enum e_keycode {down, right, right_view};
+enum e_card{n, s, e, w, f, c};
 
-typedef struct s_minimap
+typedef struct s_image
 {
 	void	*img;
 	char	*addr;
@@ -57,7 +59,7 @@ typedef struct s_minimap
 	int		endian;
 	int		mini_tile_size;
 
-}	t_minimap;
+}	t_image;
 
 typedef struct s_img
 {
@@ -81,41 +83,34 @@ typedef	struct	s_point
 
 typedef struct s_texture
 {
-	t_img	wall_n;
-	t_img	wall_e;
-	t_img	wall_s;
-	t_img	wall_w;
-	t_img	background; // create an image with splitted color floor and ceilling
-	t_img	mini_map;
+	t_img	wall[4];
+	t_img	map;
 }	t_texture;
 
 
 typedef struct s_cbdata
 {
-	char			*n_file;
-	char			*s_file;
-	char			*e_file;
-	char			*w_file;
+	char			*texture_file[4];
 	char			**map;
 	void			*mlx;
 	void			*mlx_win;
-	int				ceiling_color;
-	int				floor_color;
+	int				cf_color[2];
 	int				map_x;
 	int				map_y;
 	float			pos_x;
 	float			pos_y;
 	float			angle;
-	int				redraw;
 	t_point			raycast[1280];
-	float			proj_slic_height[1280];
-	t_minimap		mini[2];
+	float			proj_slice_height[1280];
+	t_image			image[2];
 	t_texture		texture;
-	int				mini_img;
+	int				img;
 	int				keypressed[3];
 
 }	t_cbdata;
 
+int		create_rgb(char *line_color);
+bool	parse_line(t_cbdata *data, char *line);
 float	calculate_distance(t_cbdata *data, t_point intersect);
 bool	point_outofrange(t_cbdata *data, t_point *p);
 t_point	get_h_intersect(t_cbdata *data, float angle);

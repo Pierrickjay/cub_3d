@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 09:36:36 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 15:07:45 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = data->mini[data->mini_img].addr \
-		+ (y * data->mini[data->mini_img].line_length + x \
-		* (data->mini[data->mini_img].bits_per_pixel / 8));
+	dst = data->image[data->img].addr \
+		+ (y * data->image[data->img].line_length + x \
+		* (data->image[data->img].bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -28,7 +28,7 @@ void	mini_tile_file(t_cbdata *data, int x, int y, int color)
 	int	j;
 	int	tile;
 
-	tile = data->mini[data->mini_img].mini_tile_size;
+	tile = data->image[data->img].mini_tile_size;
 	i = -1;
 	while (++i < tile)
 	{
@@ -46,7 +46,7 @@ void	mini_pos_file(t_cbdata *data)
 	int	posx;
 	int	posy;
 
-	tile = data->mini[data->mini_img].mini_tile_size;
+	tile = data->image[data->img].mini_tile_size;
 	if (tile < 1)
 		tile = 1;
 	posx = (int)data->pos_x * tile;
@@ -79,5 +79,5 @@ void	redraw_mini_map(t_cbdata *data)
 	// mlx_put_image_to_window(data->mlx, data->mlx_win, \
 	// 	data->texture.background.mlx_img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, \
-		data->mini[data->mini_img].img, 0, 0);
+		data->image[data->img].img, 0, 0);
 }
