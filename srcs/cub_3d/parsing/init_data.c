@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 15:31:56 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 16:16:28 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,9 @@ void	init_data(t_cbdata *data)
 
 static void	init_null(t_cbdata *data)
 {
+	int	i;
+
+	i = -1;
 	data->map = NULL;
 	data->mlx = NULL;
 	data->mlx_win = NULL;
@@ -47,6 +50,9 @@ static void	init_null(t_cbdata *data)
 	data->map_x = 0;
 	data->map_y = 0;
 	data->angle = 0.0;
+	while (++i < 6)
+		data->keypressed[i] = 0;
+
 }
 
 void	init_image(t_cbdata *data)
