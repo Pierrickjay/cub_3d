@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   draw_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/06 11:01:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 09:36:36 by pjay             ###   ########.fr       */
+/*   Created: 2023/04/17 09:27:41 by pjay              #+#    #+#             */
+/*   Updated: 2023/04/17 09:39:40 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,31 @@ void	mini_pos_file(t_cbdata *data)
 
 void	redraw_mini_map(t_cbdata *data)
 {
-	//static bool draw_one = false;
+	int	x;
+	int	y;
+	int	color;
 
-	//y = 0;
+	y = 0;
+	//render_3d(data);
+	while (data->map[y])
+	{
+		x = 0;
+		while (data->map[y][x])
+		{
+			if (data->map[y][x] == '1')
+				color = 0x4848BB;
+			else if (cell_isa(data->map[y][x], CELL_SOFT))
+				color = 0xF4D691;
+			else
+				color = 0x000000;
+			mini_tile_file(data, x, y, color);
+			x++;
+		}
+		y++;
+	}
 	draw_lines(data);
-	//mini_pos_file(data);
+	mini_pos_file(data);
 	render_3d(data);
-	// if (draw_one == false)
-	// {
-	// 	draw_ceillinroof(data);
-	// 	draw_one = true;
-	// }
 	// mlx_put_image_to_window(data->mlx, data->mlx_win, \
 	// 	data->texture.background.mlx_img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_3d.c                                        :+:      :+:    :+:   */
+/*   render_3d_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 09:26:22 by pjay             ###   ########.fr       */
+/*   Created: 2023/04/17 09:25:32 by pjay              #+#    #+#             */
+/*   Updated: 2023/04/17 09:40:12 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,49 +43,6 @@ unsigned int img_pix_read(t_img *img, float sreeen_y, t_cbdata *data, int column
 	pixel = ( img->addr + (texture_y * img->line_len + texture_x * (img->bpp / 8)));
 	return (*(unsigned int *)pixel);
 }
-
-
-// void	my_mlx_pixel_put(t_cbdata *data, int color, bool ceilling)
-// {
-// 	if (ceilling == true)
-// 	{
-
-// 	}
-// }
-
-void	draw_ceillinroof(t_cbdata *data)
-{
-	int	i;
-	int	j;
-	char			*dst;
-
-	i = 0;
-	j = 0;
-	while (i < PLANE_X)
-	{
-		j = 0;
-		while (j < PLANE_Y)
-		{
-			if (j < PLANE_Y / 2)
-			{
-				dst = data->texture.background.addr \
-					+ (j * data->texture.background.line_len + i \
-					* (data->texture.background.bpp / 8));
-				*(unsigned int *)dst = data->ceiling_color;
-			}
-			else
-			{
-				dst = data->texture.background.addr \
-					+ (j * data->texture.background.line_len + i \
-					* (data->texture.background.bpp / 8));
-				*(unsigned int *)dst = data->floor_color;
-			}
-			j++;
-		}
-		i++;
-	}
-}
-
 void	render_3d(t_cbdata *data)
 {
  	int				i;
@@ -137,7 +94,8 @@ void	render_3d(t_cbdata *data)
 			{
 				color = img_pix_read(&data->texture.wall_w, 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
 			}
-			my_mlx_pixel_put(data, inversed - 1/*column*/, top_y, color);
+			if (!(inversed - 1 < 320 && top_y < 200))
+				my_mlx_pixel_put(data, inversed - 1/*column*/, top_y, color);
 			top_y++;
 			//printf("top_y = %d || column= %d\n", top_y, column);
 		}
@@ -149,14 +107,14 @@ void	render_3d(t_cbdata *data)
 		}
 		while (j >= 0 && top_y < PLANE_Y)
 		{
-			my_mlx_pixel_put(data, inversed - 1/*column*/, j, data->ceiling_color);
+			// if (top_y >= 780)
+			// 	printf("top y = %f\n", top_y);
+			//printf("bottom_y = %f || top_y = %f\n", bottom_y, top_y);
+			if (!(inversed - 1 < 320 && j < 200))
+				my_mlx_pixel_put(data, inversed - 1/*column*/, j, data->ceiling_color);
 			j--;
 		}
 		inversed--;
 		column++;
 	}
 }
-	// to know wichh slice of the texture we need to draw
-	// we determine the offset : if on a vertical grid (y % 64) else (x % 64)
-	//data->angle_all = init_angle();
-

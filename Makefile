@@ -18,9 +18,9 @@ OFF			:= '\033[0m'
 
 # VARIABLES
 
-NAME			:= cub_3d
+NAME			:= cub3D
 
-NAME_BONUS		:= cub_3d_bonus
+NAME_BONUS		:= cub3D_bonus
 
 # SRCS
 
@@ -57,7 +57,12 @@ SRCS		+= main.c parsing/check_parsing.c parsing/init_map.c parsing/init_data.c p
 			game/draw_lines.c game/h_intersect.c game/v_intersect.c game/draw.c game/point_utils.c \
 			game/distance.c game/render_3d.c
 
-SRCS_BONUS	+= main_bonus.c
+SRCS_BONUS	+= main_bonus.c parsing/check_parsing.c parsing/init_map.c parsing/init_data.c parsing/init_map_utils.c \
+			free.c parsing/cell.c parsing/map_check.c game/game.c game/hook.c game/change_pos.c \
+			game/draw_lines.c game/h_intersect.c game/v_intersect.c game/point_utils.c \
+			game/distance.c game/draw_bonus.c game/render_3d_bonus.c
+
+SRCS_BONUS	:= ${addprefix ${SRCS_DIR},${SRCS_BONUS}}
 
 SRCS		:= ${addprefix ${SRCS_DIR},${SRCS}}
 
@@ -77,9 +82,9 @@ OBJS			:= $(addprefix $(OBJS_DIR),$(OBJS))
 
 OBJS_BONUS		:= $(SRCS_BONUS:.c=.o)
 
-OBJS_BONUS		:= $(addprefix $(OBJS_DIR),$(OBJS))
+OBJS_BONUS		:= $(addprefix $(OBJS_DIR),$(OBJS_BONUS))
 
-DEPS			:= ${OBJS:.o=.d} ${OBJS_LIBFT:.o=.d}
+DEPS			:= ${OBJS:.o=.d} ${OBJS_LIBFT:.o=.d} ${OBJS_BONUS:.o=.d}
 
 MLX_PATH		:= minilibx-linux/
 
@@ -138,7 +143,7 @@ ${NAME}	: ${OBJS_LIBFT} ${OBJS} $(MLX)
 ${NAME_BONUS} : ${OBJS_LIBFT} ${OBJS_BONUS} $(MLX)
 		@${MKDIR} ${LIB_DIR}
 		@${AR} ${LIB_DIR}libft.a ${OBJS_LIBFT}
-		@${CC} ${CFLAGS} ${OBJS_BONUS} $(MLX) -I $(INC_DIR) -o ${NAME} -L/usr/include -lXext -lX11 -lm ${LIB_DIR}libft.a
+		@${CC} ${CFLAGS} ${OBJS_BONUS} $(MLX) -I $(INC_DIR) -o ${NAME_BONUS} -L/usr/include -lXext -lX11 -lm ${LIB_DIR}libft.a
 		@printf "\r${CLEAR}${SCYAN}${NAME_BONUS}${SOFF} ${SGREEN}✔${SOFF}\n"
 
 $(MLX) :

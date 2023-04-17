@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:18:23 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 08:49:59 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 09:11:22 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	set_move_player(t_cbdata *data, int keycode, int value)
 		data->keypressed[right_view] = -1 * value;
 	else if (keycode == KEY_RIGHT)
 		data->keypressed[right_view] = value;
-	data->redraw = 1;
+	//data->redraw = 1;
 }
 
 int	key_press_hook(int keycode, t_cbdata *data)

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/14 15:01:54 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 09:38:27 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@
 # include <X11/X.h>
 # include <errno.h>
 
-# define KEY_W 65362//119
-# define KEY_A 65361//97
-# define KEY_S 65364//115
-# define KEY_D 65363//100
-# define KEY_LEFT 115//65361
-# define KEY_RIGHT 100//65363
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
+# define KEY_LEFT  65361
+# define KEY_RIGHT 65363
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
@@ -146,4 +146,5 @@ void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color);
 void	render_3d(t_cbdata *data);
 void	load_img(t_cbdata *data/*, t_img *wall*/);
 void	draw_ceillinroof(t_cbdata *data);
+void	mini_tile_file(t_cbdata *data, int x, int y, int color);
 #endif
