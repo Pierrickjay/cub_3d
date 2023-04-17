@@ -101,7 +101,7 @@ void	draw_lines(t_cbdata *data)
 	{
 		angle = fmod(angle + 2.0 * M_PI, 2.0 * M_PI);
 		data->raycast[i] = get_endpoint(data, angle);
-		//draw_ray(data, data->raycast[i]);
+		draw_ray(data, data->raycast[i]);
 		angle = angle + ANGLE_PACE;
 		i++;
 	}

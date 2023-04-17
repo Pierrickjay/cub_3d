@@ -15,7 +15,7 @@
 
 bool	parse_line(t_cbdata *data, char *line)
 {
-	int		len;
+	int		tok_nb;
 	char	**token;
 
 	if (find_one(line) == 1)
@@ -23,8 +23,11 @@ bool	parse_line(t_cbdata *data, char *line)
 	else if (line[0] == '\n')
 		return (0);
 
-	len = ft_strlen(line);
 	token = ft_split(line, ' ');
+	tok_nb = -1;
+	while (token[++tok_nb]);
+	if (tok_nb != 2)
+		cb_exit(data, "Invalid map");
 	if (ft_strcmp(token[0], "NO") == 0)
 	{
 		data->n_file = ft_strdup(token[1]);
@@ -99,6 +102,7 @@ void	parse_file(t_cbdata *data, char *av)
 	data->mini[1].mini_tile_size = ft_min(MINI_X / data->map_x, \
 		MINI_Y / data->map_y);
 	print_strs(data->map);
+	printf("\nmap x %d, map y %d tile %d\n", data->map_x, data->map_y, data->mini[0].mini_tile_size);
 	printf("\nn _ file = %s\n", data->n_file);
 	printf("s _ file = %s\n", data->s_file);
 	printf("w _ file = %s\n", data->w_file);

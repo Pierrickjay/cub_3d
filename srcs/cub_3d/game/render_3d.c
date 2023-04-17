@@ -137,7 +137,7 @@ void	render_3d(t_cbdata *data)
 			{
 				color = img_pix_read(&data->texture.wall_w, 1.0 - (float)(bottom_y - top_y) / size_to_print, data, column);
 			}
-			if (!(inversed - 1 < 320 && top_y < 150))
+			if (!(inversed - 1 < 320 && top_y < 200))
 				my_mlx_pixel_put(data, inversed - 1/*column*/, top_y, color);
 			top_y++;
 			//printf("top_y = %d || column= %d\n", top_y, column);
@@ -153,7 +153,7 @@ void	render_3d(t_cbdata *data)
 			// if (top_y >= 780)
 			// 	printf("top y = %f\n", top_y);
 			//printf("bottom_y = %f || top_y = %f\n", bottom_y, top_y);
-			if (!(inversed - 1 < 320 && j < 150))
+			if (!(inversed - 1 < 320 && j < 200))
 				my_mlx_pixel_put(data, inversed - 1/*column*/, j, data->ceiling_color);
 			j--;
 		}

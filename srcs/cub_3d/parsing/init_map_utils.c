@@ -82,15 +82,29 @@ void	parse_map(t_cbdata *data, char *line)
 int	create_rgb(char *line_color)
 {
 	int		color;
+	int		i;
 	char	**split_color;
 
 	split_color = ft_split(line_color, ',');
 	if (!split_color)
 		return (-1);
-	color = 0;
-	if ((ft_strlen(split_color[0]) > 3 && !ft_all_isdigit(split_color[0])) \
-		|| (ft_strlen(split_color[1]) > 3 && !ft_all_isdigit(split_color[1]))\
-		|| (ft_strlen(split_color[2]) > 3 && !ft_all_isdigit(split_color[2])))
+	i = -1;
+	while (split_color[++i]);
+	if (i != 3)
+	{
+		ft_free_strs(split_color);
+		return (-1);
+	}
+	i = -1;
+	while (split_color[2][++i])
+	{
+		if (split_color[2][i] == '\n')
+			split_color[2][i] = '\0';
+	}
+	color = 0; 
+	if ((ft_strlen(split_color[0]) > 3) || !ft_all_isdigit(split_color[0]) 
+		|| ft_strlen(split_color[1]) > 3 || !ft_all_isdigit(split_color[1])
+		|| ft_strlen(split_color[2]) > 3 || !ft_all_isdigit(split_color[2]))
 	{
 		ft_free_strs(split_color);
 		return (-1);
