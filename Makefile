@@ -154,7 +154,7 @@ clean	:
 		@printf "${SCYAN}All objects and library ${SRED}delete ${SOFF}\n"
 
 fclean	: clean
-		@${RM} ${NAME}
+		@${RM} ${NAME} ${NAME_BONUS}
 		@printf "${SCYAN}${NAME}${SRED} delete${SOFF}\n"
 
 re		: fclean all

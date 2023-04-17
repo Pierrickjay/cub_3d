@@ -2,3 +2,4 @@ objs/
 lib/
 *.swp
 .vscode
+cachegrind.out.645846
