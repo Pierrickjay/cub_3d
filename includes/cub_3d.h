@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 15:18:14 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/14 15:01:54 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ typedef struct s_texture
 	t_img	wall_e;
 	t_img	wall_s;
 	t_img	wall_w;
+	t_img	background; // create an image with splitted color floor and ceilling
+	t_img	mini_map;
 }	t_texture;
 
 
@@ -143,4 +145,5 @@ void	redraw_mini_map(t_cbdata *data);
 void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color);
 void	render_3d(t_cbdata *data);
 void	load_img(t_cbdata *data/*, t_img *wall*/);
+void	draw_ceillinroof(t_cbdata *data);
 #endif

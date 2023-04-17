@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 15:22:40 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 08:48:22 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	redraw_mini_map(t_cbdata *data)
 	int	x;
 	int	y;
 	int	color;
+	static bool draw_one = false;
 
 	y = 0;
 	//render_3d(data);
@@ -90,6 +91,13 @@ void	redraw_mini_map(t_cbdata *data)
 	draw_lines(data);
 	mini_pos_file(data);
 	render_3d(data);
+	if (draw_one == false)
+	{
+		draw_ceillinroof(data);
+		draw_one = true;
+	}
+	// mlx_put_image_to_window(data->mlx, data->mlx_win, \
+	// 	data->texture.background.mlx_img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, \
 		data->mini[data->mini_img].img, 0, 0);
 }

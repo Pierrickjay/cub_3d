@@ -20,6 +20,8 @@ OFF			:= '\033[0m'
 
 NAME			:= cub_3d
 
+NAME_BONUS		:= cub_3d_bonus
+
 # SRCS
 
 #  LIBFT
@@ -55,6 +57,7 @@ SRCS		+= main.c parsing/check_parsing.c parsing/init_map.c parsing/init_data.c p
 			game/draw_lines.c game/h_intersect.c game/v_intersect.c game/draw.c game/point_utils.c \
 			game/distance.c game/render_3d.c
 
+SRCS_BONUS	+= main_bonus.c
 
 SRCS		:= ${addprefix ${SRCS_DIR},${SRCS}}
 
@@ -71,6 +74,10 @@ OBJS_LIBFT		:= $(addprefix $(OBJS_DIR),$(OBJS_LIBFT))
 OBJS			:= $(SRCS:.c=.o)
 
 OBJS			:= $(addprefix $(OBJS_DIR),$(OBJS))
+
+OBJS_BONUS		:= $(SRCS_BONUS:.c=.o)
+
+OBJS_BONUS		:= $(addprefix $(OBJS_DIR),$(OBJS))
 
 DEPS			:= ${OBJS:.o=.d} ${OBJS_LIBFT:.o=.d}
 
@@ -120,12 +127,19 @@ MKDIR			:= mkdir -p
 
 all		: ${NAME}
 
+bonus	: ${NAME_BONUS}
+
 ${NAME}	: ${OBJS_LIBFT} ${OBJS} $(MLX)
 		@${MKDIR} ${LIB_DIR}
 		@${AR} ${LIB_DIR}libft.a ${OBJS_LIBFT}
 		@${CC} ${CFLAGS} ${OBJS} $(MLX) -I $(INC_DIR) -o ${NAME} -L/usr/include -lXext -lX11 -lm ${LIB_DIR}libft.a
 		@printf "\r${CLEAR}${SCYAN}${NAME}${SOFF} ${SGREEN}✔${SOFF}\n"
 
+${NAME_BONUS} : ${OBJS_LIBFT} ${OBJS_BONUS} $(MLX)
+		@${MKDIR} ${LIB_DIR}
+		@${AR} ${LIB_DIR}libft.a ${OBJS_LIBFT}
+		@${CC} ${CFLAGS} ${OBJS_BONUS} $(MLX) -I $(INC_DIR) -o ${NAME} -L/usr/include -lXext -lX11 -lm ${LIB_DIR}libft.a
+		@printf "\r${CLEAR}${SCYAN}${NAME_BONUS}${SOFF} ${SGREEN}✔${SOFF}\n"
 
 $(MLX) :
 		make -C $(MLX_PATH)
@@ -148,5 +162,7 @@ $(OBJS_DIR)%.o	: %.c
 				@${MKDIR} $(@D)
 				${CC} ${CFLAGS} -c $< -I $(INC_DIR) -o $@
 #				@$(call PROGRESS_BAR, $(basename $(notdir $<)))
+
+
 
 -include $(DEPS)

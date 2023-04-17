@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 11:16:28 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/14 15:02:05 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,16 @@ void	init_data2(t_cbdata *data)
 	data->texture.wall_w.bpp = 0;
 	data->texture.wall_w.line_len = 0;
 	data->texture.wall_w.endian = 0;
+	data->texture.background.mlx_img = NULL;
+	data->texture.background.addr = NULL;
+	data->texture.background.bpp = 0;
+	data->texture.background.line_len = 0;
+	data->texture.background.endian = 0;
+	data->texture.mini_map.mlx_img = NULL;
+	data->texture.mini_map.addr = NULL;
+	data->texture.mini_map.bpp = 0;
+	data->texture.mini_map.line_len = 0;
+	data->texture.mini_map.endian = 0;
 }
 
 void	init_data_keypressed(t_cbdata *data)

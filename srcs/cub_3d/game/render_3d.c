@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/13 15:45:58 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 08:49:04 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,48 @@ unsigned int img_pix_read(t_img *img, float sreeen_y, t_cbdata *data, int column
 	}
 	pixel = ( img->addr + (texture_y * img->line_len + texture_x * (img->bpp / 8)));
 	return (*(unsigned int *)pixel);
+}
+
+
+// void	my_mlx_pixel_put(t_cbdata *data, int color, bool ceilling)
+// {
+// 	if (ceilling == true)
+// 	{
+
+// 	}
+// }
+
+void	draw_ceillinroof(t_cbdata *data)
+{
+	int	i;
+	int	j;
+	char			*dst;
+
+	i = 0;
+	j = 0;
+	while (i < PLANE_X)
+	{
+		j = 0;
+		while (j < PLANE_Y)
+		{
+			if (j < PLANE_Y / 2)
+			{
+				dst = data->texture.background.addr \
+					+ (j * data->texture.background.line_len + i \
+					* (data->texture.background.bpp / 8));
+				*(unsigned int *)dst = data->ceiling_color;
+			}
+			else
+			{
+				dst = data->texture.background.addr \
+					+ (j * data->texture.background.line_len + i \
+					* (data->texture.background.bpp / 8));
+				*(unsigned int *)dst = data->floor_color;
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 void	render_3d(t_cbdata *data)
