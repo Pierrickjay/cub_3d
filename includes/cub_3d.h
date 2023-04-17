@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 09:38:27 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 14:35:29 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,12 @@
 # define KEY_D 100
 # define KEY_LEFT  65361
 # define KEY_RIGHT 65363
+# define LITTLE_RIGHT	1
+# define HALF_RIGHT		2
+# define MOUSE_LEFT		3
+# define LITTLE_LEFT	11
+# define HALF_LEFT		22
+# define MOUSE_RIGHT	33
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
@@ -46,7 +52,7 @@
 
 # define DP printf("%s %d\n", __FILE__, __LINE__);
 
-enum e_keycode {down, right, right_view};
+enum e_keycode {down, right, little_right_view, half_right_view, mouse_right, right_view};
 
 typedef struct s_minimap
 {
@@ -105,14 +111,16 @@ typedef struct s_cbdata
 	int				map_y;
 	float			pos_x;
 	float			pos_y;
+	int				x;
+	int				y;
 	float			angle;
 	int				redraw;
-	t_point			raycast[1280];
 	float			proj_slic_height[1280];
+	int				mini_img;
+	int				keypressed[6];
+	t_point			raycast[1280];
 	t_minimap		mini[2];
 	t_texture		texture;
-	int				mini_img;
-	int				keypressed[3];
 
 }	t_cbdata;
 
