@@ -60,9 +60,9 @@ SRCS		+= main.c parsing/check_parsing.c parsing/init_map.c parsing/init_data.c p
 			game/distance.c game/render_3d.c
 
 SRCS_BONUS	+= main_bonus.c parsing/check_parsing.c parsing/init_map.c parsing/init_data.c parsing/init_map_utils.c \
-			free.c parsing/cell.c parsing/map_check.c parsing/parse_line.c parsing/load_image.c  parsing/frexit.c parsing/color.c\
+			free.c parsing/cell.c parsing/map_check.c parsing/parse_line.c parsing/load_image.c parsing/frexit.c parsing/color.c\
 			game/game.c \
-			game/hook_bonus.c \
+			 game/hook_bonus.c \
 			game/draw_lines.c game/h_intersect.c game/v_intersect.c game/point_utils.c \
 			game/distance.c game/draw_bonus.c game/render_3d_bonus.c game/change_pos_bonus.c
 
@@ -158,7 +158,7 @@ clean	:
 		@printf "${SCYAN}All objects and library ${SRED}delete ${SOFF}\n"
 
 fclean	: clean
-		@${RM} ${NAME} ${NAME}
+		@${RM} ${NAME} ${NAME_BONUS}
 		@printf "${SCYAN}${NAME}${SRED} delete${SOFF}\n"
 
 re		: fclean all

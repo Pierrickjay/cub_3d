@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:12:29 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/17 13:48:21 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 16:21:28 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ static bool	parse_token(t_cbdata *data, char **token)
 		{
 			data->texture_file[i] = ft_strdup(token[1]);
 			data->texture_file[i][ft_strlen(token[1]) - 1] = 0;
+			ft_free_strs(key);
 			return (0);
 		}
 	}
@@ -66,12 +67,15 @@ static bool	parse_token(t_cbdata *data, char **token)
 			data->cf_color[i - 4] = create_rgb(token[1]);
 			if (data->cf_color[i - 4] == -1)
 			{
+				ft_free_strs(key);
 				ft_free_strs(token);
 				cb_exit(data, "Invalid color");
 			}
+			ft_free_strs(key);
 			return (0);
 		}
 		i++;
 	}
+	ft_free_strs(key);
 	return (-1);
 }

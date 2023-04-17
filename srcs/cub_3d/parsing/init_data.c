@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 16:16:28 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 16:50:46 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_data(t_cbdata *data)
 	while (++i < 2)
 		data->cf_color[i] = 0;
 	i = -1;
-	while (++i < 3)
+	while (++i < 6)
 		data->keypressed[i] = 0;
 	i = -1;
 	while (++i < 4)
