@@ -6,17 +6,16 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:24:40 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/17 16:46:37 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:26:19 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
-
 static void	free_texture(t_cbdata *data);
 
 void	cb_exit(t_cbdata *data, char *err_msg)
-{DP
+{
 	if (data->image[0].img)
 		mlx_destroy_image(data->mlx, data->image[0].img);
 	if (data->image[1].img)
@@ -42,7 +41,7 @@ static void	free_texture(t_cbdata *data)
 {
 	int	i;
 
-	i =-1;
+	i = -1;
 	free(data->texture.map.mlx_img);
 	while (++i < 4)
 	{

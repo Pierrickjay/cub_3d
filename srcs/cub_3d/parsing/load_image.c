@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:33:02 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/17 15:13:05 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:25:25 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ void	load_img(t_cbdata *data)
 				&data->texture.wall[i].heigth);
 		if (!data->texture.wall[i].mlx_img)
 			cb_exit(data, "MLX FAILED");
-		data->texture.wall[i].addr = mlx_get_data_addr( \
-				data->texture.wall[i].mlx_img, &data->texture.wall[i].bpp, \
+		data->texture.wall[i].addr = \
+			mlx_get_data_addr(data->texture.wall[i].mlx_img, \
+			&data->texture.wall[i].bpp, \
 			&data->texture.wall[i].line_len, &data->texture.wall[i].endian);
 		if (!data->texture.wall[i].addr)
 			cb_exit(data, "MLX FAILED");

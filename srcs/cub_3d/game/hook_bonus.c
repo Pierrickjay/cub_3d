@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:54:34 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 15:51:11 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 17:51:44 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,6 @@ void	set_move_player(t_cbdata *data, int keycode, int value)
 		data->keypressed[mouse_right] = -1 * value ;
 	else if (keycode == KEY_LEFT)
 		data->keypressed[right_view] = -1 * value;
-
-	//data->redraw = 1;
 }
 
 int	key_press_hook(int keycode, t_cbdata *data)
@@ -72,7 +70,6 @@ int	mouse_moove_hook(int x, int y, t_cbdata *data)
 	mlx_mouse_get_pos(data->mlx, data->mlx_win, &x, &y);
 	if (x > plane_2)
 	{
-		//DP
 		if (x > (plane_2) + (plane_2 / 4 * 3))
 		{
 
@@ -94,8 +91,6 @@ int	mouse_moove_hook(int x, int y, t_cbdata *data)
 		}
 		else if (x > (plane_2))
 		{
-			// printf("x = %d\n", x);
-			// printf("clean right\n");
 			data->keypressed[little_right_view] = 0;
 			data->keypressed[half_right_view] = 0;
 			data->keypressed[mouse_right] = 0;
@@ -103,8 +98,6 @@ int	mouse_moove_hook(int x, int y, t_cbdata *data)
 	}
 	else
 	{
-		//DP
-		//printf("x = %d\n", x);
 		if (x < (plane_2) - (plane_2 / 4 * 3))
 		{
 			data->keypressed[little_right_view] = 0;
@@ -113,31 +106,23 @@ int	mouse_moove_hook(int x, int y, t_cbdata *data)
 		}
 		else if (x < (plane_2) - (plane_2 / 4 * 2))
 		{
-			DP
 			data->keypressed[little_right_view] = 0;
 			data->keypressed[mouse_right] = 0;
 			set_move_player(data, HALF_LEFT, 1);
 		}
 		else if (x < (plane_2) - (plane_2 / 4))
 		{
-			DP
 			data->keypressed[half_right_view] = 0;
 			data->keypressed[mouse_right] = 0;
 			set_move_player(data, LITTLE_LEFT, 1);
 		}
 		else
 		{
-			//printf("x = %d\n", x);
-			//printf("clean left\n");
 			data->keypressed[little_right_view] = 0;
 			data->keypressed[half_right_view] = 0;
 			data->keypressed[mouse_right] = 0;
 		}
 	}
-	//
-	//printf("pos of mouse x = %d y = %d\n", x, y);
-	//(void)data;
-	//printf("button = %d || x = %d || y = %d\n", button, x, y);
 	return (0);
 }
 
@@ -167,4 +152,3 @@ void	set_hooks(t_cbdata *data)
 			&key_release_hook, data);
 	mlx_hook(data->mlx_win, 17, 0, &exit_hook, data);
 }
-

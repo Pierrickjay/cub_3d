@@ -6,10 +6,9 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 15:37:36 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:28:28 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "cub_3d.h"
 
@@ -49,7 +48,7 @@ static void	parse_file_line(t_cbdata *data, int fd)
 	{
 		if (ret)
 			parse_map(data, line);
- 		else
+		else
 		{
 			ret = parse_line(data, line);
 			if (ret == 1)

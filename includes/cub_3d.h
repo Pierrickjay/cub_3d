@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 16:08:34 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:52:31 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,10 +134,12 @@ void	cb_exit(t_cbdata *data, char *err_msg);
 bool	cell_isa(char c, char *set);
 bool	map_check_ok(t_cbdata *data);
 int		create_rgb(char *line_color);
+/* init map uils */
 void	map_init(t_cbdata *data);
 void	parse_map(t_cbdata *data, char *line);
 void	count_map(t_cbdata *data, char *av);
 int		find_one(char *str);
+/* */
 void	init_game(t_cbdata *data);
 void	set_hooks(t_cbdata *data);
 void	change_pos_player(t_cbdata *data);

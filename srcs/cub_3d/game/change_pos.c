@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:56:00 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 15:34:21 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 17:36:23 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 bool	bump_wall(t_cbdata *data, int new_x, int new_y)
 {
-	// TO DO : check out of range
 	new_x /= BLOCK_SIZE;
 	new_y /= BLOCK_SIZE;
 	if (data->map[new_y][new_x] == '1')

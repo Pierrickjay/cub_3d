@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:35:49 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/05 11:06:55 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/17 17:33:39 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	ft_free_strs(char **strs)
 	}
 	ft_free((void **)&strs);
 }
-
 
 void	ft_free_and_close(t_cbdata *data, int fd, char *str)
 {

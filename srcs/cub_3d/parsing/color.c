@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:41:04 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/17 15:53:31 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:23:57 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int	create_rgb(char *line_color)
 	split_color = get_split_color(line_color);
 	if (split_color == NULL)
 		return (-1);
-	if (!ft_all_isdigit(split_color[0]) ||  !ft_all_isdigit(split_color[1]) \
-		 || !ft_all_isdigit(split_color[2]))
+	if (!ft_all_isdigit(split_color[0]) || !ft_all_isdigit(split_color[1]) \
+			|| !ft_all_isdigit(split_color[2]))
 		return (rgb_error(split_color));
 	rgb = 0;
 	i = -1;
@@ -50,8 +50,9 @@ static char	**get_split_color(char *line_color)
 	split_color = ft_split(line_color, ',');
 	if (!split_color)
 		return (NULL);
-	i = -1;
-	while (split_color[++i]);
+	i = 0;
+	while (split_color[i])
+		i++;
 	if (i != 3)
 	{
 		ft_free_strs(split_color);

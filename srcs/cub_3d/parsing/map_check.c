@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:10:05 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/17 10:26:15 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:29:02 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,7 @@
 
 static bool	map_cell_ok(char **map, int i, int j);
 static bool	map_cell_isin(char **map, int i, int j);
-
-void	map_set_start(t_cbdata *data, int i, int j)
-{
-	data->pos_x = (float)(j * BLOCK_SIZE + BLOCK_SIZE / 2);
-	data->pos_y = (float)(i * BLOCK_SIZE  + BLOCK_SIZE / 2);
-	if (data->map[i][j] == 'N')
-		data->angle = M_PI_2;
-	else if (data->map[i][j] == 'E')
-		data->angle = 0.0;
-	else if (data->map[i][j] == 'W')
-		data->angle = M_PI;
-	else
-		data->angle = 3.0 * M_PI_2;
-}
+static void	map_set_start(t_cbdata *data, int i, int j);
 
 bool	map_check_ok(t_cbdata *data)
 {
@@ -69,6 +56,20 @@ static bool	map_cell_ok(char **map, int i, int j)
 	if (ok == 4)
 		return (1);
 	return (0);
+}
+
+static void	map_set_start(t_cbdata *data, int i, int j)
+{
+	data->pos_x = (float)(j * BLOCK_SIZE + BLOCK_SIZE / 2);
+	data->pos_y = (float)(i * BLOCK_SIZE + BLOCK_SIZE / 2);
+	if (data->map[i][j] == 'N')
+		data->angle = M_PI_2;
+	else if (data->map[i][j] == 'E')
+		data->angle = 0.0;
+	else if (data->map[i][j] == 'W')
+		data->angle = M_PI;
+	else
+		data->angle = 3.0 * M_PI_2;
 }
 
 static bool	map_cell_isin(char **map, int i, int j)

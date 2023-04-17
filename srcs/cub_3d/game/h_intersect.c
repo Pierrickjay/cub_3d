@@ -6,14 +6,15 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:32:50 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/13 14:51:48 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/17 17:35:34 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
 static bool	special_value(t_point *point_a, float cot);
-static void	set_point_a(t_cbdata *data, t_point *point_a, float angle, float cot);
+static void	set_point_a(t_cbdata *data, t_point *point_a, float angle, \
+		float cot);
 static void	set_offset(t_point *offset, float angle, float cot);
 static int	next_point_a(t_cbdata *data, t_point *point_a, t_point offset);
 
@@ -53,7 +54,8 @@ static bool	special_value(t_point *point_a, float cot)
 	return (false);
 }
 
-static void	set_point_a(t_cbdata *data, t_point *point_a, float angle, float cot)
+static void	set_point_a(t_cbdata *data, t_point *point_a, float angle, \
+		float cot)
 {
 	point_a->y = data->pos_y - fmod(data->pos_y, BLOCK_SIZE);
 	if (angle > M_PI)
@@ -67,13 +69,13 @@ static void	set_offset(t_point *offset, float angle, float cot)
 {
 	if (angle < M_PI)
 	{
-		offset->y = - BLOCK_SIZE;
+		offset->y = -BLOCK_SIZE;
 		offset->x = BLOCK_SIZE * cot;
 	}
 	else
 	{
 		offset->y = BLOCK_SIZE;
-		offset->x = - BLOCK_SIZE * cot;
+		offset->x = -BLOCK_SIZE * cot;
 	}
 }
 
