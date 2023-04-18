@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 17:52:31 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/18 14:00:05 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,19 @@
 # define LITTLE_LEFT	11
 # define HALF_LEFT		22
 # define MOUSE_RIGHT	33
+# define MOUSE_CENTER	0
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
 # define PARSING "NO,SO,WE,EA,F,C"
 # define MINI_X	320
 # define MINI_Y 200
-# define BLOCK_SIZE 64.0
+# define BLOCK_SIZE 64
 # define PLANE_X 1280.0
 # define PLANE_Y 800.0
 # define PROJ_PLAN 1108.51251684 // (PLANE_X / 2) / tan(M_PI / 6)
 # define ANGLE_PACE M_PI / (3 * PLANE_X)
+# define TWO_PI 2.0 * M_PI
 # define RAY_COLOR 0xFFFF84
 
 # define DP printf("%s %d\n", __FILE__, __LINE__);
@@ -84,7 +86,7 @@ typedef	struct	s_point
 	float	y;
 	float	dist;
 	float	angle;
-	char	wall;
+	int		wall;
 }	t_point;
 
 typedef struct s_texture
@@ -134,12 +136,17 @@ void	cb_exit(t_cbdata *data, char *err_msg);
 bool	cell_isa(char c, char *set);
 bool	map_check_ok(t_cbdata *data);
 int		create_rgb(char *line_color);
-/* init map uils */
+/* init map utils */
 void	map_init(t_cbdata *data);
 void	parse_map(t_cbdata *data, char *line);
 void	count_map(t_cbdata *data, char *av);
 int		find_one(char *str);
+/* render 3d utils*/
+int		get_color(t_img *img, int x, int y);
+unsigned int	img_pix_read(t_img *img, float sreen_y, t_cbdata *data, \
+		int column);
 /* */
+void	set_move_player(t_cbdata *data, int key, int value);
 void	init_game(t_cbdata *data);
 void	set_hooks(t_cbdata *data);
 void	change_pos_player(t_cbdata *data);

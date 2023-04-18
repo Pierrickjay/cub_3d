@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:32:50 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/17 17:35:34 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/18 14:01:20 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_point	get_h_intersect(t_cbdata *data, float angle)
 	t_point	point_a;
 
 	if (angle > M_PI)
-		point_a.wall = 'S';
+		point_a.wall = s;
 	else
-		point_a.wall = 'N';
+		point_a.wall = n;
 	cot = 1.0 / tan(angle);
 	if (special_value(&point_a, cot))
 		return (point_a);

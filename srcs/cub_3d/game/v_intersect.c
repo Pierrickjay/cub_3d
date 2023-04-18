@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:48:16 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/13 14:51:59 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/18 14:01:35 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ t_point	get_v_intersect(t_cbdata *data, float angle)
 	t_point	point_b;
 
 	if (angle < M_PI_2 || angle > 3.0 * M_PI_2)
-		point_b.wall = 'E';
+		point_b.wall = e;
 	else
-		point_b.wall = 'W';
+		point_b.wall = w;
 	tangente = tan(angle);
 	if (special_value(&point_b, tangente))
 		return (point_b);

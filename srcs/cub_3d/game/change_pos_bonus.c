@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:33:35 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 15:46:43 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/18 11:53:19 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 bool	bump_wall(t_cbdata *data, int new_x, int new_y)
 {
-	// TO DO : check out of range
 	new_x /= BLOCK_SIZE;
 	new_y /= BLOCK_SIZE;
 	if (data->map[new_y][new_x] == '1')
@@ -45,34 +44,25 @@ void	change_pos_player(t_cbdata *data)
 		data->pos_y = new_pos.y;
 }
 
+// mickey stands for mouse index celerity key
 void	change_view_player(t_cbdata *data)
 {
-	if (data->keypressed[right_view])
+	int		mickey;
+	float	speed[6];
+
+	speed[down] = 0.0;
+	speed[right] = 0.0;
+	speed[little_right_view] = 16.0;
+	speed[half_right_view] = 25.0;
+	speed[mouse_right] = 40.0;
+	speed[right_view] = 16.0;
+	mickey = 1;
+	while (++mickey < 6)
 	{
-		//DP
-		data->angle = fmod(data->angle - data->keypressed[right_view] * 16.0 * \
-				ANGLE_PACE + 2.0 * M_PI, 2.0 * M_PI);
+		if (data->keypressed[mickey])
+		{
+			data->angle = fmod(data->angle - data->keypressed[mickey] * \
+					speed[mickey] * ANGLE_PACE + TWO_PI, TWO_PI);
+		}
 	}
-	else if (data->keypressed[mouse_right])
-	{
-		//DP
-		data->angle = fmod(data->angle - data->keypressed[mouse_right] * 40.0 * \
-				ANGLE_PACE + 2.0 * M_PI, 2.0 * M_PI);
-		//data->keypressed[mouse_right] = 0;
-	}
-	else if (data->keypressed[little_right_view])
-	{
-		//DP
-		data->angle = fmod(data->angle - data->keypressed[little_right_view] * 16.0 * \
-				ANGLE_PACE + 2.0 * M_PI, 2.0 * M_PI);
-		//data->keypressed[little_right_view] = 0;
-	}
-	else if (data->keypressed[half_right_view])
-	{
-		//DP
-		data->angle = fmod(data->angle - data->keypressed[half_right_view] * 25.0 * \
-				ANGLE_PACE + 2.0 * M_PI, 2.0 * M_PI);
-		//data->keypressed[half_right_view] = 0;
-	}
-	//mlx_mouse_move(data->mlx, data->mlx_win, PLANE_X / 2, PLANE_Y / 2);
 }
