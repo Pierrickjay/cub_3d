@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/18 14:00:05 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/22 11:42:16 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,14 @@ typedef struct s_texture
 }	t_texture;
 
 
+typedef struct s_column
+{
+	int		column;
+	float	top;
+	float	bottom;
+	float	size;
+}	t_column;
+
 typedef struct s_cbdata
 {
 	char			*texture_file[4];
@@ -143,8 +151,7 @@ void	count_map(t_cbdata *data, char *av);
 int		find_one(char *str);
 /* render 3d utils*/
 int		get_color(t_img *img, int x, int y);
-unsigned int	img_pix_read(t_img *img, float sreen_y, t_cbdata *data, \
-		int column);
+unsigned int	img_pix_read(t_cbdata *data, int text_y, int column);
 /* */
 void	set_move_player(t_cbdata *data, int key, int value);
 void	init_game(t_cbdata *data);
