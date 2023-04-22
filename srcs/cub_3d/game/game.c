@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 13:12:02 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 15:09:48 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/22 13:46:30 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,12 @@ int	run_loop(void *voiddata)
 	t_cbdata	*data;
 
 	data = (t_cbdata *)voiddata;
-	// if (data->redraw == 1)
-	// { si on laisse ca cela fonctionne mais le jeu freeze
-		change_pos_player(data);
-		change_view_player(data);
-		redraw_mini_map(data);
-		data->img++;
-		if (data->img == 2)
-			data->img = 0;
-	// 	data->redraw = 0;
-	// }
+	change_pos_player(data);
+	change_view_player(data);
+	redraw_mini_map(data);
+	data->img++;
+	if (data->img == 2)
+		data->img = 0;
 	return (0);
 }
 

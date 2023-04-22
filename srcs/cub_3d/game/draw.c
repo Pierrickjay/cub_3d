@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 15:07:45 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/22 13:51:23 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,26 +58,15 @@ void	mini_pos_file(t_cbdata *data)
 	{
 		j = -1;
 		while (++j < tile / 3)
-			my_mlx_pixel_put(data, posx - tile / 6 + j //faire diviser par 4 pour lavoir dans le coin a droite
-				, posy - tile / 6  + i, 0x00FF0000);
+			my_mlx_pixel_put(data, posx - tile / 6 + j, \
+					posy - tile / 6 + i, 0x00FF0000);
 	}
 }
 
 void	redraw_mini_map(t_cbdata *data)
 {
-	//static bool draw_one = false;
-
-	//y = 0;
 	draw_lines(data);
-	//mini_pos_file(data);
 	render_3d(data);
-	// if (draw_one == false)
-	// {
-	// 	draw_ceillinroof(data);
-	// 	draw_one = true;
-	// }
-	// mlx_put_image_to_window(data->mlx, data->mlx_win, \
-	// 	data->texture.background.mlx_img, 0, 0);
 	mlx_put_image_to_window(data->mlx, data->mlx_win, \
-		data->image[data->img].img, 0, 0);
+	data->image[data->img].img, 0, 0);
 }

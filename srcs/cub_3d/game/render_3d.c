@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/22 11:41:30 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/22 13:58:36 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static void	set_column(t_cbdata *data, t_column *col);
 
 void	render_3d(t_cbdata *data)
 {
- 	int				i;
+	int				i;
 	t_column		col;
 	unsigned int	color;
 
 	set_slice_height(data);
 	col.column = -1;
-	while (++col.column < PLANE_X) 
+	while (++col.column < PLANE_X)
 	{
 		set_column(data, &col);
 		i = -1;
@@ -31,20 +31,20 @@ void	render_3d(t_cbdata *data)
 		{
 			if (i < col.top)
 				color = data->cf_color[1];
-			else if ( i <= col.bottom)
+			else if (i <= col.bottom)
 				color = img_pix_read(data, (BLOCK_SIZE * (i - col.top)) \
-						/ (int)col.size, col.column);
+						/ col.size, col.column);
 			else
 				color = data->cf_color[0];
-			my_mlx_pixel_put(data, col.column, i, color);	
+			my_mlx_pixel_put(data, col.column, i, color);
 		}
 	}
 }
 
 static void	set_column(t_cbdata *data, t_column *col)
 {
-	col->size = data->proj_slice_height[col->column];
-	col->top = ((float)PLANE_Y - col->size) / 2.0;
+	col->size = (int)data->proj_slice_height[col->column];
+	col->top = (PLANE_Y - col->size) / 2;
 	col->bottom = col->top + col->size;
 }
 

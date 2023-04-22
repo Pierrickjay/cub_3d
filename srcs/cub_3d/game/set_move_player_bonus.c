@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 09:54:25 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/18 09:54:28 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/22 13:59:27 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,34 +32,8 @@ void	set_move_player(t_cbdata *data, int keycode, int value)
 		return ;
 	}
 }
-/*
-	if (keycode == KEY_W)
-		data->keypressed[down] = -1 * value;
-	else if (keycode == KEY_S)
-		data->keypressed[down] = value;
-	else if (keycode == KEY_A)
-		data->keypressed[right] = -1 * value;
-	else if (keycode == KEY_D)
-		data->keypressed[right] = value;
-	else if (keycode == LITTLE_RIGHT)
-		data->keypressed[little_right_view] = value;
-	else if (keycode == HALF_RIGHT)
-		data->keypressed[half_right_view] = value;
-	else if (keycode == MOUSE_RIGHT)
-		data->keypressed[mouse_right] = value;
-	else if (keycode == KEY_RIGHT)
-		data->keypressed[right_view] = value;
-	else if (keycode == LITTLE_LEFT)
-		data->keypressed[little_right_view] = -1 * value;
-	else if (keycode == HALF_LEFT)
-		data->keypressed[half_right_view] = -1 * value;
-	else if (keycode == MOUSE_LEFT)
-		data->keypressed[mouse_right] = -1 * value ;
-	else if (keycode == KEY_LEFT)
-		data->keypressed[right_view] = -1 * value;
-}
-*/
-static int get_keyboard_plus_entry(int keycode)
+
+static int	get_keyboard_plus_entry(int keycode)
 {
 	int	i;
 	int	keyboard_plus[6];

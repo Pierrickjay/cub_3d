@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/22 11:42:16 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/22 13:27:30 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@
 # define MINI_X	320
 # define MINI_Y 200
 # define BLOCK_SIZE 64
-# define PLANE_X 1280.0
-# define PLANE_Y 800.0
+# define PLANE_X 1280
+# define PLANE_Y 800
 # define PROJ_PLAN 1108.51251684 // (PLANE_X / 2) / tan(M_PI / 6)
 # define ANGLE_PACE M_PI / (3 * PLANE_X)
 # define TWO_PI 2.0 * M_PI
@@ -98,10 +98,10 @@ typedef struct s_texture
 
 typedef struct s_column
 {
-	int		column;
-	float	top;
-	float	bottom;
-	float	size;
+	int	column;
+	int	top;
+	int	bottom;
+	int	size;
 }	t_column;
 
 typedef struct s_cbdata
