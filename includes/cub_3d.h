@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 13:37:37 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 16:40:10 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ typedef struct s_point
 
 typedef struct s_texture
 {
+	t_img	cat[32];
 	t_img	wall[4];
 	t_img	map;
 }	t_texture;
@@ -101,6 +102,19 @@ typedef struct s_column
 	int	bottom;
 	int	size;
 }	t_column;
+
+typedef struct	s_vec
+{
+	double x;
+	double y;
+
+} t_vec;
+
+typedef struct s_sprite
+{
+	t_vec	pos;
+	t_vec	dir;
+}	t_sprite;
 
 typedef struct s_cbdata
 {
@@ -122,7 +136,7 @@ typedef struct s_cbdata
 	t_texture		texture;
 	int				img;
 	int				keypressed[6];
-
+	t_sprite		*cats;
 }	t_cbdata;
 
 int				create_rgb(char *line_color);

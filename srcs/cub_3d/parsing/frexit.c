@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:24:40 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/24 09:37:01 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 16:55:43 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,12 @@ static void	free_texture(t_cbdata *data)
 		if (data->texture.wall[i].mlx_img)
 			mlx_destroy_image(data->mlx, data->texture.wall[i].mlx_img);
 		data->texture.wall[i].mlx_img = NULL;
+	}
+	i = -1;
+	while (++i < 32)
+	{
+		if (data->texture.cat[i].mlx_img)
+			mlx_destroy_image(data->mlx, data->texture.cat[i].mlx_img);
+		data->texture.cat[i].mlx_img = NULL;
 	}
 }

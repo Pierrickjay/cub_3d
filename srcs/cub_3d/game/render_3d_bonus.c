@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:57:33 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/22 13:45:08 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 16:04:23 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	render_3d(t_cbdata *data)
 			my_mlx_pixel_put(data, col.column, i, color);
 		}
 	}
+	//draw_cats_center(data);
 }
 
 static void	set_column(t_cbdata *data, t_column *col)

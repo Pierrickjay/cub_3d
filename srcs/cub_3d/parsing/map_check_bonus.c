@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:46:18 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/24 14:10:25 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 16:25:13 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ static void	map_set_things(t_cbdata *data, int i, int j)
 	else if (data->map[i][j] == 'S')
 		data->angle = 3.0 * M_PI_2;
 	else
-		printf("please insert a mouse\n");//insert mouse;
+	{
+		data->cats = malloc(sizeof(t_sprite));
+		cat_init(data, j, i);
+	}
 }
 
 static bool	map_cell_isin(char **map, int i, int j)

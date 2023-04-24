@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:00:22 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/24 13:51:37 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:02:32 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,14 @@
 # define CELL_MAP_BONUS "01NSEWM"
 # define CELL_THINGS "NSEWM"
 
+# define DP printf("%s %d\n", __FILE__, __LINE__);
+
+
 /* mouse move hook bonus */
 int	mouse_move_hook(int x, int y, t_cbdata *data);
 int	mouse_move_hook_out(int x, int y, t_cbdata *data);
+/* cats */
+void	draw_cats_center(t_cbdata *data);
+/* init cat */
+void	cat_init(t_cbdata *data, int x, int y);
 #endif
