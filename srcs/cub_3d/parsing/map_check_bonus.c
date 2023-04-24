@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_check.c                                        :+:      :+:    :+:   */
+/*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/05 09:10:05 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/24 14:11:03 by rertzer          ###   ########.fr       */
+/*   Created: 2023/04/24 13:46:18 by rertzer           #+#    #+#             */
+/*   Updated: 2023/04/24 14:10:25 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
+#include "cub_3d_bonus.h"
 
 static bool	map_cell_ok(char **map, int i, int j);
 static bool	map_cell_isin(char **map, int i, int j);
-static void	map_set_start(t_cbdata *data, int i, int j);
+static void	map_set_things(t_cbdata *data, int i, int j);
 
 bool	map_check_ok(t_cbdata *data)
 {
@@ -36,8 +37,9 @@ bool	map_check_ok(t_cbdata *data)
 				if (start)
 					cb_exit(data, "Invalid map");
 				start = 1;
-				map_set_start(data, i, j);
 			}
+			if (cell_isa(data->map[i][j], CELL_THINGS))
+				map_set_things(data, i, j);
 		}
 	}
 	return (1);
@@ -47,9 +49,9 @@ static bool	map_cell_ok(char **map, int i, int j)
 {
 	int	ok;
 
-	if (!(cell_isa(map[i][j], CELL_MAP) || map[i][j] == ' '))
+	if (!(cell_isa(map[i][j], CELL_MAP_BONUS) || map[i][j] == ' '))
 		return (0);
-	if (!cell_isa(map[i][j], CELL_SOFT))
+	if (!cell_isa(map[i][j], CELL_SOFT_BONUS))
 		return (1);
 	ok = map_cell_isin(map, i - 1, j);
 	ok += map_cell_isin(map, i + 1, j);
@@ -60,7 +62,7 @@ static bool	map_cell_ok(char **map, int i, int j)
 	return (0);
 }
 
-static void	map_set_start(t_cbdata *data, int i, int j)
+static void	map_set_things(t_cbdata *data, int i, int j)
 {
 	data->pos_x = (float)(j * BLOCK_SIZE + BLOCK_SIZE / 2);
 	data->pos_y = (float)(i * BLOCK_SIZE + BLOCK_SIZE / 2);
@@ -70,14 +72,16 @@ static void	map_set_start(t_cbdata *data, int i, int j)
 		data->angle = 0.0;
 	else if (data->map[i][j] == 'W')
 		data->angle = M_PI;
-	else
+	else if (data->map[i][j] == 'S')
 		data->angle = 3.0 * M_PI_2;
+	else
+		printf("please insert a mouse\n");//insert mouse;
 }
 
 static bool	map_cell_isin(char **map, int i, int j)
 {
 	if (i < 0 || j < 0 || map[i] == NULL || map[i][j] == '\0' \
-		|| !cell_isa(map[i][j], CELL_MAP))
+		|| !cell_isa(map[i][j], CELL_MAP_BONUS))
 		return (0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 11:42:14 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 13:37:37 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ typedef struct s_cbdata
 }	t_cbdata;
 
 int				create_rgb(char *line_color);
-bool			parse_line(t_cbdata *data, char *line);
+int				parse_line(t_cbdata *data, char *line);
 float			calculate_distance(t_cbdata *data, t_point intersect);
 bool			point_outofrange(t_cbdata *data, t_point *p);
 t_point			get_h_intersect(t_cbdata *data, float angle);

@@ -6,21 +6,21 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:12:29 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/17 17:32:28 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 13:23:10 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
-static bool	parse_token(t_cbdata *data, char **token);
+static int	parse_token(t_cbdata *data, char **token);
 static char	**get_key(t_cbdata *data, char **token);
 static int	set_texture_file(t_cbdata *data, char *token, int i, char **key);
 static int	set_color(t_cbdata *data, char **token, int i, char **key);
 
-bool	parse_line(t_cbdata *data, char *line)
+int	parse_line(t_cbdata *data, char *line)
 {
 	int		tok_nb;
-	bool	ret;
+	int		ret;
 	char	**token;
 
 	if (find_one(line) == 1)
@@ -41,7 +41,7 @@ bool	parse_line(t_cbdata *data, char *line)
 	return (ret);
 }
 
-static bool	parse_token(t_cbdata *data, char **token)
+static int	parse_token(t_cbdata *data, char **token)
 {
 	int			i;
 	char		**key;

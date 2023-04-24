@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:01:35 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 17:33:47 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:57:04 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int ac, char **av, char **env)
 	if (ac != 2 || ft_search_string(av[1], ".cub") != 1)
 	{
 		printf("Error\nWe need only two parameters and the map");
-		printf("need to have a .cub extension\n");
+		printf(" need to have a .cub extension\n");
 		return (0);
 	}
 	init_data(&data);

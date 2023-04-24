@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 15:51:20 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 13:07:30 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,12 @@ void	parse_map(t_cbdata *data, char *line)
 {
 	static int	i = 0;
 
-	ft_strlcpy(data->map[i], line, ft_strlen(line));
+	if (i < data->map_y)
+		ft_strlcpy(data->map[i], line, ft_strlen(line));
 	if (!data->map[i])
 	{
 		free(line);
-		cb_exit(data, "Malloc failed");
+		cb_exit(data, "parse_map error");
 	}
 	i++;
 }
