@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:25:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 17:05:43 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:44:19 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,10 @@ t_vec	angle_to_vec(t_cbdata *data)
 	vec.y = -sin(data->angle);
 	return (vec);
 }
-/*
+
 void	draw_cats_center(t_cbdata *data)
 {
-	float	sprite_x;
-	float	sprite_y;
+	t_vec	sprite;
 	float	sprite_height;
 	int		draw_start_y;
 	int		draw_end_y;
@@ -45,20 +44,19 @@ void	draw_cats_center(t_cbdata *data)
 	char	*pixel;
 	int		v_move_screen;
 
-	sprite_x = data->texture.cats[0].pos_x - data->pos_x; // sprite position relative to camera
-	sprite_y = data->texture.cats[0].pos_y - data->pos_y;
-	// if (sprite_y < 0)
-	// 	sprite_y *= -1;
-	if (sprite_x == 0 && sprite_y == 0)
+	sprite.x = data->cats->pos.x - data->pos_x;
+	sprite.y = data->cats->pos.y - data->pos_y;
+printf("sprite x: %f, y: %f\n", sprite.x, sprite.y);	
+	if (sprite.x == 0 && sprite.y == 0)
 		return ;
-	data->texture.cats[0].vec = angle_to_vec(data);
-	inv_mat = 1.0 / (PLANE_X * data->texture.cats[0].vec.dir_y - data->texture.cats[0].vec.dir_x * PLANE_Y);
-	transform_x = inv_mat * (data->texture.cats[0].vec.dir_y * sprite_x - data->texture.cats[0].vec.dir_x * sprite_y);
-	transform_y = inv_mat * (-PLANE_Y * sprite_x + PLANE_X * sprite_y);
+	data->cats->dir = angle_to_vec(data);
+	inv_mat = 1.0 / (PLANE_X * data->cats->dir.y - data->cats->dir.x * PLANE_Y);
+	transform_x = inv_mat * (data->cats->dir.y * sprite.x - data->cats->dir.x * sprite.y);
+	transform_y = inv_mat * (-PLANE_Y * sprite.x + PLANE_X * sprite.y);
 	v_move_screen = (int)(VMOVE / transform_y) ;
 	sprite_screen_x = (int)((PLANE_X / 2) * (1 + transform_x / transform_y));
 	sprite_height = abs((int)(PLANE_Y / transform_y)); /// 1.0;
-	//printf("sprite_x = %f || sprite_y= %f || sprite height = %f\n", sprite_x, sprite_y, sprite_height)
+	//printf("sprite_x = %f || sprite_y= %f || sprite height = %f\n", sprite.x, sprite.y, sprite_height)
 	draw_start_y = -sprite_height / 2 + PLANE_Y / 2 ;//+ v_move_screen;
 	//printf("sprite_height = %f || tranform y = %f || sprite_screen_x = %d|| transform_x = %f\n",sprite_height, transform_y,sprite_screen_x, transform_x);
 	if (draw_start_y < 0)
@@ -83,7 +81,7 @@ void	draw_cats_center(t_cbdata *data)
 		y = draw_start_y;
 		//printf("draw_start_y = %d || transform_y = %d\n",transform_y, draw_start_y, draw_end_y);
 		//printf("tex_x = %d\n", tex_x);
-		if (transform_y > 0 && x > 0 && x < PLANE_X / *&& transform_y <* / )
+		if (transform_y > 0 && x > 0 && x < PLANE_X /*&& transform_y <*/ )
 		{
 			while (y < draw_end_y)
 			{
@@ -93,8 +91,8 @@ void	draw_cats_center(t_cbdata *data)
 				//tex_y =
 				//printf("tex x = %d || tex_y = %d\n", tex_x, tex_y);
 				if (tex_x < 0 || tex_y < 0)
-					break;
-				pixel = (data->texture.cats[0].addr + (tex_y * data->texture.cats[0].line_len + tex_x * (data->texture.cats[0].bpp / 8)));
+					break ;
+				pixel = (data->texture.cat[0].addr + (tex_y * data->texture.cat[0].line_len + tex_x * (data->texture.cat[0].bpp / 8)));
 				//fmod(data->raycast[column].y / (float)data->map_x, 1.0) * BLOCK_SIZE
 				if ((*(unsigned int *)pixel & 0x00FFFFFF) != 0)
 					my_mlx_pixel_put(data, x, y, *(unsigned int *)pixel);
@@ -103,4 +101,4 @@ void	draw_cats_center(t_cbdata *data)
 		}
 		x++;
 	}
-}*/
+}

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 16:40:10 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 17:21:22 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@
 # define ANGLE_PACE 8.181230868723e-04 //M_PI / (3 * PLANE_X)//  //
 # define TWO_PI 6.283185307180e+00 //2.0 * M_PI
 # define RAY_COLOR 0xFFFF84
+# define SPRITE_L 31
+# define SPRITE_H 32
 
 enum e_card{n, s, e, w, f, c};
 enum e_keycode {down, right, little_right_view, half_right_view, \
