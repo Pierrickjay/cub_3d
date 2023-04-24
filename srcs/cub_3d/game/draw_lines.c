@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/24 10:24:43 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:44:32 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ void	draw_lines(t_cbdata *data)
 	i = 0;
 	while (i < 1280)
 	{
-		angle = data->angle - atan(((float)i - PLANE_X / 2.0) / (float)PROJ_PLAN);
+		angle = data->angle - atan(((float)i - PLANE_X / 2.0) / \
+				(float)PROJ_PLAN);
 		angle = fmod(angle + TWO_PI, TWO_PI);
 		data->raycast[i] = get_endpoint(data, angle);
 		i++;

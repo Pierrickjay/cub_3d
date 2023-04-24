@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 10:57:15 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:42:14 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,16 +48,14 @@
 # define BLOCK_SIZE 64
 # define PLANE_X 1280
 # define PLANE_Y 800
-# define PROJ_PLAN 1108.51251684 //(PLANE_X / 2) / tan(M_PI / 6)//1.108512516844e+03 
-# define ANGLE_PACE M_PI / (3 * PLANE_X)// 8.181230868723e-04 //
-# define TWO_PI  2.0 * M_PI
-//6.283185307180e+00//
+# define PROJ_PLAN 1.108512516844e+03//(PLANE_X / 2) / tan(M_PI / 6)// 
+# define ANGLE_PACE 8.181230868723e-04 //M_PI / (3 * PLANE_X)//  //
+# define TWO_PI 6.283185307180e+00 //2.0 * M_PI
 # define RAY_COLOR 0xFFFF84
 
-# define DP printf("%s %d\n", __FILE__, __LINE__);
-
 enum e_card{n, s, e, w, f, c};
-enum e_keycode {down, right, little_right_view, half_right_view, mouse_right, right_view};
+enum e_keycode {down, right, little_right_view, half_right_view, \
+	mouse_right, right_view};
 
 typedef struct s_image
 {
@@ -81,7 +79,7 @@ typedef struct s_img
 	int		heigth;
 }	t_img;
 
-typedef	struct	s_point
+typedef struct s_point
 {
 	float	x;
 	float	y;
@@ -95,7 +93,6 @@ typedef struct s_texture
 	t_img	wall[4];
 	t_img	map;
 }	t_texture;
-
 
 typedef struct s_column
 {
@@ -128,43 +125,43 @@ typedef struct s_cbdata
 
 }	t_cbdata;
 
-int		create_rgb(char *line_color);
-bool	parse_line(t_cbdata *data, char *line);
-float	calculate_distance(t_cbdata *data, t_point intersect);
-bool	point_outofrange(t_cbdata *data, t_point *p);
-t_point	get_h_intersect(t_cbdata *data, float angle);
-t_point	get_v_intersect(t_cbdata *data, float angle);
-void	init_data(t_cbdata *data);
-char	**ft_mapped(int fd);
-void	print_strs(char **strs);
-void	parse_file(t_cbdata *data, char *av);
-void	ft_free_strs(char **strs);
-void	ft_free_and_close(t_cbdata *data, int fd, char *str);
-void	ft_free(void **ptr);
-void	cb_exit(t_cbdata *data, char *err_msg);
-bool	cell_isa(char c, char *set);
-bool	map_check_ok(t_cbdata *data);
-int		create_rgb(char *line_color);
+int				create_rgb(char *line_color);
+bool			parse_line(t_cbdata *data, char *line);
+float			calculate_distance(t_cbdata *data, t_point intersect);
+bool			point_outofrange(t_cbdata *data, t_point *p);
+t_point			get_h_intersect(t_cbdata *data, float angle);
+t_point			get_v_intersect(t_cbdata *data, float angle);
+void			init_data(t_cbdata *data);
+char			**ft_mapped(int fd);
+void			print_strs(char **strs);
+void			parse_file(t_cbdata *data, char *av);
+void			ft_free_strs(char **strs);
+void			ft_free_and_close(t_cbdata *data, int fd, char *str);
+void			ft_free(void **ptr);
+void			cb_exit(t_cbdata *data, char *err_msg);
+bool			cell_isa(char c, char *set);
+bool			map_check_ok(t_cbdata *data);
+int				create_rgb(char *line_color);
 /* init map utils */
-void	map_init(t_cbdata *data);
-void	parse_map(t_cbdata *data, char *line);
-void	count_map(t_cbdata *data, char *av);
-int		find_one(char *str);
+void			map_init(t_cbdata *data);
+void			parse_map(t_cbdata *data, char *line);
+void			count_map(t_cbdata *data, char *av);
+int				find_one(char *str);
 /* render 3d utils*/
-int		get_color(t_img *img, int x, int y);
+int				get_color(t_img *img, int x, int y);
 unsigned int	img_pix_read(t_cbdata *data, int text_y, int column);
 /* */
-void	set_move_player(t_cbdata *data, int key, int value);
-void	init_game(t_cbdata *data);
-void	set_hooks(t_cbdata *data);
-void	change_pos_player(t_cbdata *data);
-void	change_view_player(t_cbdata *data);
-bool	bump_wall(t_cbdata *data, int new_x, int new_y);
-void	draw_lines(t_cbdata *data);
-void	redraw_mini_map(t_cbdata *data);
-void	my_mlx_pixel_put(t_cbdata *data, int x, int y, int color);
-void	render_3d(t_cbdata *data);
-void	load_img(t_cbdata *data/*, t_img *wall*/);
-void	draw_ceillinroof(t_cbdata *data);
-void	mini_tile_file(t_cbdata *data, int x, int y, int color);
+void			set_move_player(t_cbdata *data, int key, int value);
+void			init_game(t_cbdata *data);
+void			set_hooks(t_cbdata *data);
+void			change_pos_player(t_cbdata *data);
+void			change_view_player(t_cbdata *data);
+bool			bump_wall(t_cbdata *data, int new_x, int new_y);
+void			draw_lines(t_cbdata *data);
+void			redraw_mini_map(t_cbdata *data);
+void			my_mlx_pixel_put(t_cbdata *data, int x, int y, int color);
+void			render_3d(t_cbdata *data);
+void			load_img(t_cbdata *data);
+void			draw_ceillinroof(t_cbdata *data);
+void			mini_tile_file(t_cbdata *data, int x, int y, int color);
 #endif

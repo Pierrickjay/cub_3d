@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 16:50:46 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/24 11:44:52 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ static void	init_null(t_cbdata *data)
 	data->angle = 0.0;
 	while (++i < 6)
 		data->keypressed[i] = 0;
-
 }
 
 void	init_image(t_cbdata *data)
