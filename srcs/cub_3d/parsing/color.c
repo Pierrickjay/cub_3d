@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:41:04 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/17 17:23:57 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 09:38:39 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	create_rgb(char *line_color)
 	while (++i < 3)
 	{
 		color = ft_atoi(split_color[i]);
-		printf("color %d is %d\n", i, color);
 		if (color < 0 || color > 255)
 			return (rgb_error(split_color));
 		rgb |= color << (16 - i * 8);

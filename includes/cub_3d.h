@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/22 13:27:30 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 10:57:15 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,10 @@
 # define BLOCK_SIZE 64
 # define PLANE_X 1280
 # define PLANE_Y 800
-# define PROJ_PLAN 1108.51251684 // (PLANE_X / 2) / tan(M_PI / 6)
-# define ANGLE_PACE M_PI / (3 * PLANE_X)
-# define TWO_PI 2.0 * M_PI
+# define PROJ_PLAN 1108.51251684 //(PLANE_X / 2) / tan(M_PI / 6)//1.108512516844e+03 
+# define ANGLE_PACE M_PI / (3 * PLANE_X)// 8.181230868723e-04 //
+# define TWO_PI  2.0 * M_PI
+//6.283185307180e+00//
 # define RAY_COLOR 0xFFFF84
 
 # define DP printf("%s %d\n", __FILE__, __LINE__);

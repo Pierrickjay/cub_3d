@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 11:01:21 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/22 13:54:27 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 10:24:43 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,57 +37,6 @@ void	minimap_pixel_put(t_cbdata *data, int x, int y, int tile)
 	pxl_x = (x * tile) / BLOCK_SIZE;
 	pxl_y = (y * tile) / BLOCK_SIZE;
 	my_mlx_pixel_put(data, pxl_x, pxl_y, RAY_COLOR);
-}
-
-void	draw_ray(t_cbdata *data, t_point intersect)
-{
-	float	slope;
-	int		x;
-	int		tile;
-	float	y;
-
-	tile = data->image[data->img].mini_tile_size;
-	if (tile == 0)
-		tile = 1;
-	if (isinf(intersect.x) || isinf(intersect.y))
-		return ;
-	slope = (intersect.y - data->pos_y) / (intersect.x - data->pos_x);
-	x = (int)data->pos_x;
-	y = data->pos_y;
-	if (isinf(slope) == -1)
-	{
-		while (y >= (int)intersect.y)
-		{
-			minimap_pixel_put(data, x, (int)y, tile);
-			y--;
-		}
-	}
-	if (isinf(slope) == 1)
-	{
-		while (y <= (int)intersect.y)
-		{
-			minimap_pixel_put(data, x, (int)y, tile);
-			y++;
-		}
-	}
-	else if (intersect.x > data->pos_x)
-	{
-		while (x < (int)intersect.x)
-		{
-			minimap_pixel_put(data, x, (int)y, tile);
-			x++;
-			y += slope;
-		}
-	}
-	else
-	{
-		while (x > (int)intersect.x)
-		{
-			minimap_pixel_put(data, x, (int)y, tile);
-			x--;
-			y -= slope;
-		}
-	}
 }
 
 void	draw_lines(t_cbdata *data)

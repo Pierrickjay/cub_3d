@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:56:00 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 17:36:23 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:02:43 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ bool	bump_wall(t_cbdata *data, int new_x, int new_y)
 
 void	reset_new_pos(t_point *new_pos, float value, float angle)
 {
-	new_pos->x -= 2 * value * cos(angle);
-	new_pos->y += 2 * value * sin(angle);
+	new_pos->x -= 3 * value * cos(angle);
+	new_pos->y += 3 * value * sin(angle);
 }
 
 void	change_pos_player(t_cbdata *data)
@@ -48,7 +48,7 @@ void	change_view_player(t_cbdata *data)
 {
 	if (data->keypressed[right_view])
 	{
-		data->angle = fmod(data->angle - data->keypressed[right_view] * 16.0 * \
-				ANGLE_PACE + 2.0 * M_PI, 2.0 * M_PI);
+		data->angle = fmod(data->angle - data->keypressed[right_view] * 20.0 * \
+				ANGLE_PACE + TWO_PI, TWO_PI);
 	}
 }

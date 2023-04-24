@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 17:28:28 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 09:45:03 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ void	parse_file(t_cbdata *data, char *av)
 		MINI_Y / data->map_y);
 	data->image[1].mini_tile_size = ft_min(MINI_X / data->map_x, \
 		MINI_Y / data->map_y);
-	print_strs(data->map);
 	close(fd);
 }
 
