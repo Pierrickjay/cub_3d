@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 11:44:52 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 15:57:01 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,17 @@ static void	init_texture(t_cbdata *data)
 		data->texture.wall[i].bpp = 0;
 		data->texture.wall[i].line_len = 0;
 		data->texture.wall[i].endian = 0;
+	}
+	i = -1;
+	while (++i < 32)
+	{
+		data->texture.cats[i].mlx_img = NULL;
+		data->texture.cats[i].addr = NULL;
+		data->texture.cats[i].bpp = 0;
+		data->texture.cats[i].line_len = 0;
+		data->texture.cats[i].endian = 0;
+		data->texture.cats[i].pos_y = 0.0;
+		data->texture.cats[i].pos_x = 0.0;
 	}
 	data->texture.map.mlx_img = NULL;
 	data->texture.map.addr = NULL;

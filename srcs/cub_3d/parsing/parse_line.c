@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:12:29 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/24 13:23:10 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/25 16:32:19 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,14 @@ int	parse_line(t_cbdata *data, char *line)
 	char	**token;
 
 	if (find_one(line) == 1)
-		return (1);
+	{
+		if (data->cf_color[0] && data->cf_color[1] && data->texture_file[0] \
+			&& data->texture_file[1] && data->texture_file[2]  \
+			&& data->texture_file[3] )
+			return (1);
+		else
+			return (-1);
+	}
 	else if (line[0] == '\n')
 		return (0);
 	token = ft_split(line, ' ');
@@ -34,7 +41,7 @@ int	parse_line(t_cbdata *data, char *line)
 	if (tok_nb != 2)
 	{
 		ft_free_strs(token);
-		cb_exit(data, "Invalid map");
+		return (-1);
 	}
 	ret = parse_token(data, token);
 	ft_free_strs(token);
@@ -78,6 +85,8 @@ static char	**get_key(t_cbdata *data, char **token)
 
 static int	set_texture_file(t_cbdata *data, char *token, int i, char **key)
 {
+	if (data->texture_file[i])
+		free(data->texture_file[i]);
 	data->texture_file[i] = ft_strdup(token);
 	data->texture_file[i][ft_strlen(token) - 1] = 0;
 	ft_free_strs(key);

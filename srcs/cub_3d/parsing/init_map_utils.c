@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 11:01:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 13:07:30 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/25 16:24:13 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	parse_map(t_cbdata *data, char *line)
 {
 	static int	i = 0;
 
+	printf("ft_strlen(;ine) = %d\n", (int)ft_strlen(line));
 	if (i < data->map_y)
 		ft_strlcpy(data->map[i], line, ft_strlen(line));
 	if (!data->map[i])

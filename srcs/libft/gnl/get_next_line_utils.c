@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: obouhlel <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/18 15:56:41 by obouhlel          #+#    #+#             */
-/*   Updated: 2023/01/30 12:27:58 by obouhlel         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:29:54 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../../includes/get_next_line.h"
+#include "../../../includes/cub_3d.h"
 
 size_t	ft_strlen_gnl(char *s)
 {

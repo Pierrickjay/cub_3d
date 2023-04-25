@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   frexit.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:24:40 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/24 09:37:01 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/25 16:32:26 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static void	free_texture(t_cbdata *data)
 {
 	int	i;
 
-	i = -1;
+	i =-1;
 	free(data->texture.map.mlx_img);
 	while (++i < 4)
 	{
@@ -51,4 +51,12 @@ static void	free_texture(t_cbdata *data)
 			mlx_destroy_image(data->mlx, data->texture.wall[i].mlx_img);
 		data->texture.wall[i].mlx_img = NULL;
 	}
+	i = -1;
+	while (++i < 32)
+	{
+		if (data->texture.cats[i].mlx_img)
+			mlx_destroy_image(data->mlx, data->texture.cats[i].mlx_img);
+		data->texture.cats[i].mlx_img = NULL;
+	}
 }
+
