@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:33:02 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/25 17:19:49 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:37:37 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static void	load_wall(t_cbdata *data, int i)
 
 static void	load_cats(t_cbdata *data, int i)
 {
-    char    *str;
-    char    *str2;
-    char    *str3;
+	char	*str;
+	char	*str2;
+	char	*str3;
 
 	str3 = ft_itoa(i);
 	if (i < 10)
@@ -66,8 +66,8 @@ static void	load_cats(t_cbdata *data, int i)
 	if (!data->texture.cat[i].mlx_img)
 		cb_exit(data, "MLX_FAILED");
 	data->texture.cat[i].addr = mlx_get_data_addr(
-		data->texture.cat[i].mlx_img, &data->texture.cat[i].bpp, &data->texture.cat[i].line_len, \
-		&data->texture.cat[i].endian);
+			data->texture.cat[i].mlx_img, &data->texture.cat[i].bpp, \
+			&data->texture.cat[i].line_len, &data->texture.cat[i].endian);
 	if (!data->texture.cat[i].addr)
 		cb_exit(data, "MLX_FAILED");
 	free(str);

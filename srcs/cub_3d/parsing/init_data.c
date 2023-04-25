@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 17:19:15 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:38:02 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ void	init_image(t_cbdata *data)
 		data->image[i].line_length = 0;
 		data->image[i].endian = 0;
 	}
+	data->texture.map.mlx_img = NULL;
+	data->texture.map.addr = NULL;
+	data->texture.map.bpp = 0;
+	data->texture.map.line_len = 0;
+	data->texture.map.endian = 0;
 }
 
 static void	init_raycast(t_cbdata *data)
@@ -91,17 +96,16 @@ static void	init_texture(t_cbdata *data)
 	int	i;
 
 	i = -1;
-	while (++i < 4)
-	{
-		data->texture.wall[i].mlx_img = NULL;
-		data->texture.wall[i].addr = NULL;
-		data->texture.wall[i].bpp = 0;
-		data->texture.wall[i].line_len = 0;
-		data->texture.wall[i].endian = 0;
-	}
-	i = -1;
 	while (++i < 32)
 	{
+		if (i < 4)
+		{
+			data->texture.wall[i].mlx_img = NULL;
+			data->texture.wall[i].addr = NULL;
+			data->texture.wall[i].bpp = 0;
+			data->texture.wall[i].line_len = 0;
+			data->texture.wall[i].endian = 0;
+		}
 		data->texture.cat[i].mlx_img = NULL;
 		data->texture.cat[i].addr = NULL;
 		data->texture.cat[i].bpp = 0;
@@ -110,9 +114,4 @@ static void	init_texture(t_cbdata *data)
 		data->texture.cat[i].pos_y = 0.0;
 		data->texture.cat[i].pos_x = 0.0;
 	}
-	data->texture.map.mlx_img = NULL;
-	data->texture.map.addr = NULL;
-	data->texture.map.bpp = 0;
-	data->texture.map.line_len = 0;
-	data->texture.map.endian = 0;
 }

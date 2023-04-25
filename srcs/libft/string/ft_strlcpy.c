@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 12:51:11 by obouhlel          #+#    #+#             */
-/*   Updated: 2023/04/25 16:00:21 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:27:10 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 		return (len);
 	while (i < size - 1)
 	{
-		DP
-		printf("i = %zu\n", i);
 		dst[i] = src[i];
 		i++;
 	}

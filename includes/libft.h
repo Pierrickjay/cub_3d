@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:23:45 by obouhlel          #+#    #+#             */
-/*   Updated: 2023/04/25 15:55:46 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:24:56 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <stdbool.h>
 # include <limits.h>
-# define DP printf("%d %s\n", __LINE__, __FILE__);
 //type of char
 int		ft_all_isdigit(char *str);
 int		ft_isascii(int c);

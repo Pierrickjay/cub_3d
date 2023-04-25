@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 17:18:36 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 19:14:37 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,11 @@
 enum e_card{n, s, e, w, f, c};
 enum e_keycode {down, right, little_right_view, half_right_view, \
 	mouse_right, right_view};
-typedef struct	s_vec
+typedef struct s_vec
 {
-	double x;
-	double y;
-} t_vec;
+	double	x;
+	double	y;
+}	t_vec;
 
 typedef struct s_image
 {
@@ -74,12 +74,6 @@ typedef struct s_image
 	int		mini_tile_size;
 
 }	t_image;
-
-// typedef struct	s_vec
-// {
-// 	double dir_x;
-// 	double dir_y;
-// } t_vec;
 
 typedef struct s_sprite
 {
@@ -94,7 +88,6 @@ typedef struct s_sprite
 	float	pos_y;
 	t_vec	pos;
 }	t_sprite;
-
 
 typedef struct s_img
 {
@@ -130,8 +123,6 @@ typedef struct s_column
 	int	bottom;
 	int	size;
 }	t_column;
-
-
 
 typedef struct s_cbdata
 {
@@ -196,4 +187,5 @@ void			load_img(t_cbdata *data);
 void			draw_ceillinroof(t_cbdata *data);
 void			mini_tile_file(t_cbdata *data, int x, int y, int color);
 void			draw_cats_center(t_cbdata *data);
+void			ft_end_and_close(t_cbdata *data, int fd, char *line);
 #endif

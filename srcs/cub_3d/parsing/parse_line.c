@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 11:12:29 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/25 16:32:19 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:26:55 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int	parse_line(t_cbdata *data, char *line)
 	if (find_one(line) == 1)
 	{
 		if (data->cf_color[0] && data->cf_color[1] && data->texture_file[0] \
-			&& data->texture_file[1] && data->texture_file[2]  \
-			&& data->texture_file[3] )
+			&& data->texture_file[1] && data->texture_file[2] \
+			&& data->texture_file[3])
 			return (1);
 		else
 			return (-1);
@@ -39,10 +39,7 @@ int	parse_line(t_cbdata *data, char *line)
 	while (token[tok_nb])
 		tok_nb++;
 	if (tok_nb != 2)
-	{
-		ft_free_strs(token);
-		return (-1);
-	}
+		return (ft_free_strs(token), -1);
 	ret = parse_token(data, token);
 	ft_free_strs(token);
 	return (ret);
