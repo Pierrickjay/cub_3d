@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:24:40 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/25 16:57:02 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:20:06 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ static void	free_texture(t_cbdata *data)
 	i = -1;
 	while (++i < 32)
 	{
-		if (data->texture.cats[i].mlx_img)
-			mlx_destroy_image(data->mlx, data->texture.cats[i].mlx_img);
-		data->texture.cats[i].mlx_img = NULL;
+		if (data->texture.cat[i].mlx_img)
+			mlx_destroy_image(data->mlx, data->texture.cat[i].mlx_img);
+		data->texture.cat[i].mlx_img = NULL;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 17:09:58 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:18:36 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ typedef struct s_texture
 {
 	t_img		wall[4];
 	t_img		map;
-	t_sprite	cats[32];
+	t_sprite	cat[32];
 }	t_texture;
 
 typedef struct s_column

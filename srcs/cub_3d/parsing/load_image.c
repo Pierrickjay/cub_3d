@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:33:02 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/25 17:06:05 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:19:49 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,15 @@ static void	load_cats(t_cbdata *data, int i)
 		str = ft_strjoin("./textures/petscuttedgood/", str3);
 	str2 = ft_strjoin(str, "_petscuted.xpm");
 	printf("%s\n", str2);
-	data->texture.cats[i].mlx_img = mlx_xpm_file_to_image(data->mlx, \
-			str2, &data->texture.cats[i].width, \
-			&data->texture.cats[i].heigth);
-	if (!data->texture.cats[i].mlx_img)
+	data->texture.cat[i].mlx_img = mlx_xpm_file_to_image(data->mlx, \
+			str2, &data->texture.cat[i].width, \
+			&data->texture.cat[i].heigth);
+	if (!data->texture.cat[i].mlx_img)
 		cb_exit(data, "MLX_FAILED");
-	data->texture.cats[i].addr = mlx_get_data_addr(
-		data->texture.cats[i].mlx_img, &data->texture.cats[i].bpp, &data->texture.cats[i].line_len, \
-		&data->texture.cats[i].endian);
-	if (!data->texture.cats[i].addr)
+	data->texture.cat[i].addr = mlx_get_data_addr(
+		data->texture.cat[i].mlx_img, &data->texture.cat[i].bpp, &data->texture.cat[i].line_len, \
+		&data->texture.cat[i].endian);
+	if (!data->texture.cat[i].addr)
 		cb_exit(data, "MLX_FAILED");
 	free(str);
 	free(str2);
