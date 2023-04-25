@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 15:57:01 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:03:06 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	init_null(t_cbdata *data)
 	data->map = NULL;
 	data->mlx = NULL;
 	data->mlx_win = NULL;
+	data->cats = NULL;
 	data->img = 0;
 	data->pos_x = 0.0;
 	data->pos_y = 0.0;

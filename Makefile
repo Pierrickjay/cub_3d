@@ -60,8 +60,8 @@ SRCS		+= main.c parsing/check_parsing.c parsing/init_map.c parsing/init_data.c p
 			game/distance.c game/render_3d.c
 
 SRCS_BONUS	+= main_bonus.c parsing/check_parsing.c parsing/init_map.c parsing/init_data.c parsing/init_map_utils.c \
-			free.c parsing/cell.c parsing/map_check_bonus.c parsing/parse_line.c parsing/load_image.c parsing/frexit.c parsing/color.c\
-			game/game.c  game/set_move_player_bonus.c \
+			free.c parsing/cell.c parsing/map_check_bonus.c parsing/parse_line.c parsing/load_image.c parsing/frexit.c parsing/color.c parsing/init_cat.c\
+			game/game.c  game/set_move_player_bonus.c game/cat_bonus.c\
 			 game/hook_bonus.c  game/mouse_move_hook_bonus.c game/render_3d_utils.c\
 			game/draw_lines.c game/h_intersect.c game/v_intersect.c game/point_utils.c \
 			game/distance.c game/draw_bonus.c game/render_3d_bonus.c game/change_pos_bonus.c

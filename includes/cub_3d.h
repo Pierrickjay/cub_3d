@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 15:29:37 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/25 17:09:58 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,15 @@
 # define ANGLE_PACE 8.181230868723e-04 //M_PI / (3 * PLANE_X)//  //
 # define TWO_PI 6.283185307180e+00 //2.0 * M_PI
 # define RAY_COLOR 0xFFFF84
-# define DP printf("%d %s\n", __LINE__, __FILE__);
 
 enum e_card{n, s, e, w, f, c};
 enum e_keycode {down, right, little_right_view, half_right_view, \
 	mouse_right, right_view};
+typedef struct	s_vec
+{
+	double x;
+	double y;
+} t_vec;
 
 typedef struct s_image
 {
@@ -71,12 +75,11 @@ typedef struct s_image
 
 }	t_image;
 
-typedef struct	s_vec
-{
-	double dir_x;
-	double dir_y;
-
-} t_vec;
+// typedef struct	s_vec
+// {
+// 	double dir_x;
+// 	double dir_y;
+// } t_vec;
 
 typedef struct s_sprite
 {
@@ -89,7 +92,7 @@ typedef struct s_sprite
 	int		heigth;
 	float	pos_x;
 	float	pos_y;
-	t_vec	vec;
+	t_vec	pos;
 }	t_sprite;
 
 
@@ -128,6 +131,8 @@ typedef struct s_column
 	int	size;
 }	t_column;
 
+
+
 typedef struct s_cbdata
 {
 	char			*texture_file[4];
@@ -148,6 +153,7 @@ typedef struct s_cbdata
 	t_texture		texture;
 	int				img;
 	int				keypressed[6];
+	t_sprite		*cats;
 }	t_cbdata;
 
 int				create_rgb(char *line_color);
