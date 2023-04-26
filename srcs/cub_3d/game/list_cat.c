@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:44:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 14:46:14 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 15:18:57 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,15 @@ static void set_cat(t_cbdata *data, t_list_cats *cats/*, int n*/)
 	//return (cat);
 }
 
-// void	print_cat_point(t_list_cats *cats)
-// {
-// 	while (cats)
-// 	{
-// 		printf("x = %f y = %f dist = %f angle = %f\n", cats->point.x, cats->point.y, cats->point.dist, cats->point.angle);
-// 		cats = cats->next;
-// 	}
+void	print_cat_point(t_list_cats *cats)
+{
+	while (cats)
+	{
+		printf("x = %f y = %f dist = %f angle = %f\n", cats->point.x, cats->point.y, cats->point.dist, cats->point.angle);
+		cats = cats->next;
+	}
 
-// }
+}
 
 int	check_if_ordered(t_list_cats *cats)
 {
@@ -109,5 +109,5 @@ void	arrange_cats_list(t_cbdata *data)
 		tmp = tmp->next;
 	}
 	tri_list(data->cats);
-//	print_cat_point(data->cats);
+	print_cat_point(data->cats);
 }
