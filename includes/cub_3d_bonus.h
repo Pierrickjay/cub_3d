@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:00:22 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 14:51:51 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/26 18:49:01 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # define CELL_SOFT_BONUS "0NSEWM"
 # define CELL_MAP_BONUS "01NSEWM"
 # define CELL_THINGS "NSEWM"
+# include <sys/time.h>
 # include "cub_3d.h"
 
 typedef struct s_app_cat
@@ -31,9 +32,9 @@ typedef struct s_app_cat
 int				mouse_move_hook(int x, int y, t_cbdata *data);
 int				mouse_move_hook_out(int x, int y, t_cbdata *data);
 /* cats */
-void	put_cat(t_cbdata *data);
+void			put_cat(t_cbdata *data);
 /* draw slice */
-void	draw_slice(t_cbdata *data, int current_x, t_app_cat kitty);
+void			draw_slice(t_cbdata *data, int current_x, t_app_cat kitty);
 /* init cat */
 void			cat_init(t_cbdata *data, int x, int y);
 t_list_cats		*ft_lstnew_cats(float pos_x, float pos_y);

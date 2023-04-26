@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:05:13 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 11:43:17 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 18:50:15 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,8 +64,6 @@ void	ft_lstadd_back_cats(t_list_cats **lst, t_list_cats *new)
 	}
 }
 
-
-
 void	print_cats_pos(t_list_cats *cats)
 {
 	while (cats)
@@ -73,5 +71,4 @@ void	print_cats_pos(t_list_cats *cats)
 		printf("pos_x is %f pos_y is %f\n", cats->pos_x, cats->pos_y);
 		cats = cats->next;
 	}
-
 }

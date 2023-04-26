@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:25:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 16:43:10 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 19:00:27 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ void	put_cat(t_cbdata *data)
 			while (kitty.offset_x <= (int)kitty.x)
 			{
 				current = (int)left + kitty.offset_x;
-				if (current >= 0 && current < PLANE_X \
-                && !(data->raycast[current].dist < cat->point.dist))
+				if (current >= 0 && current < PLANE_X && !(data->raycast[current].dist < cat->point.dist))
 					draw_slice(data, current, kitty);
 				kitty.offset_x++;
 			}

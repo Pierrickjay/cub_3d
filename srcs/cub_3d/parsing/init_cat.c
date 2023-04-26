@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 16:22:42 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 14:57:44 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/26 18:50:05 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,3 @@ void	cat_init(t_cbdata *data, int x, int y)
 	data->nb_cats++;
 	ft_lstadd_back_cats(&data->cats, maillon);
 }
-
-

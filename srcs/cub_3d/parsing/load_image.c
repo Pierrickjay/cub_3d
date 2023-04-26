@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:33:02 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/25 17:37:37 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 18:18:12 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	load_img(t_cbdata *data)
 	while (++i < 4)
 		load_wall(data, i);
 	i = -1;
-	while (++i < 32)
+	while (++i < 8)
 		load_cats(data, i);
 }
 
@@ -55,7 +55,7 @@ static void	load_cats(t_cbdata *data, int i)
 
 	str3 = ft_itoa(i);
 	if (i < 10)
-		str = ft_strjoin("./textures/petscuttedgood/0", str3);
+		str = ft_strjoin("./textures/petscutted2/0", str3);
 	else
 		str = ft_strjoin("./textures/petscuttedgood/", str3);
 	str2 = ft_strjoin(str, "_petscuted.xpm");

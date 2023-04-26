@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 14:39:34 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 18:49:16 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@
 # define HALF_LEFT		22
 # define MOUSE_RIGHT	33
 # define MOUSE_CENTER	0
-# define SPRITE_H		32
-# define SPRITE_L		31
+# define SPRITE_H		18
+# define SPRITE_L		21
 # define CELL_SOFT	"0NSEW"
 # define CELL_MAP	"01NSEW"
 # define CELL_START "NSEW"
@@ -102,7 +102,6 @@ typedef struct s_sprite
 	int				width;
 	int				heigth;
 }	t_sprite;
-
 
 typedef struct s_img
 {

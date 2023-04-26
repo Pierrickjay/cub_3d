@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:24:40 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 14:40:39 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 18:49:39 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	cb_exit(t_cbdata *data, char *err_msg)
 		ft_putendl_fd(err_msg, 2);
 		exit(1);
 	}
-
 	exit(0);
 }
 

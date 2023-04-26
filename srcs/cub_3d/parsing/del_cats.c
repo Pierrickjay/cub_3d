@@ -6,12 +6,11 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:37:29 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 14:41:08 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 18:49:43 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d_bonus.h"
-
 
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {

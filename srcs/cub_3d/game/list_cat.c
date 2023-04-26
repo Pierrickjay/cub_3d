@@ -6,33 +6,35 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:44:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 16:43:25 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 18:54:31 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 #include "cub_3d_bonus.h"
 
-static void set_cat(t_cbdata *data, t_list_cats *cats)
+static void	set_cat(t_cbdata *data, t_list_cats *cats)
 {
 	cats->point.x = cats->pos_x - data->pos_x;
 	cats->point.y = cats->pos_y - data->pos_y;
-	cats->point.angle = atanf( - cats->point.y / cats->point.x);
+	cats->point.angle = atanf(-cats->point.y / cats->point.x);
 	if (cats->point.x < 0)
 		cats->point.angle += M_PI;
 	cats->point.angle = fmod(cats->point.angle + TWO_PI, TWO_PI);
-	cats->point.dist = sqrt(cats->point.x * cats->point.x + cats->point.y * cats->point.y);
+	cats->point.dist = sqrt(cats->point.x * \
+		cats->point.x + cats->point.y * cats->point.y);
 }
 
- void	print_cat_point(t_list_cats *cats)
- {
- 	while (cats)
- 	{
- 		printf("x = %f y = %f dist = %f angle = %f\n", cats->point.x, cats->point.y, cats->point.dist, cats->point.angle);
- 		cats = cats->next;
- 	}
+void	print_cat_point(t_list_cats *cats)
+{
+	while (cats)
+	{
+		printf("x = %f y = %f dist = %f angle = %f\n", \
+			cats->point.x, cats->point.y, cats->point.dist, cats->point.angle);
+		cats = cats->next;
+	}
 	printf("======================================================\n");
- }
+}
 
 int	check_if_ordered(t_list_cats *cats)
 {
@@ -66,7 +68,6 @@ void	swap_value(t_list_cats **tmp, t_list_cats **min)
 	(*min)->pos_y = pos_y_tmp;
 }
 
-
 void	tri_list(t_list_cats *cat)
 {
 	t_list_cats	*tmp;
@@ -93,14 +94,12 @@ void	tri_list(t_list_cats *cat)
 void	arrange_cats_list(t_cbdata *data)
 {
 	t_list_cats	*tmp;
-	int i = 0;
+
 	tmp = data->cats;
 	while (tmp)
 	{
-		i++;
 		set_cat(data, tmp);
 		tmp = tmp->next;
 	}
 	tri_list(data->cats);
-	//print_cat_point(data->cats);
 }
