@@ -6,12 +6,14 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:25:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 17:16:28 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 14:46:59 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 #include "cub_3d_bonus.h"
+
+
 void	draw_slice(t_cbdata *data, t_point screen, t_point cat, t_vec half_size, \
 int current_x, int offset_x, float reduct)
 {
@@ -57,23 +59,24 @@ void	put_cat(t_cbdata *data)
 	t_point	cat;
 	t_point	screen;
 
+	//func here to calculate cats dist and do below calc
 	cat.x = data->cats[0].pos.x - data->pos_x;
 	cat.y = data->cats[0].pos.y - data->pos_y;
 	cat.angle = atanf(- cat.y / cat.x);
 	cat.dist = sqrt(cat.x * cat.x + cat.y *cat.y);
 
-printf("cat x: %f, y: %f, angle %f, dist %f\n", cat.x, cat.y, cat.angle, cat.dist);
+// printf("cat x: %f, y: %f, angle %f, dist %f\n", cat.x, cat.y, cat.angle, cat.dist);
 
 	screen.angle = data->angle - cat.angle;
 	screen.x = PROJ_PLAN * tanf(screen.angle);
 
-printf("screen x: %f, angle %f\n", screen.x, screen.angle);
+// printf("screen x: %f, angle %f\n", screen.x, screen.angle);
 	reduct = cosf(screen.angle) * PROJ_PLAN / cat.dist;
-printf("reduct : %f\n", reduct);
+// printf("reduct : %f\n", reduct);
 	half_size.x = SPRITE_L * reduct / 2;
 	half_size.y = SPRITE_H * reduct / 2;
-printf("half size: x %f, y %f\n", half_size.x, half_size.y);
-	offset  =  - half_size.x;
+// printf("half size: x %f, y %f\n", half_size.x, half_size.y);
+	offset = - half_size.x;
 	while (offset <=  (int)half_size.x)
 	{
 		current = PLANE_X / 2 + (int)screen.x + offset;

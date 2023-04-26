@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:59:40 by pjay              #+#    #+#             */
-/*   Updated: 2023/03/22 08:47:35 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 10:16:51 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_list	*ft_lstnew_spe(char *content, int type, bool expend, bool inquote)
 {
 	t_list	*contenu;
 
-	(void)inquote;
 	contenu = ft_calloc(sizeof(*contenu), 1);
 	if (!contenu)
 		return (NULL);

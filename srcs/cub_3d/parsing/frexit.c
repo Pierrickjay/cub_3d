@@ -6,11 +6,12 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:24:40 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/25 17:37:57 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 14:40:39 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
+#include "cub_3d_bonus.h"
 
 static void	free_texture(t_cbdata *data);
 
@@ -22,6 +23,8 @@ void	cb_exit(t_cbdata *data, char *err_msg)
 		mlx_destroy_image(data->mlx, data->image[1].img);
 	ft_free_strs(data->map);
 	free_texture(data);
+	if (data->cats)
+		ft_lstclear_cats(&data->cats, free);
 	if (data->mlx)
 	{
 		mlx_destroy_window(data->mlx, data->mlx_win);
@@ -34,6 +37,7 @@ void	cb_exit(t_cbdata *data, char *err_msg)
 		ft_putendl_fd(err_msg, 2);
 		exit(1);
 	}
+
 	exit(0);
 }
 
