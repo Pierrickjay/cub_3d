@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:25:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 15:30:52 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/26 16:40:38 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,23 @@ void	put_cat(t_cbdata *data)
 
 	arrange_cats_list(data);
 	cat = data->cats;
-	printf("in putcat \n");
-	print_cat_point(data->cats);
 	while (cat)
 	{
-		printf("cat %f %f\n ", cat->point.x, cat->point.dist);
 		screen = set_screen(data, cat);
-		if (screen.angle > M_PI_2 && screen.angle < 3 * M_PI_2)
-			return ;
-		kitty = set_app_cat(screen.angle, cat->point.dist);
-		left = screen.x - kitty.x / 2.0;
-		while (kitty.offset_x <= (int)kitty.x)
+		if (!(screen.angle > M_PI_2 && screen.angle < 3 * M_PI_2))
 		{
-			current = (int)left + kitty.offset_x;
-			if (current >= 0 && current < PLANE_X)
-				draw_slice(data, current, kitty);
-			kitty.offset_x++;
+			kitty = set_app_cat(screen.angle, cat->point.dist);
+			left = screen.x - kitty.x / 2.0;
+			while (kitty.offset_x <= (int)kitty.x)
+			{
+				current = (int)left + kitty.offset_x;
+				if (current >= 0 && current < PLANE_X \
+                && !(data->raycast[current].dist < cat->point.dist))
+					draw_slice(data, current, kitty);
+				kitty.offset_x++;
+			}
 		}
-	cat = cat->next;
+		cat = cat->next;
 	}
 }
 

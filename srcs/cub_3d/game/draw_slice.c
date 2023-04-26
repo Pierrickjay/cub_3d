@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 12:54:56 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 13:51:11 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/26 16:21:39 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	draw_slice(t_cbdata *data, int current_x, t_app_cat kitty)
 	int		current_y;
 	int		ground;
 	t_vec	pixel;
-
 	pixel.x = kitty.offset_x / kitty.reduct;
 	ground = PLANE_Y / 2 + BLOCK_SIZE / 2 * kitty.reduct;
 	while (kitty.offset_y < kitty.y)
