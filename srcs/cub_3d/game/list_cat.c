@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:44:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 15:31:14 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/26 15:47:30 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void set_cat(t_cbdata *data, t_list_cats *cats)
 {
 	cats->point.x = cats->pos_x - data->pos_x;
 	cats->point.y = cats->pos_y - data->pos_y;
-	cats->point.angle = atanf( - cats->pos_y / cats->pos_x);
+	cats->point.angle = atanf( - cats->point.y / cats->point.x);
 	if (cats->point.x < 0)
 		cats->point.angle += M_PI;
 	cats->point.angle = fmod(cats->point.angle + TWO_PI, TWO_PI);
