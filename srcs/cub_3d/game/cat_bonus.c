@@ -6,81 +6,73 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:25:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 17:16:28 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 13:27:16 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 #include "cub_3d_bonus.h"
-void	draw_slice(t_cbdata *data, t_point screen, t_point cat, t_vec half_size, \
-int current_x, int offset_x, float reduct)
-{
-	int		offset_y;
-	char	*cat_pixel;
-	int		current_y;
-	t_vec	pixel;
-	(void)screen;
-	(void)cat;
-	offset_y = 0;
-	pixel.x = SPRITE_L / 2  + offset_x / reduct;
-	int ground = PLANE_Y / 2 + BLOCK_SIZE / 2 * reduct;
-	//printf("offset_x %d, pixel.x %f\n", offset_x, pixel.x);
-	while (offset_y <  half_size.y * 2)
-	{
-		current_y = ground - offset_y;
-		if ( current_y >= 0 && current_y < PLANE_Y)
-		{//DP
-			//printf("current y: %d\n", current_y);
-			pixel.y = SPRITE_H   - offset_y  / reduct;
-			//printf("pixel.y %f\n", pixel.y);
-		//	DP
-				int pixx = (int)pixel.x;
-				int pixy = (int)pixel.y;
-				//printf("x is %d and y is %d\n", pixx, pixy);
-			cat_pixel = data->texture.cat[0].addr + pixy * data->texture.cat[0].line_len  \
-					+ pixx * data->texture.cat[0].bpp / 8;
-			//DP
-			if ((*(unsigned int *)cat_pixel & 0x00FFFFF) != 0)
-				my_mlx_pixel_put(data, current_x, current_y,*(unsigned int *)cat_pixel);//0xFF5733
-		//	DP
-		}
-		offset_y++;
-	}
-}
+
+static t_point	set_cat(t_cbdata *data, int n);
+static t_point	set_screen(t_cbdata *data, t_point cat);
+static t_app_cat	set_app_cat(float angle, float dist);
 
 void	put_cat(t_cbdata *data)
 {
-	float	reduct;
-	int		offset;
-	t_vec	half_size;
+	t_app_cat	kitty;
 	int		current;
+	float	left;
 	t_point	cat;
 	t_point	screen;
 
-	cat.x = data->cats[0].pos.x - data->pos_x;
-	cat.y = data->cats[0].pos.y - data->pos_y;
-	cat.angle = atanf(- cat.y / cat.x);
-	cat.dist = sqrt(cat.x * cat.x + cat.y *cat.y);
 
-printf("cat x: %f, y: %f, angle %f, dist %f\n", cat.x, cat.y, cat.angle, cat.dist);
+	cat = set_cat(data, 0);
+	screen = set_screen(data, cat);
 
-	screen.angle = data->angle - cat.angle;
-	screen.x = PROJ_PLAN * tanf(screen.angle);
-
-printf("screen x: %f, angle %f\n", screen.x, screen.angle);
-	reduct = cosf(screen.angle) * PROJ_PLAN / cat.dist;
-printf("reduct : %f\n", reduct);
-	half_size.x = SPRITE_L * reduct / 2;
-	half_size.y = SPRITE_H * reduct / 2;
-printf("half size: x %f, y %f\n", half_size.x, half_size.y);
-	offset  =  - half_size.x;
-	while (offset <=  (int)half_size.x)
+	if (screen.angle > M_PI_2 && screen.angle < 3 * M_PI_2)
+		return ;
+	kitty = set_app_cat(screen.angle, cat.dist);
+	left = screen.x - kitty.x / 2.0; 
+	while (kitty.offset_x <= (int)kitty.x)
 	{
-		current = PLANE_X / 2 + (int)screen.x + offset;
+		current = (int)left + kitty.offset_x;
 		if (current >= 0 && current < PLANE_X)
-		{
-			draw_slice(data, screen, cat, half_size, current, offset, reduct);
-		}
-		offset++;
+			draw_slice(data, current, kitty);
+		kitty.offset_x++;
 	}
+}
+
+static t_point	set_cat(t_cbdata *data, int n)
+{
+	t_point	cat;
+	
+	cat.x = data->cats[n].pos.x - data->pos_x;
+	cat.y = data->cats[n].pos.y - data->pos_y;
+	cat.angle = atanf(-cat.y / cat.x);
+	if (cat.x < 0)
+		cat.angle += M_PI;
+	cat.angle = fmod(cat.angle + TWO_PI, TWO_PI);
+	cat.dist = sqrt(cat.x * cat.x + cat.y *cat.y);
+	return (cat);
+}
+
+static t_point	set_screen(t_cbdata *data, t_point cat)
+{
+	t_point	screen;
+
+	screen.angle = fmod(data->angle - cat.angle + TWO_PI, TWO_PI);
+	screen.x = PLANE_X / 2.0 + PROJ_PLAN * tanf(screen.angle);
+	return (screen);
+}
+
+static t_app_cat	set_app_cat(float angle, float dist)
+{
+	t_app_cat	kitty;
+
+	kitty.reduct = fabs(1.0 / cosf(angle)) * (PROJ_PLAN / dist);
+	kitty.x = SPRITE_L * kitty.reduct;
+	kitty.y = SPRITE_H * kitty.reduct;
+	kitty.offset_x = 0;
+	kitty.offset_y = 0;
+	return (kitty);
 }
