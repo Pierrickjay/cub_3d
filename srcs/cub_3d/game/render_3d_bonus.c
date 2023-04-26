@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:57:33 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 11:55:35 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 15:31:55 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,7 @@ void	render_3d(t_cbdata *data)
 			my_mlx_pixel_put(data, col.column, i, color);
 		}
 	}
-	arrange_cats_list(data);
-	//put_cat(data);
+	put_cat(data);
 }
 
 static void	set_column(t_cbdata *data, t_column *col)
