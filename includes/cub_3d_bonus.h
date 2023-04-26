@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:00:22 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 13:26:50 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/26 13:54:53 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ typedef struct s_app_cat
 	float	reduct;
 	int		offset_x;
 	int		offset_y;
-}
-	t_app_cat;
-
+}	t_app_cat;
 
 /* mouse move hook bonus */
 int		mouse_move_hook(int x, int y, t_cbdata *data);
