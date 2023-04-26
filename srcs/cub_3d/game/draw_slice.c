@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 12:54:56 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 16:26:28 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 16:43:47 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	draw_slice(t_cbdata *data, int current_x, t_app_cat kitty)
 	int		current_y;
 	int		ground;
 	t_vec	pixel;
-
 	pixel.x = kitty.offset_x / kitty.reduct;
 	// if (data->slice_heigt[current_x] > 0)
 	// 	return (0);
