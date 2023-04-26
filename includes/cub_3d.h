@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 19:14:37 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 14:39:34 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,19 +75,34 @@ typedef struct s_image
 
 }	t_image;
 
+typedef struct s_point
+{
+	float	x;
+	float	y;
+	float	dist;
+	float	angle;
+	int		wall;
+}	t_point;
+
+typedef struct s_list_cats
+{
+	float				pos_x;
+	float				pos_y;
+	t_point				point;
+	struct s_list_cats	*next;
+}	t_list_cats;
+
 typedef struct s_sprite
 {
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-	int		width;
-	int		heigth;
-	float	pos_x;
-	float	pos_y;
-	t_vec	pos;
+	void			*mlx_img;
+	char			*addr;
+	int				bpp;
+	int				line_len;
+	int				endian;
+	int				width;
+	int				heigth;
 }	t_sprite;
+
 
 typedef struct s_img
 {
@@ -99,15 +114,6 @@ typedef struct s_img
 	int		width;
 	int		heigth;
 }	t_img;
-
-typedef struct s_point
-{
-	float	x;
-	float	y;
-	float	dist;
-	float	angle;
-	int		wall;
-}	t_point;
 
 typedef struct s_texture
 {
@@ -126,25 +132,26 @@ typedef struct s_column
 
 typedef struct s_cbdata
 {
-	char			*texture_file[4];
-	char			**map;
-	void			*mlx;
-	void			*mlx_win;
-	int				cf_color[2];
-	int				map_x;
-	int				map_y;
-	float			pos_x;
-	float			pos_y;
-	int				x;
-	int				y;
-	float			angle;
-	t_point			raycast[1280];
-	float			proj_slice_height[1280];
-	t_image			image[2];
-	t_texture		texture;
-	int				img;
-	int				keypressed[6];
-	t_sprite		*cats;
+	char				*texture_file[4];
+	char				**map;
+	void				*mlx;
+	void				*mlx_win;
+	int					cf_color[2];
+	int					map_x;
+	int					map_y;
+	float				pos_x;
+	float				pos_y;
+	int					nb_cats;
+	int					x;
+	int					y;
+	float				angle;
+	t_point				raycast[1280];
+	float				proj_slice_height[1280];
+	t_image				image[2];
+	t_texture			texture;
+	int					img;
+	int					keypressed[6];
+	t_list_cats			*cats;
 }	t_cbdata;
 
 int				create_rgb(char *line_color);
@@ -188,4 +195,5 @@ void			draw_ceillinroof(t_cbdata *data);
 void			mini_tile_file(t_cbdata *data, int x, int y, int color);
 void			draw_cats_center(t_cbdata *data);
 void			ft_end_and_close(t_cbdata *data, int fd, char *line);
+
 #endif

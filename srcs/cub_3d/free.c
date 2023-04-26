@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:35:49 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 19:17:25 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 14:37:29 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,5 @@ void	ft_end_and_close(t_cbdata *data, int fd, char *line)
 	close(fd);
 	cb_exit(data, "Parsing error");
 }
+
+

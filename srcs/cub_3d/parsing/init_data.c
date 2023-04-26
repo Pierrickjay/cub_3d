@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 17:38:02 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/26 14:48:05 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,8 @@ static void	init_null(t_cbdata *data)
 	data->map_x = 0;
 	data->map_y = 0;
 	data->angle = 0.0;
+	data->nb_cats = 0;
+	data->cats = NULL;
 	while (++i < 6)
 		data->keypressed[i] = 0;
 }
@@ -111,7 +113,7 @@ static void	init_texture(t_cbdata *data)
 		data->texture.cat[i].bpp = 0;
 		data->texture.cat[i].line_len = 0;
 		data->texture.cat[i].endian = 0;
-		data->texture.cat[i].pos_y = 0.0;
-		data->texture.cat[i].pos_x = 0.0;
+		data->texture.cat[i].width = 0;
+		data->texture.cat[i].heigth = 0;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_check_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:46:18 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/24 16:25:13 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/26 11:23:35 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ bool	map_check_ok(t_cbdata *data)
 				map_set_things(data, i, j);
 		}
 	}
+	print_cats_pos(data->cats);
+	printf("player pos_x = %f, pos_y = %f\n", data->pos_x, data->pos_y);
+	printf("nb_cats = %d\n", data->nb_cats);
 	return (1);
 }
 
@@ -49,7 +52,7 @@ static bool	map_cell_ok(char **map, int i, int j)
 {
 	int	ok;
 
-	if (!(cell_isa(map[i][j], CELL_MAP_BONUS) || map[i][j] == ' '))
+	if (!(cell_isa(map[i][j], CELL_MAP_BONUS) || map[i][j] == ' ' || map[i][j] == 'M'))
 		return (0);
 	if (!cell_isa(map[i][j], CELL_SOFT_BONUS))
 		return (1);
@@ -64,8 +67,11 @@ static bool	map_cell_ok(char **map, int i, int j)
 
 static void	map_set_things(t_cbdata *data, int i, int j)
 {
-	data->pos_x = (float)(j * BLOCK_SIZE + BLOCK_SIZE / 2);
-	data->pos_y = (float)(i * BLOCK_SIZE + BLOCK_SIZE / 2);
+	if (data->map[i][j] != 'M')
+	{
+		data->pos_x = (float)(j * BLOCK_SIZE + BLOCK_SIZE / 2);
+		data->pos_y = (float)(i * BLOCK_SIZE + BLOCK_SIZE / 2);
+	}
 	if (data->map[i][j] == 'N')
 		data->angle = M_PI_2;
 	else if (data->map[i][j] == 'E')
@@ -75,10 +81,7 @@ static void	map_set_things(t_cbdata *data, int i, int j)
 	else if (data->map[i][j] == 'S')
 		data->angle = 3.0 * M_PI_2;
 	else
-	{
-		data->cats = malloc(sizeof(t_sprite));
 		cat_init(data, j, i);
-	}
 }
 
 static bool	map_cell_isin(char **map, int i, int j)

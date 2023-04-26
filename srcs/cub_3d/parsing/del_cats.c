@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_cat.c                                         :+:      :+:    :+:   */
+/*   del_cats.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/24 16:22:42 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 14:57:44 by rertzer          ###   ########.fr       */
+/*   Created: 2023/04/26 14:37:29 by pjay              #+#    #+#             */
+/*   Updated: 2023/04/26 14:41:08 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_3d.h"
 #include "cub_3d_bonus.h"
 
-void	cat_init(t_cbdata *data, int x, int y)
-{
-	t_list_cats	*maillon;
 
-	maillon = ft_lstnew_cats((float)(x * BLOCK_SIZE + BLOCK_SIZE / 2), \
-		(float)(y * BLOCK_SIZE + BLOCK_SIZE / 2));
-	if (maillon == NULL)
-		cb_exit(data, "MALLOC FAILED");
-	data->nb_cats++;
-	ft_lstadd_back_cats(&data->cats, maillon);
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
+{
+	if (!del || !lst)
+		return ;
+	if (lst)
+	{
+		free(lst);
+	}
 }
 
+void	ft_lstclear_cats(t_list_cats **lst, void (*del)(void*))
+{
+	t_list_cats	*in;
 
+	if (!del || !*lst || !del)
+		return ;
+	while (*lst)
+	{
+		in = (*lst)->next;
+		free(*lst);
+		*lst = in;
+	}
+	free(*lst);
+	*lst = NULL;
+}
