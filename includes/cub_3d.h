@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/27 09:25:23 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/27 13:12:38 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,10 @@ typedef struct s_texture
 
 typedef struct s_column
 {
-	int	column;
-	int	top;
-	int	bottom;
-	int	size;
+	int		column;
+	float	top;
+	float	bottom;
+	float	size;
 }	t_column;
 
 typedef struct s_cbdata
