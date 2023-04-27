@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:46:18 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 18:50:41 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 09:27:04 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ static bool	map_cell_ok(char **map, int i, int j)
 {
 	int	ok;
 
-	if (!(cell_isa(map[i][j], CELL_MAP_BONUS) \
-		|| map[i][j] == ' ' || map[i][j] == 'M'))
+	if (!(cell_isa(map[i][j], CELL_MAP_BONUS) || map[i][j] == ' '))
 		return (0);
 	if (!cell_isa(map[i][j], CELL_SOFT_BONUS))
 		return (1);

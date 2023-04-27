@@ -6,11 +6,12 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:27:41 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/17 17:50:46 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/27 09:31:23 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
+#include "cub_3d_bonus.h"
 
 static int	set_mini_color(t_cbdata *data, int x, int y);
 static void	mini_pos_file(t_cbdata *data);
@@ -68,7 +69,7 @@ static int	set_mini_color(t_cbdata *data, int x, int y)
 {
 	if (data->map[y][x] == '1')
 		return (0x4848BB);
-	else if (cell_isa(data->map[y][x], CELL_SOFT))
+	else if (cell_isa(data->map[y][x], CELL_SOFT_BONUS))
 		return (0xF4D691);
 	else
 		return (0x000000);

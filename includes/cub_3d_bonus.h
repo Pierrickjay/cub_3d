@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:00:22 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 18:49:01 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 09:28:44 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define CUB_3D_BONUS_H
 
 # define CELL_SOFT_BONUS "0NSEWM"
+# define CELL_HARD_BONUS "1M"
 # define CELL_MAP_BONUS "01NSEWM"
 # define CELL_THINGS "NSEWM"
 # include <sys/time.h>

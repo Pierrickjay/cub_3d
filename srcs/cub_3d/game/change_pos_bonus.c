@@ -6,17 +6,18 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:33:35 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 10:32:21 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/27 09:29:40 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
+#include "cub_3d_bonus.h"
 
 bool	bump_wall(t_cbdata *data, int new_x, int new_y)
 {
 	new_x /= BLOCK_SIZE;
 	new_y /= BLOCK_SIZE;
-	if (data->map[new_y][new_x] == '1')
+	if (cell_isa(data->map[new_y][new_x], CELL_HARD_BONUS))
 		return (true);
 	else
 		return (false);
