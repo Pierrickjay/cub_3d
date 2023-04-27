@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/27 13:12:38 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/27 13:45:19 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -193,7 +193,7 @@ void			render_3d(t_cbdata *data);
 void			load_img(t_cbdata *data);
 void			draw_ceillinroof(t_cbdata *data);
 void			mini_tile_file(t_cbdata *data, int x, int y, int color);
-void			draw_cats_center(t_cbdata *data);
 void			ft_end_and_close(t_cbdata *data, int fd, char *line);
-
+void			ft_tripple_free_malloc(char *str, char *str2, \
+					char *str3, t_cbdata *data);
 #endif

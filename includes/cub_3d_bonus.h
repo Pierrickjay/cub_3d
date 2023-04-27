@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:00:22 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/27 09:28:44 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/27 10:26:26 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef struct s_app_cat
 	int		offset_y;
 }	t_app_cat;
 
+/*game*/
+void			init_game_bonus(t_cbdata *data);
 /* mouse move hook bonus */
 int				mouse_move_hook(int x, int y, t_cbdata *data);
 int				mouse_move_hook_out(int x, int y, t_cbdata *data);
@@ -45,5 +47,13 @@ void			print_cats_pos(t_list_cats *cats);
 void			arrange_cats_list(t_cbdata *data);
 void			ft_lstclear_cats(t_list_cats **lst, void (*del)(void*));
 void			print_cat_point(t_list_cats *cats);
+void			load_img_bonus(t_cbdata *data);
+/*free*/
+void			ft_tripple_free_mlx(char *str, char *str2, \
+					char *str3, t_cbdata *data);
+void			ft_tripple_free_malloc(char *str, \
+				char *str2, char *str3, t_cbdata *data);
+
+
 
 #endif

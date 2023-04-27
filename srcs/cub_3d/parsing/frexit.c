@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:24:40 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 18:49:39 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 10:44:17 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,10 @@ void	cb_exit(t_cbdata *data, char *err_msg)
 	ft_free_strs(data->map);
 	free_texture(data);
 	if (data->cats)
+	{
+		printf("enter here\n");
 		ft_lstclear_cats(&data->cats, free);
+	}
 	if (data->mlx)
 	{
 		mlx_destroy_window(data->mlx, data->mlx_win);
@@ -61,4 +64,16 @@ static void	free_texture(t_cbdata *data)
 			mlx_destroy_image(data->mlx, data->texture.cat[i].mlx_img);
 		data->texture.cat[i].mlx_img = NULL;
 	}
+}
+
+void	ft_tripple_free_malloc(char *str, \
+				char *str2, char *str3, t_cbdata *data)
+{
+	if (str)
+		free(str);
+	if (str2)
+		free(str2);
+	if (str3)
+		free(str3);
+	cb_exit(data, "MALLOC FAILED");
 }
