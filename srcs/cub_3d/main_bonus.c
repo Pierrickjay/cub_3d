@@ -6,11 +6,11 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:01:35 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/24 11:57:04 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/27 10:19:14 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub_3d.h"
+#include "cub_3d_bonus.h"
 
 int	ft_search_string(char *str, char *cmp)
 {
@@ -48,5 +48,5 @@ int	main(int ac, char **av, char **env)
 	}
 	init_data(&data);
 	parse_file(&data, av[1]);
-	init_game(&data);
+	init_game_bonus(&data);
 }
