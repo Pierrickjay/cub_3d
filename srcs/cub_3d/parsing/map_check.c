@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/05 09:10:05 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 10:03:24 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 09:59:25 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ bool	map_check_ok(t_cbdata *data)
 			}
 		}
 	}
-	printf("nb_cats = %d\n", data->nb_cats);
 	return (1);
 }
 

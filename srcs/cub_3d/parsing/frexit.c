@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 15:24:40 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/27 10:18:18 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 10:44:17 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	cb_exit(t_cbdata *data, char *err_msg)
 		mlx_destroy_image(data->mlx, data->image[1].img);
 	ft_free_strs(data->map);
 	free_texture(data);
-
 	if (data->cats)
 	{
 		printf("enter here\n");
@@ -67,7 +66,7 @@ static void	free_texture(t_cbdata *data)
 	}
 }
 
-void		ft_tripple_free_malloc(char *str, \
+void	ft_tripple_free_malloc(char *str, \
 				char *str2, char *str3, t_cbdata *data)
 {
 	if (str)

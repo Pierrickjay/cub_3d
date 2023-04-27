@@ -6,12 +6,11 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:08:24 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/27 10:20:14 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 10:43:24 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d_bonus.h"
-
 
 static void	init_render(t_cbdata *data)
 {

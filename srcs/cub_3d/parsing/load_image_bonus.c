@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:06:01 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/27 10:34:02 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 10:45:07 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ static int	cats_mlx(t_cbdata *data, int i, char *str2)
 		return (-1);
 	return (0);
 }
-
 
 static void	load_cats(t_cbdata *data, int i)
 {
