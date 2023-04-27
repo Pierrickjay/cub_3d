@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:44:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 18:54:31 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 09:42:35 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,6 @@ static void	set_cat(t_cbdata *data, t_list_cats *cats)
 	cats->point.angle = fmod(cats->point.angle + TWO_PI, TWO_PI);
 	cats->point.dist = sqrt(cats->point.x * \
 		cats->point.x + cats->point.y * cats->point.y);
-}
-
-void	print_cat_point(t_list_cats *cats)
-{
-	while (cats)
-	{
-		printf("x = %f y = %f dist = %f angle = %f\n", \
-			cats->point.x, cats->point.y, cats->point.dist, cats->point.angle);
-		cats = cats->next;
-	}
-	printf("======================================================\n");
 }
 
 int	check_if_ordered(t_list_cats *cats)

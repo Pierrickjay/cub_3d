@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 14:33:02 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 18:18:12 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 09:57:01 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ static void	load_cats(t_cbdata *data, int i)
 	else
 		str = ft_strjoin("./textures/petscuttedgood/", str3);
 	str2 = ft_strjoin(str, "_petscuted.xpm");
-	printf("%s\n", str2);
 	data->texture.cat[i].mlx_img = mlx_xpm_file_to_image(data->mlx, \
 			str2, &data->texture.cat[i].width, \
 			&data->texture.cat[i].heigth);
