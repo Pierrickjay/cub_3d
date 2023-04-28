@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:25:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/27 10:00:08 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/28 10:15:55 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,14 @@ static void	draw_cat(t_cbdata *data, t_list_cats *cat, t_point screen)
 		current = (int)left + kitty.offset_x;
 		if (current >= 0 && current < PLANE_X && \
 				!(data->raycast[current].dist < cat->point.dist))
+		{
+			if (cat->seen != true)
+			{
+				cat->seen = true;
+				data->nb_cats_see++;
+			}
 			draw_slice(data, current, kitty);
+		}
 		kitty.offset_x++;
 	}
 }

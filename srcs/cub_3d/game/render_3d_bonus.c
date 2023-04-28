@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:57:33 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/26 15:31:55 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/28 10:02:49 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 static void	set_slice_height(t_cbdata *data);
 static void	set_column(t_cbdata *data, t_column *col);
+//static void	put_string_to_window(t_cbdata *data);
+static int	draw_or_not(t_cbdata *data, int x, int i);
 
 void	render_3d(t_cbdata *data)
 {
@@ -30,7 +32,7 @@ void	render_3d(t_cbdata *data)
 		i = -1;
 		while (++i < PLANE_Y)
 		{
-			if (col.column < MINI_X && i < MINI_Y)
+			if (draw_or_not(data, col.column, i) == 0)
 				continue ;
 			else if (i < col.top)
 				color = data->cf_color[1];
@@ -42,7 +44,6 @@ void	render_3d(t_cbdata *data)
 			my_mlx_pixel_put(data, col.column, i, color);
 		}
 	}
-	put_cat(data);
 }
 
 static void	set_column(t_cbdata *data, t_column *col)
@@ -61,4 +62,14 @@ static void	set_slice_height(t_cbdata *data)
 		data->proj_slice_height[i] = (float)BLOCK_SIZE * PROJ_PLAN \
 				/ (data->raycast[i].dist \
 				* cos(data->angle - data->raycast[i].angle));
+}
+
+static int	draw_or_not(t_cbdata *data, int x, int y)
+{
+	if ((x < MINI_X && y < MINI_Y) \
+				|| (x > PLANE_X - (64 * data->digits) && y < 64) || \
+				(x > PLANE_X - (64 * data->digits_all) && y < 128 && y > 64))
+		return (0);
+	else
+		return (1);
 }

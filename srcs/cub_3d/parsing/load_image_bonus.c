@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:06:01 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/27 10:45:07 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/28 09:44:02 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	load_wall(t_cbdata *data, int i);
 static void	load_cats(t_cbdata *data, int i);
+static void	load_number(t_cbdata *data, int i);
 static int	cats_mlx(t_cbdata *data, int i, char *str2);
 
 void	load_img_bonus(t_cbdata *data)
@@ -26,11 +27,15 @@ void	load_img_bonus(t_cbdata *data)
 		exit(1);
 	}
 	i = -1;
-	while (++i < 4)
-		load_wall(data, i);
-	i = -1;
-	while (++i < 8)
-		load_cats(data, i);
+	while (++i < 10)
+	{
+		if (i < 4)
+			load_wall(data, i);
+		if (i < 8)
+			load_cats(data, i);
+		load_number(data, i);
+	}
+	load_win_img(data);
 }
 
 static void	load_wall(t_cbdata *data, int i)
@@ -88,4 +93,33 @@ static void	load_cats(t_cbdata *data, int i)
 	free(str);
 	free(str2);
 	free(str3);
+}
+
+static void	load_number(t_cbdata *data, int i)
+{
+	char	*str_itoa;
+	char	*str_join;
+	char	*str_full;
+	char	str_xpm[5];
+
+	ft_strlcpy(str_xpm, ".xpm", 5);
+	str_join = NULL;
+	str_full = NULL;
+	str_itoa = ft_itoa(i);
+	if (!str_itoa)
+		cb_exit(data, "MALLOC_FAILED");
+	str_join = ft_strjoin(str_itoa, str_xpm);
+	if (!str_join)
+		ft_tripple_free_malloc(str_itoa, str_join, str_full, data);
+	str_full = ft_strjoin("./textures/number/", str_join);
+	if (!str_full)
+		ft_tripple_free_malloc(str_itoa, str_join, str_full, data);
+	data->texture.number[i].mlx_img = mlx_xpm_file_to_image(data->mlx, \
+			str_full, &data->texture.number[i].width, \
+			&data->texture.number[i].heigth);
+	if (!data->texture.number[i].mlx_img)
+		ft_tripple_free_mlx(str_itoa, str_join, str_full, data);
+	free(str_itoa);
+	free(str_join);
+	free(str_full);
 }

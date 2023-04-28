@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:05:13 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/27 10:43:01 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/27 12:19:26 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_list_cats	*ft_lstnew_cats(float pos_x, float pos_y)
 	maillon->next = NULL;
 	maillon->pos_x = pos_x;
 	maillon->pos_y = pos_y;
+	maillon->seen = false;
 	maillon->point.x = 0;
 	maillon->point.y = 0;
 	maillon->point.dist = 0;

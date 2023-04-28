@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:44:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/27 09:42:35 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/27 13:36:18 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,20 @@ int	check_if_ordered(t_list_cats *cats)
 
 void	swap_value(t_list_cats **tmp, t_list_cats **min)
 {
+	bool		tmp_seen;
 	t_point		tmp_point;
 	float		pos_x_tmp;
 	float		pos_y_tmp;
 
+	tmp_seen = (*tmp)->seen;
 	tmp_point = (*tmp)->point;
 	pos_x_tmp = (*tmp)->pos_x;
 	pos_y_tmp = (*tmp)->pos_y;
 	(*tmp)->point = (*min)->point;
 	(*tmp)->pos_x = (*min)->pos_x;
 	(*tmp)->pos_y = (*min)->pos_y;
+	(*tmp)->seen = (*min)->seen;
+	(*min)->seen = tmp_seen;
 	(*min)->point = tmp_point;
 	(*min)->pos_x = pos_x_tmp;
 	(*min)->pos_y = pos_y_tmp;

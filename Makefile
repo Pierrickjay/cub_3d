@@ -65,8 +65,8 @@ SRCS_BONUS	+= main_bonus.c parsing/check_parsing.c parsing/init_map.c parsing/in
 			game/game.c  game/set_move_player_bonus.c game/cat_bonus.c game/draw_slice.c\
 			 game/hook_bonus.c  game/mouse_move_hook_bonus.c game/render_3d_utils.c\
 			game/draw_lines.c game/h_intersect.c game/v_intersect.c game/point_utils.c \
-			game/distance.c game/draw_bonus.c game/render_3d_bonus.c game/change_pos_bonus.c parsing/cats_map.c parsing/del_cats.c game/list_cat.c game/game_bonus.c\
-			parsing/load_image_bonus.c 
+			game/distance.c game/draw_bonus.c game/render_3d_bonus.c game/change_pos_bonus.c parsing/cats_map.c parsing/del_cats.c game/list_cat_bonus.c game/game_bonus.c\
+			parsing/load_image_bonus.c game/draw_counter.c parsing/load_image_bonus2.c\
 
 SRCS_BONUS	:= ${addprefix ${SRCS_DIR},${SRCS_BONUS}}
 

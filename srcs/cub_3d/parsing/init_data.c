@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/26 14:48:05 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/28 09:06:06 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ static void	init_null(t_cbdata *data)
 	data->map_y = 0;
 	data->angle = 0.0;
 	data->nb_cats = 0;
+	data->nb_cats_see = 0;
+	data->digits = 0;
+	data->digits_all = 0;
 	data->cats = NULL;
+	data->won = false;
 	while (++i < 6)
 		data->keypressed[i] = 0;
 }
@@ -70,6 +74,11 @@ void	init_image(t_cbdata *data)
 		data->image[i].line_length = 0;
 		data->image[i].endian = 0;
 	}
+	data->texture.youwin.mlx_img = NULL;
+	data->texture.youwin.addr = NULL;
+	data->texture.youwin.bpp = 0;
+	data->texture.youwin.line_len = 0;
+	data->texture.youwin.endian = 0;
 	data->texture.map.mlx_img = NULL;
 	data->texture.map.addr = NULL;
 	data->texture.map.bpp = 0;
@@ -108,12 +117,16 @@ static void	init_texture(t_cbdata *data)
 			data->texture.wall[i].line_len = 0;
 			data->texture.wall[i].endian = 0;
 		}
+		if (i < 11)
+		{
+			data->texture.number[i].mlx_img = NULL;
+			data->texture.number[i].addr = NULL;
+			data->texture.number[i].bpp = 0;
+		}
 		data->texture.cat[i].mlx_img = NULL;
 		data->texture.cat[i].addr = NULL;
 		data->texture.cat[i].bpp = 0;
 		data->texture.cat[i].line_len = 0;
 		data->texture.cat[i].endian = 0;
-		data->texture.cat[i].width = 0;
-		data->texture.cat[i].heigth = 0;
 	}
 }
