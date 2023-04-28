@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/28 09:06:09 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/28 10:37:59 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,10 +127,10 @@ typedef struct s_texture
 
 typedef struct s_column
 {
-	int	column;
-	int	top;
-	int	bottom;
-	int	size;
+	int		column;
+	float	top;
+	float	bottom;
+	float	size;
 }	t_column;
 
 typedef struct s_cbdata
@@ -203,7 +203,4 @@ void			mini_tile_file(t_cbdata *data, int x, int y, int color);
 void			ft_end_and_close(t_cbdata *data, int fd, char *line);
 void			ft_tripple_free_malloc(char *str, char *str2, \
 					char *str3, t_cbdata *data);
-void			draw_win(t_cbdata *data);
-
-
 #endif

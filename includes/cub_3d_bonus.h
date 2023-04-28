@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:00:22 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/28 10:14:47 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/28 10:39:08 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ void			ft_tripple_free_mlx(char *str, char *str2, \
 void			ft_tripple_free_malloc(char *str, \
 				char *str2, char *str3, t_cbdata *data);
 void			draw_counter_seen(t_cbdata *data);
+void			draw_win(t_cbdata *data);
 
 #endif
