@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:08:24 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/28 09:10:20 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/30 11:29:27 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	init_render(t_cbdata *data)
 {
-	data->image[0].img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
-	data->image[0].addr = mlx_get_data_addr(data->image[0].img,
-			&data->image[0].bits_per_pixel,
-			&data->image[0].line_length, &data->image[0].endian);
-	data->image[1].img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
-	data->image[1].addr = mlx_get_data_addr(data->image[1].img, \
-			&data->image[1].bits_per_pixel, \
-			&data->image[1].line_length, &data->image[1].endian);
+	data->image[0].mlx_img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
+	data->image[0].addr = mlx_get_data_addr(data->image[0].mlx_img,
+			&data->image[0].bpp,
+			&data->image[0].line_len, &data->image[0].endian);
+	data->image[1].mlx_img = mlx_new_image(data->mlx, PLANE_X, PLANE_Y);
+	data->image[1].addr = mlx_get_data_addr(data->image[1].mlx_img, \
+			&data->image[1].bpp, \
+			&data->image[1].line_len, &data->image[1].endian);
 }
 
 static int	run_loop(void *voiddata)

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/28 10:37:59 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/30 11:31:43 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,6 @@ typedef struct s_vec
 	double	y;
 }	t_vec;
 
-typedef struct s_image
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		mini_tile_size;
-
-}	t_image;
-
 typedef struct s_point
 {
 	float	x;
@@ -94,17 +83,6 @@ typedef struct s_list_cats
 	struct s_list_cats	*next;
 }	t_list_cats;
 
-typedef struct s_sprite
-{
-	void			*mlx_img;
-	char			*addr;
-	int				bpp;
-	int				line_len;
-	int				endian;
-	int				width;
-	int				heigth;
-}	t_sprite;
-
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -120,7 +98,7 @@ typedef struct s_texture
 {
 	t_img		wall[4];
 	t_img		map;
-	t_sprite	cat[32];
+	t_img		cat[32];
 	t_img		number[10];
 	t_img		youwin;
 }	t_texture;
@@ -153,9 +131,10 @@ typedef struct s_cbdata
 	float				angle;
 	t_point				raycast[1280];
 	float				proj_slice_height[1280];
-	t_image				image[2];
+	t_img				image[2];
 	t_texture			texture;
 	int					img;
+	int					mini_tile_size;
 	int					keypressed[6];
 	t_list_cats			*cats;
 	bool				won;

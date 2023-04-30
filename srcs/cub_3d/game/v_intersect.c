@@ -6,7 +6,7 @@
 /*   By: rertzer <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 12:48:16 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/18 14:01:35 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/04/30 12:01:20 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,12 @@ static void	set_point_b(t_cbdata *data, t_point *point_b, float angle, \
 	if (angle < M_PI_2 || angle > 3.0 * M_PI_2)
 		point_b->x += BLOCK_SIZE;
 	else
-		point_b->x -= 0.0001;
+	{
+		if (point_b->x < 1024)
+			point_b->x -= 0.0001;
+		else
+			point_b->x -= 0.001;
+	}
 	point_b->y = data->pos_y + (data->pos_x - point_b->x) * tangente;
 }
 

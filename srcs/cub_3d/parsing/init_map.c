@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/25 19:15:04 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/30 10:51:43 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	parse_file(t_cbdata *data, char *av)
 		close(fd);
 		cb_exit(data, "Invalid map");
 	}
-	data->image[0].mini_tile_size = ft_min(MINI_X / data->map_x, \
-		MINI_Y / data->map_y);
-	data->image[1].mini_tile_size = ft_min(MINI_X / data->map_x, \
+	data->mini_tile_size = ft_min(MINI_X / data->map_x, \
 		MINI_Y / data->map_y);
 	close(fd);
 }

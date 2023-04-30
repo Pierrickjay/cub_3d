@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/28 09:06:06 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/30 11:27:26 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static void	init_null(t_cbdata *data)
 	data->nb_cats_see = 0;
 	data->digits = 0;
 	data->digits_all = 0;
-	data->cats = NULL;
+	data->mini_tile_size = 0;
 	data->won = false;
 	while (++i < 6)
 		data->keypressed[i] = 0;
@@ -68,11 +68,13 @@ void	init_image(t_cbdata *data)
 	i = -1;
 	while (++i < 2)
 	{
-		data->image[i].img = NULL;
+		data->image[i].mlx_img = NULL;
 		data->image[i].addr = NULL;
-		data->image[i].bits_per_pixel = 0;
-		data->image[i].line_length = 0;
+		data->image[i].bpp = 0;
+		data->image[i].line_len = 0;
 		data->image[i].endian = 0;
+		data->image[i].width = 0;
+		data->image[i].heigth = 0;
 	}
 	data->texture.youwin.mlx_img = NULL;
 	data->texture.youwin.addr = NULL;

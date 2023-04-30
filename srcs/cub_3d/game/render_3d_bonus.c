@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/22 10:57:33 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/28 10:44:19 by pjay             ###   ########.fr       */
+/*   Updated: 2023/04/30 11:34:49 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	render_3d(t_cbdata *data)
 	int				i;
 	t_column		col;
 	unsigned int	color;
-	float			y;
 
 	set_slice_height(data);
 	col.column = -1;
@@ -37,10 +36,8 @@ void	render_3d(t_cbdata *data)
 			else if (i < col.top)
 				color = data->cf_color[1];
 			else if (i <= col.bottom)
-			{
-				y = BLOCK_SIZE * ((i - PLANE_Y / 2.0) / col.size + 0.5);
-				color = img_pix_read(data, (int)y, col.column);
-			}
+				color = img_pix_read(data, (int)(BLOCK_SIZE * \
+						((i - PLANE_Y / 2.0) / col.size + 0.5)), col.column);
 			else
 				color = data->cf_color[0];
 			my_mlx_pixel_put(data, col.column, i, color);
