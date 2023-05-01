@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/30 11:31:43 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 09:50:15 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_texture
 {
 	t_img		wall[4];
 	t_img		map;
-	t_img		cat[32];
+	t_img		cat[8];
 	t_img		number[10];
 	t_img		youwin;
 }	t_texture;
@@ -155,7 +155,7 @@ void			ft_free_and_close(t_cbdata *data, int fd, char *str);
 void			ft_free(void **ptr);
 void			cb_exit(t_cbdata *data, char *err_msg);
 bool			cell_isa(char c, char *set);
-bool			map_check_ok(t_cbdata *data);
+bool			map_check_ok(t_cbdata *data, int start);
 int				create_rgb(char *line_color);
 /* init map utils */
 void			map_init(t_cbdata *data);
@@ -182,4 +182,5 @@ void			mini_tile_file(t_cbdata *data, int x, int y, int color);
 void			ft_end_and_close(t_cbdata *data, int fd, char *line);
 void			ft_tripple_free_malloc(char *str, char *str2, \
 					char *str3, t_cbdata *data);
+int				check_player_p(char **str);
 #endif

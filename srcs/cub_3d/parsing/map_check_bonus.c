@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 13:46:18 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/27 09:55:31 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 09:50:58 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,11 @@ static bool	map_cell_ok(char **map, int i, int j);
 static bool	map_cell_isin(char **map, int i, int j);
 static void	map_set_things(t_cbdata *data, int i, int j);
 
-bool	map_check_ok(t_cbdata *data)
+bool	map_check_ok(t_cbdata *data, int start)
 {
 	int	i;
 	int	j;
-	int	start;
 
-	start = 0;
 	i = -1;
 	while (data->map[++i])
 	{
@@ -42,6 +40,8 @@ bool	map_check_ok(t_cbdata *data)
 				map_set_things(data, i, j);
 		}
 	}
+	if (!start)
+		cb_exit(data, "Invalid map");
 	return (1);
 }
 

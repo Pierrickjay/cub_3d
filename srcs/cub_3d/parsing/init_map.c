@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:24:08 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/30 10:51:43 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 09:50:21 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ static void	parse_file_line(t_cbdata *data, int fd);
 void	parse_file(t_cbdata *data, char *av)
 {
 	int		fd;
+	int		start;
 
+	start = 0;
 	count_map(data, av);
 	map_init(data);
 	fd = open(av, O_RDONLY);
 	if (fd == -1)
 		cb_exit(data, "open file failed");
 	parse_file_line(data, fd);
-	if (!map_check_ok(data))
+	if (!map_check_ok(data, start))
 	{
 		close(fd);
 		cb_exit(data, "Invalid map");
