@@ -6,14 +6,14 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 13:11:31 by pjay              #+#    #+#             */
-/*   Updated: 2023/05/01 12:16:05 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 12:40:35 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_3d.h"
 
-static void	set_slice_height(t_cbdata *data);
-static void	set_column(t_cbdata *data, t_column *col);
+static void			set_slice_height(t_cbdata *data);
+static void			set_column(t_cbdata *data, t_column *col);
 static unsigned int	set_color(t_cbdata *data, t_column col, int i);
 
 void	render_3d(t_cbdata *data)
