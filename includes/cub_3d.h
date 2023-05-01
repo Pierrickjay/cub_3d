@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 09:37:39 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/30 11:31:43 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 09:46:52 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,7 @@ void			ft_free_and_close(t_cbdata *data, int fd, char *str);
 void			ft_free(void **ptr);
 void			cb_exit(t_cbdata *data, char *err_msg);
 bool			cell_isa(char c, char *set);
+bool			cell_inside(t_cbdata *data, int x, int y);
 bool			map_check_ok(t_cbdata *data);
 int				create_rgb(char *line_color);
 /* init map utils */
