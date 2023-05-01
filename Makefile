@@ -171,9 +171,7 @@ re		: fclean all
 
 $(OBJS_DIR)%.o	: %.c
 				@${MKDIR} $(@D)
-				${CC} ${CFLAGS} -c $< -I $(INC_DIR) -o $@
-#				@$(call PROGRESS_BAR, $(basename $(notdir $<)))
-
-
+				@${CC} ${CFLAGS} -c $< -I $(INC_DIR) -o $@
+				@$(call PROGRESS_BAR, $(basename $(notdir $<)))
 
 -include $(DEPS)
