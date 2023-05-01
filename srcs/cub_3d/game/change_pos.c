@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 10:56:00 by pjay              #+#    #+#             */
-/*   Updated: 2023/05/01 09:31:46 by pjay             ###   ########.fr       */
+/*   Updated: 2023/05/01 12:46:58 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ bool	bump_wall(t_cbdata *data, int new_x, int new_y)
 {
 	new_x /= BLOCK_SIZE;
 	new_y /= BLOCK_SIZE;
+	if (!cell_inside(data, new_x, new_y))
+		return (false);
 	if (cell_isa(data->map[new_y][new_x], CELL_HARD))
 		return (true);
 	else

@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/08 10:32:50 by rertzer           #+#    #+#             */
-/*   Updated: 2023/04/30 11:57:14 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 10:11:28 by rertzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static int	next_point_a(t_cbdata *data, t_point *point_a, t_point offset)
 		return (1);
 	x = ((int)point_a->x) / BLOCK_SIZE;
 	y = ((int)point_a->y) / BLOCK_SIZE;
-	if (data->map[y][x] == '1')
+	if (cell_inside(data, x, y) && data->map[y][x] == '1')
 		return (1);
 	point_a->x += offset.x;
 	point_a->y += offset.y;
