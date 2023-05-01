@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 09:25:32 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/28 10:46:58 by pjay             ###   ########.fr       */
+/*   Updated: 2023/05/01 09:45:02 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,23 @@ static void	draw_cat(t_cbdata *data, t_list_cats *cat, t_point screen)
 
 	kitty = set_app_cat(screen.angle, cat->point.dist);
 	left = screen.x - kitty.x / 2.0;
-	while (kitty.offset_x <= (int)kitty.x)
+	if ((int)kitty.x < 1906364416)
 	{
-		current = (int)left + kitty.offset_x;
-		if (current >= 0 && current < PLANE_X && \
-				!(data->raycast[current].dist < cat->point.dist))
+		while (kitty.offset_x <= (int)kitty.x)
 		{
-			if (cat->seen != true && cat->point.dist < 100)
+			current = (int)left + kitty.offset_x;
+			if (current >= 0 && current < PLANE_X && \
+					!(data->raycast[current].dist < cat->point.dist))
 			{
-				cat->seen = true;
-				data->nb_cats_see++;
+				if (cat->seen != true && cat->point.dist < 100)
+				{
+					cat->seen = true;
+					data->nb_cats_see++;
+				}
+				draw_slice(data, current, kitty);
 			}
-			draw_slice(data, current, kitty);
+			kitty.offset_x++;
 		}
-		kitty.offset_x++;
 	}
 }
 

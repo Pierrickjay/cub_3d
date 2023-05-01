@@ -6,7 +6,7 @@
 /*   By: pjay <pjay@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:33:14 by pjay              #+#    #+#             */
-/*   Updated: 2023/04/30 11:27:26 by rertzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 09:22:02 by pjay             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ static void	init_texture(t_cbdata *data)
 	int	i;
 
 	i = -1;
-	while (++i < 32)
+	while (++i < 11)
 	{
 		if (i < 4)
 		{
@@ -119,16 +119,16 @@ static void	init_texture(t_cbdata *data)
 			data->texture.wall[i].line_len = 0;
 			data->texture.wall[i].endian = 0;
 		}
-		if (i < 11)
+		if (i < 8)
 		{
-			data->texture.number[i].mlx_img = NULL;
-			data->texture.number[i].addr = NULL;
-			data->texture.number[i].bpp = 0;
+			data->texture.cat[i].mlx_img = NULL;
+			data->texture.cat[i].addr = NULL;
+			data->texture.cat[i].bpp = 0;
+			data->texture.cat[i].line_len = 0;
+			data->texture.cat[i].endian = 0;
 		}
-		data->texture.cat[i].mlx_img = NULL;
-		data->texture.cat[i].addr = NULL;
-		data->texture.cat[i].bpp = 0;
-		data->texture.cat[i].line_len = 0;
-		data->texture.cat[i].endian = 0;
+		data->texture.number[i].mlx_img = NULL;
+		data->texture.number[i].addr = NULL;
+		data->texture.number[i].bpp = 0;
 	}
 }
